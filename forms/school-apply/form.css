@@ -1,0 +1,88 @@
+.f-school-apply .g-page-inner {
+display: flex;
+flex-direction: column;
+gap: 5mm;
+}
+.f-school-apply .plain {
+margin: 0;
+}
+.f-school-apply .head {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 8mm;
+}
+.f-school-apply .head-main {
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 6mm;
+padding-top: 4mm;
+}
+.f-school-apply .title {
+margin: 0;
+font-size: 22pt;
+line-height: 1.3;
+}
+.f-school-apply .line {
+display: flex;
+align-items: baseline;
+gap: 6px;
+}
+.f-school-apply .line > span {
+flex: none;
+white-space: nowrap;
+}
+.f-school-apply .line > .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-school-apply .line.top {
+align-items: flex-start;
+}
+.f-school-apply .date-line .g-in {
+max-width: 50mm;
+}
+.f-school-apply .to {
+display: flex;
+flex-direction: column;
+gap: 1mm;
+}
+.f-school-apply .line > .class-in {
+width: 28mm;
+flex: none;
+}
+.f-school-apply .subject {
+font-weight: 700;
+}
+.f-school-apply .subject .g-in {
+font-weight: 400;
+}
+.f-school-apply .rows {
+display: flex;
+flex-direction: column;
+gap: 2.5mm;
+}
+.f-school-apply .two {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8mm;
+}
+.f-school-apply .sign {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 14mm;
+margin-top: 14mm;
+}
+.f-school-apply .sign-box {
+display: flex;
+flex-direction: column;
+gap: 2mm;
+text-align: center;
+}
+.f-school-apply .sign-line {
+border-top: 1px solid #111111;
+}
+.f-school-apply .attach {
+margin-top: auto;
+}

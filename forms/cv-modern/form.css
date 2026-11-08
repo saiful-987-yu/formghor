@@ -1,0 +1,283 @@
+.f-cv-modern .g-page {
+font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+}
+.f-cv-modern .g-page-inner {
+display: flex;
+flex-direction: column;
+font-size: 10pt;
+line-height: 1.5;
+color: #262626;
+}
+.f-cv-modern .g-page-inner > * {
+flex: none;
+}
+.f-cv-modern .g-in {
+padding: 0;
+border-bottom-color: transparent;
+}
+.f-cv-modern .g-in:hover {
+border-bottom-color: #d8c4b8;
+}
+.f-cv-modern .g-in:focus {
+background: #fbf6f2;
+border-bottom: 1px solid #9a3412;
+}
+.f-cv-modern .head {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 8mm;
+}
+.f-cv-modern .head-main {
+flex: 1;
+min-width: 0;
+padding-top: 6mm;
+}
+.f-cv-modern .name-row {
+display: flex;
+align-items: baseline;
+gap: 2.5mm;
+font-size: 24pt;
+font-weight: 700;
+line-height: 1.25;
+}
+.f-cv-modern .autow {
+display: inline-grid;
+min-width: 12mm;
+}
+.f-cv-modern .autow::after {
+content: attr(data-v) " ";
+grid-area: 1 / 1;
+visibility: hidden;
+white-space: pre;
+font: inherit;
+}
+.f-cv-modern .autow .g-in {
+grid-area: 1 / 1;
+width: 0;
+min-width: 100%;
+}
+.f-cv-modern .n1 {
+color: #262626;
+}
+.f-cv-modern .n2 {
+color: #9a3412;
+}
+.f-cv-modern .role {
+font-size: 8.5pt;
+letter-spacing: .5px;
+text-transform: uppercase;
+color: #595959;
+}
+.f-cv-modern .g-photo {
+border: 1px solid #c4c4cc;
+background: #f6f1ed;
+outline: 3px solid #ffffff;
+outline-offset: -4px;
+}
+.f-cv-modern .contact {
+display: grid;
+grid-template-columns: 38mm 1fr 1fr;
+gap: 5mm;
+margin-top: 4mm;
+}
+.f-cv-modern .cl {
+display: block;
+font-size: 7pt;
+font-weight: 700;
+letter-spacing: .6px;
+text-transform: uppercase;
+color: #9a3412;
+}
+.f-cv-modern .contact .g-in {
+font-size: 9.5pt;
+}
+.f-cv-modern .sec {
+margin: 4.2mm 0 2.2mm;
+padding-bottom: .6mm;
+border-bottom: 1px solid #d7d7d7;
+font-size: 11pt;
+font-weight: 700;
+line-height: 1.4;
+text-transform: uppercase;
+color: #9a3412;
+}
+.f-cv-modern .sec.first {
+margin-top: 0;
+}
+.f-cv-modern .obj {
+font-style: italic;
+text-align: justify;
+}
+.f-cv-modern .ecard {
+margin-bottom: 2.5mm;
+padding: 1.4mm 3mm;
+border: 1px solid #d6d6d6;
+border-left: 3px solid #9a3412;
+}
+.f-cv-modern .ecard-top {
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+gap: 4mm;
+}
+.f-cv-modern .ecard-top .b {
+flex: 1;
+min-width: 0;
+font-weight: 700;
+}
+.f-cv-modern .ecard-top .yr {
+flex: none;
+width: 22mm;
+text-align: right;
+font-weight: 700;
+color: #9a3412;
+}
+.f-cv-modern .ecard-meta {
+display: flex;
+align-items: baseline;
+gap: 1.5mm;
+font-size: 8.5pt;
+color: #595959;
+}
+.f-cv-modern .ecard-meta span {
+flex: none;
+}
+.f-cv-modern .ecard-meta i {
+flex: none;
+font-style: normal;
+}
+.f-cv-modern .ecard-meta .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-modern .skgrid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+border-top: 1px solid #e0cfc5;
+border-left: 1px solid #e0cfc5;
+}
+.f-cv-modern .sk {
+padding: 1.8mm 2mm;
+background: #fbf6f2;
+border-right: 1px solid #e0cfc5;
+border-bottom: 1px solid #e0cfc5;
+}
+.f-cv-modern .sk:nth-child(8) {
+grid-column: span 2;
+}
+.f-cv-modern .sk .g-in {
+text-align: center;
+font-size: 9pt;
+}
+.f-cv-modern .bul {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+}
+.f-cv-modern .bul > span {
+flex: none;
+width: 3mm;
+text-align: center;
+}
+.f-cv-modern .bul .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-modern .lang {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+}
+.f-cv-modern .lang .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-modern .lang .b {
+flex: none;
+width: 26mm;
+font-weight: 700;
+}
+.f-cv-modern .lang > span {
+flex: none;
+}
+.f-cv-modern .job {
+margin-bottom: 4mm;
+}
+.f-cv-modern .job-top {
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+gap: 4mm;
+}
+.f-cv-modern .job-top .b {
+flex: 1;
+min-width: 0;
+font-weight: 700;
+}
+.f-cv-modern .job-top .dt {
+flex: none;
+width: 44mm;
+text-align: right;
+font-size: 9pt;
+color: #595959;
+}
+.f-cv-modern .co {
+margin-bottom: 1mm;
+font-style: italic;
+color: #9a3412;
+}
+.f-cv-modern .ptab {
+border-bottom: 1px solid #e3e3e3;
+}
+.f-cv-modern .prow {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+padding: 1.5mm 2mm;
+border-top: 1px solid #e3e3e3;
+}
+.f-cv-modern .pl {
+flex: none;
+width: 38mm;
+font-weight: 700;
+}
+.f-cv-modern .pc {
+flex: none;
+}
+.f-cv-modern .prow .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-modern .decl {
+margin: 5mm 0 0;
+font-style: italic;
+}
+.f-cv-modern .sign {
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+margin-top: auto;
+padding-top: 8mm;
+}
+.f-cv-modern .sign-box {
+width: 62mm;
+}
+.f-cv-modern .sign-line {
+display: block;
+border-top: 1px solid #262626;
+}
+.f-cv-modern .sign-box .g-in {
+text-align: center;
+font-weight: 700;
+}
+.f-cv-modern .date-box {
+display: flex;
+align-items: baseline;
+gap: 1.5mm;
+font-size: 8.5pt;
+color: #595959;
+}
+.f-cv-modern .date-box .g-in {
+width: 28mm;
+}
