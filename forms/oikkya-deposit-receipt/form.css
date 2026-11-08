@@ -1,0 +1,157 @@
+.f-oikkya-deposit-receipt .g-page {
+-webkit-print-color-adjust: exact;
+print-color-adjust: exact;
+}
+.f-oikkya-deposit-receipt .g-page-inner {
+inset: 5mm;
+padding: 3mm;
+}
+.f-oikkya-deposit-receipt .cards {
+display: flex;
+align-items: flex-start;
+gap: 0;
+}
+.f-oikkya-deposit-receipt .card {
+display: flex;
+flex: none;
+flex-direction: column;
+box-sizing: border-box;
+height: 54mm;
+padding: 2.2mm 3.2mm 1.6mm;
+border: 1.2px solid #1a237e;
+background: #ffffff;
+color: #1e293b;
+font-family: Arial, 'Noto Sans Bengali', sans-serif;
+font-size: 8pt;
+line-height: 1.3;
+overflow: hidden;
+}
+.f-oikkya-deposit-receipt .card.cu {
+order: 3;
+width: 123mm;
+}
+.f-oikkya-deposit-receipt .card.of {
+order: 1;
+width: 54mm;
+}
+.f-oikkya-deposit-receipt .cut {
+position: relative;
+order: 2;
+flex: none;
+align-self: stretch;
+width: 16mm;
+}
+.f-oikkya-deposit-receipt .cut::before {
+content: '';
+position: absolute;
+top: 0;
+bottom: 0;
+left: 50%;
+border-left: 1.2px dotted #475569;
+}
+.f-oikkya-deposit-receipt .t1 {
+color: #1a237e;
+font-size: 12pt;
+font-weight: 700;
+line-height: 1.25;
+text-align: center;
+}
+.f-oikkya-deposit-receipt .of .t1 {
+font-size: 9.5pt;
+}
+.f-oikkya-deposit-receipt .t2 {
+margin: .5mm 0 1.4mm;
+text-align: center;
+}
+.f-oikkya-deposit-receipt .t2 span {
+display: inline-block;
+padding: .3mm 2.4mm;
+border-radius: 1mm;
+background: #e8eaf6;
+color: #1a237e;
+font-size: 7.6pt;
+font-weight: 700;
+}
+.f-oikkya-deposit-receipt .rw {
+flex: none;
+}
+.f-oikkya-deposit-receipt .rw.r2 {
+display: grid;
+grid-template-columns: 1.15fr 1fr;
+gap: 0 4mm;
+}
+.f-oikkya-deposit-receipt .ln {
+display: flex;
+align-items: baseline;
+gap: 1.4mm;
+min-width: 0;
+padding: .3mm 0;
+}
+.f-oikkya-deposit-receipt .ln b {
+flex: none;
+font-weight: 700;
+white-space: nowrap;
+}
+.f-oikkya-deposit-receipt .ln .g-in {
+flex: 1;
+min-width: 0;
+color: #334155;
+font-size: 9.5pt;
+font-weight: 600;
+line-height: 1.25;
+}
+.f-oikkya-deposit-receipt .of .g-in {
+pointer-events: none;
+}
+.f-oikkya-deposit-receipt .hint {
+display: none;
+flex: none;
+color: #334155;
+white-space: nowrap;
+}
+.f-oikkya-deposit-receipt .md:has(.g-in:placeholder-shown) .hint {
+display: inline;
+}
+.f-oikkya-deposit-receipt .md .g-in::placeholder {
+color: transparent;
+}
+.f-oikkya-deposit-receipt .md:has(.g-in:placeholder-shown) .g-in {
+flex: 0 0 8mm;
+}
+.f-oikkya-deposit-receipt .dl {
+flex: 1;
+min-width: 8mm;
+border-bottom: 1px dotted #475569;
+}
+.f-oikkya-deposit-receipt .sg {
+margin-top: auto;
+}
+.f-oikkya-deposit-receipt .sg .ln {
+padding-bottom: 0;
+}
+.f-oikkya-deposit-receipt .nt {
+margin-top: 1mm;
+color: #64748b;
+font-size: 6.4pt;
+font-style: italic;
+text-align: center;
+}
+.f-oikkya-deposit-receipt .g-pv--stack .card.of {
+width: 123mm;
+}
+.f-oikkya-deposit-receipt .g-pv--stack .cut {
+align-self: auto;
+width: 123mm;
+height: 12mm;
+}
+.f-oikkya-deposit-receipt .g-pv--stack .cut::before {
+top: 50%;
+right: 0;
+bottom: auto;
+left: 0;
+border-top: 1.2px dotted #475569;
+border-left: 0;
+}
+.f-oikkya-deposit-receipt .g-pv .g-page .g-in {
+border-bottom-color: #8f8f98 !important;
+}

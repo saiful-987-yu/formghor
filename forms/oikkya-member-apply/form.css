@@ -1,0 +1,224 @@
+.f-oikkya-member-apply .g-pages {
+width: 216mm;
+}
+.f-oikkya-member-apply .g-page {
+width: 216mm;
+height: 356mm;
+-webkit-print-color-adjust: exact;
+print-color-adjust: exact;
+}
+.f-oikkya-member-apply .g-page-inner {
+inset: 6mm 9mm;
+padding: 0;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+gap: 2.4mm;
+font-family: Arial, 'Noto Sans Bengali', sans-serif;
+font-size: 10pt;
+line-height: 1.4;
+color: #1e293b;
+}
+.f-oikkya-member-apply .g-page-inner > * {
+flex: none;
+}
+.f-oikkya-member-apply .hd {
+padding: 4mm 4mm;
+border: 2px solid #d97706;
+background: #0f172a;
+text-align: center;
+}
+.f-oikkya-member-apply .hd1 {
+color: #ffffff;
+font-size: 20pt;
+font-weight: 700;
+letter-spacing: .8px;
+line-height: 1.3;
+}
+.f-oikkya-member-apply .hd2 {
+margin-top: 1mm;
+color: #cbd5e1;
+font-size: 10pt;
+}
+.f-oikkya-member-apply .hd3 {
+margin-top: 1.8mm;
+color: #ffffff;
+font-size: 11.5pt;
+font-weight: 700;
+}
+.f-oikkya-member-apply .bar {
+padding: 1.6mm 3mm;
+border-left: 1.2mm solid #1a237e;
+background: #e8eaf6;
+color: #1a237e;
+font-size: 11.5pt;
+font-weight: 700;
+text-align: center;
+}
+.f-oikkya-member-apply .box {
+border: 1px solid #cbd5e1;
+border-top: 0;
+background: #ffffff;
+}
+.f-oikkya-member-apply .two {
+display: grid;
+grid-template-columns: 1fr 1fr;
+}
+.f-oikkya-member-apply .two > .col {
+min-width: 0;
+padding: 2mm 3mm;
+}
+.f-oikkya-member-apply .two > .col + .col {
+border-left: 1px solid #cbd5e1;
+}
+.f-oikkya-member-apply .two.in {
+border-top: 1px solid #cbd5e1;
+}
+.f-oikkya-member-apply .ln {
+display: flex;
+align-items: baseline;
+gap: 1.6mm;
+padding: .8mm 0;
+}
+.f-oikkya-member-apply .ln b {
+flex: none;
+color: #1e293b;
+font-weight: 700;
+white-space: nowrap;
+}
+.f-oikkya-member-apply .ln .g-in {
+flex: 1;
+min-width: 0;
+color: #334155;
+}
+.f-oikkya-member-apply .ln .g-in + b {
+margin-left: 2mm;
+}
+.f-oikkya-member-apply .ln.top {
+align-items: flex-start;
+}
+.f-oikkya-member-apply .g-ta {
+line-height: 1.75;
+}
+.f-oikkya-member-apply .cap {
+margin-bottom: .4mm;
+color: #1e293b;
+font-weight: 700;
+}
+.f-oikkya-member-apply .nt {
+padding: 1.8mm 3mm;
+color: #1a237e;
+font-size: 9.6pt;
+font-style: italic;
+}
+.f-oikkya-member-apply .pol {
+padding: 2.4mm 3mm;
+color: #334155;
+font-size: 9.4pt;
+line-height: 1.5;
+text-align: justify;
+}
+.f-oikkya-member-apply .pol p {
+margin: 0 0 1.8mm;
+}
+.f-oikkya-member-apply .pol p:last-child {
+margin-bottom: 0;
+}
+.f-oikkya-member-apply .pol b {
+color: #1a237e;
+}
+.f-oikkya-member-apply .plg {
+padding: 3.2mm 3.5mm;
+border: 1px solid #d97706;
+background: #fefce8;
+color: #451a03;
+}
+.f-oikkya-member-apply .pt {
+line-height: 1.9;
+text-align: justify;
+}
+.f-oikkya-member-apply .pt b {
+color: #78350f;
+}
+.f-oikkya-member-apply .pn,
+.f-oikkya-member-apply .an {
+display: inline-block;
+width: 52mm;
+margin: 0 1.6mm;
+font-weight: 700;
+vertical-align: baseline;
+}
+.f-oikkya-member-apply .ps {
+display: flex;
+align-items: flex-end;
+justify-content: flex-end;
+gap: 1.6mm;
+margin-top: 4mm;
+}
+.f-oikkya-member-apply .dl {
+display: inline-block;
+border-bottom: 1px dotted #475569;
+}
+.f-oikkya-member-apply .ps .dl {
+width: 70mm;
+height: 1px;
+}
+.f-oikkya-member-apply .apv {
+padding: 3.2mm 3.5mm;
+border: 1px solid #86efac;
+background: #f0fdf4;
+color: #14532d;
+}
+.f-oikkya-member-apply .at {
+color: #15803d;
+font-size: 11.5pt;
+font-weight: 700;
+text-align: center;
+}
+.f-oikkya-member-apply .ax {
+margin-top: .8mm;
+line-height: 1.9;
+}
+.f-oikkya-member-apply .ax b,
+.f-oikkya-member-apply .ai b {
+color: #166534;
+}
+.f-oikkya-member-apply .an {
+width: 56mm;
+}
+.f-oikkya-member-apply .ai {
+display: flex;
+align-items: baseline;
+gap: 1.6mm;
+margin-top: .8mm;
+}
+.f-oikkya-member-apply .mid {
+width: 52mm;
+font-weight: 700;
+letter-spacing: .5px;
+}
+.f-oikkya-member-apply .sg {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+border: 1px solid #1e293b;
+}
+.f-oikkya-member-apply .sg > div {
+padding: 10mm 3mm 2mm;
+text-align: center;
+}
+.f-oikkya-member-apply .sg > div + div {
+border-left: 1px solid #1e293b;
+}
+.f-oikkya-member-apply .sg .dl {
+display: block;
+width: 80%;
+height: 0;
+margin: 0 auto 1.2mm;
+}
+.f-oikkya-member-apply .sg b {
+color: #1e3a8a;
+font-size: 10pt;
+}
+.f-oikkya-member-apply .g-pv .g-page .g-in {
+border-bottom-color: #8f8f98 !important;
+}

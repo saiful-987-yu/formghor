@@ -58,7 +58,7 @@ tags: { bn: ['সিভি', 'সাইডবার'], en: ['CV', 'Sidebar'] }
 {
 slug: 'nid-info-card',
 id: 'ID-1740',
-access: 'free',
+access: 'locked',
 paper: 'A4',
 pages: 1,
 title: { bn: 'NID তথ্য কার্ড (নমুনা)', en: 'NID information card (sample)' },
@@ -120,5 +120,29 @@ title: { bn: 'ভিটা ক্রয়ের স্ট্যাম্প দ
 desc: { bn: 'পুরো টাকা দিয়ে ভিটা কেনার লিগ্যাল সাইজের স্ট্যাম্প দলিল, দুই পাতায়।', en: 'A legal-size stamp deed for buying a plot with full payment, on two pages.' },
 sub: { bn: 'পুরো টাকা পরিশোধ করে একজন ব্যক্তির কাছ থেকে ভিটা বা দোকানের জায়গা কেনার দলিল। বিক্রেতা ও ক্রেতার তথ্য, ভিটার তফসিল ও চৌহদ্দি, মূল্য ও শর্তাবলী বসান। উপরে সরকারি স্ট্যাম্পের জন্য ৪ সেমি ফাঁকা জায়গা, নিচে ক্রেতা ও বিক্রেতার স্বাক্ষর, বিক্রেতার টিপসই এবং দুইজন সাক্ষীর স্বাক্ষরের জায়গাসহ দলিল দুই পাতার লিগ্যাল সাইজ কাগজে প্রিন্টের জন্য তৈরি। দলিলের মূল কপি ক্রেতার কাছে থাকবে।', en: 'A deed for buying a plot or shop land from an individual with full payment made. Fill in the seller\'s and buyer\'s details, the plot schedule and boundaries, the price and the terms. It leaves a 4 cm blank space at the top for the government stamp, and at the bottom has room for the buyer\'s and seller\'s signatures, the seller\'s thumbprint and two witnesses. A two-page deed ready to print on legal-size paper. The original copy stays with the buyer.' },
 tags: { bn: ['দলিল', 'স্ট্যাম্প'], en: ['Deed', 'Stamp'] }
+},
+{
+slug: 'oikkya-member-apply',
+id: 'ID-2502',
+group: 'institutional',
+access: 'free',
+paper: 'Legal',
+pages: 1,
+title: { bn: 'ঐক্য বিজনেস গ্রুপ সদস্য আবেদন ফরম', en: 'Oikkya Business Group member application' },
+desc: { bn: 'ঐক্য বিজনেস গ্রুপের অফিশিয়াল সদস্য আবেদন ও তথ্য ফরম।', en: 'Official member application and information form of Oikkya Business Group.' },
+sub: { bn: 'ঐক্য বিজনেস গ্রুপের সদস্য পদের আবেদন ফরম হাতে লেখার ঝামেলা নেই। সদস্যের নাম, পিতার নাম, জাতীয় পরিচয়পত্র নং, মোবাইল, বর্তমান ও স্থায়ী ঠিকানা এবং মনোনীত প্রতিনিধির (নোমিনি) তথ্য বসান। ব্যবসার নীতিমালা ও অঙ্গীকারনামা, বোর্ডের অনুমোদন ও মেম্বারশিপ আইডি এবং কোষাধ্যক্ষ, সাধারণ সম্পাদক ও চেয়ারম্যানের স্বাক্ষরের জায়গাসহ পরিপাটি ফরম লিগ্যাল সাইজ কাগজে সরাসরি প্রিন্ট করুন।', en: 'No more writing the Oikkya Business Group membership application by hand. Fill in the member\'s name, father\'s name, national ID number, mobile, present and permanent address and the nominee\'s details. The form comes with the business rules and member pledge, the board approval with membership ID, and space for the treasurer\'s, general secretary\'s and chairman\'s signatures, ready to print neatly on legal-size paper.' },
+tags: { bn: ['ঐক্য বিজনেস গ্রুপ', 'আবেদনপত্র'], en: ['Oikkya Business Group', 'Application'] }
+},
+{
+slug: 'oikkya-deposit-receipt',
+id: 'ID-2629',
+group: 'institutional',
+access: 'free',
+paper: 'A4',
+pages: 1,
+title: { bn: 'টাকা জমা ও কিস্তি প্রাপ্তি রসিদ', en: 'Deposit and instalment receipt' },
+desc: { bn: 'অফিস কপি ও গ্রাহক কপিসহ টাকা জমা ও কিস্তি প্রাপ্তির রসিদ।', en: 'A deposit and instalment receipt with an office copy and a customer copy.' },
+sub: { bn: 'টাকা জমা ও কিস্তি প্রাপ্তির রসিদ হাতে কাটার ঝামেলা নেই। রসিদ নং, তারিখ, সদস্যের নাম, আইডি নং, কিস্তি নং, পরিমাণ ও মাধ্যম একবার লিখলেই অফিস কপি ও গ্রাহক কপি দুই জায়গাতেই বসে যাবে। প্রিন্ট প্রিভিউতে ‘পেপার ভরো’ চেপে এক A4 কাগজে একসাথে ৫টি রসিদ প্রিন্ট করা যাবে।', en: 'No more cutting deposit and instalment receipts by hand. Write the receipt number, date, member\'s name, ID number, instalment number, amount and payment method once, and they appear on both the office copy and the customer copy. In the print preview, use ‘Fill page’ to print five receipts together on one A4 sheet.' },
+tags: { bn: ['রসিদ', 'ঐক্য বিজনেস গ্রুপ'], en: ['Receipt', 'Oikkya Business Group'] }
 }
 ];
