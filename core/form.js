@@ -418,6 +418,15 @@ var kind = KINDS[node.getAttribute('data-kind')];
 if (!kind) {
 return value;
 }
+if (node.getAttribute('data-digits') === 'keep') {
+var kept = '';
+for (var k = 0; k < value.length; k++) {
+if (kind.re.test(digitsToAscii(value.charAt(k)))) {
+kept += value.charAt(k);
+}
+}
+return kept.slice(0, kind.max);
+}
 var src = digitsToAscii(value);
 var out = '';
 for (var i = 0; i < src.length; i++) {
