@@ -92,6 +92,13 @@ var when = formatTime(item.t);
 var row = el('div', 'g-sv-row');
 var card = el('a', 'g-sv-card');
 card.href = '../forms/' + slug + '/index.html?save=' + encodeURIComponent(item.id);
+if (item.multi && item.multi.length) {
+card.className = 'g-sv-card g-sv-card--multi';
+var tag = el('span', 'g-sv-tag');
+tag.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="13" height="13" rx="2"/><path d="M8 4h11a2 2 0 0 1 2 2v11"/></svg>';
+tag.appendChild(el('span', '', G.t('saves.multiTag') + ' · ' + G.t('saves.people').replace('{n}', digits(String(G.saves.persons(item))))));
+card.appendChild(tag);
+}
 card.appendChild(el('span', 'g-sv-name', label));
 card.appendChild(el('span', 'g-sv-time', when));
 var del = el('button', 'g-sv-del');

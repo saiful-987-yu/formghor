@@ -62,6 +62,8 @@ case 'history':
 return history_(req);
 case 'saveForm':
 return saveForm_(req);
+case 'saveFormPhotos':
+return saveFormPhotos_(req);
 case 'listSaves':
 return listSaves_(req);
 case 'listAllSaves':
@@ -218,8 +220,13 @@ var id = typeof req.id === 'string' ? req.id : '';
 if (!/^[a-z0-9-]{1,60}$/.test(slug) || !/^[a-z0-9]{6,40}$/.test(id)) {
 return { ok: false, error: 'bad_request' };
 }
-var data = JSON.stringify(cleanFields_(req.fields));
-if (data.length > 45000) {
+var multiSrc = Array.isArray(req.multi) ? req.multi.slice(0, 29) : [];
+var multi = [];
+for (var q = 0; q < multiSrc.length; q++) {
+multi.push(cleanFields_(multiSrc[q]));
+}
+var data = JSON.stringify(multi.length ? { __m: 1, f: cleanFields_(req.fields), m: multi } : cleanFields_(req.fields));
+if (data.length > (multi.length ? 48000 : 45000)) {
 return { ok: false, error: 'bad_request' };
 }
 var sheet = sheet_('Saves', SAVES_HEAD);
@@ -268,6 +275,84 @@ appendRow_(sheet, [now_(), id, slug, phone, str_(req.name, 60), data, JSON.strin
 return { ok: true };
 }
 
+function saveFormPhotos_(req) {
+var phone = phoneFromToken_(req.token);
+if (!phone) {
+return { ok: false, error: 'unauthorized' };
+}
+var id = typeof req.id === 'string' ? req.id : '';
+if (!/^[a-z0-9]{6,40}$/.test(id)) {
+return { ok: false, error: 'bad_request' };
+}
+var sheet = sheet_('Saves', SAVES_HEAD);
+var row = findRow_(sheet, 2, id);
+if (!row) {
+return { ok: false, error: 'bad_request' };
+}
+var rec = sheet.getRange(row, 1, 1, SAVES_HEAD.length).getValues()[0];
+if (String(rec[3]) !== phone) {
+return { ok: false, error: 'bad_request' };
+}
+var ms = Number(req.t);
+if (!(ms > 0) || String(Math.floor(ms)) !== String(rec[7])) {
+return { ok: false, error: 'stale' };
+}
+var ids = {};
+try {
+ids = JSON.parse(String(rec[6]));
+} catch (err) {
+console.error(err);
+}
+var src = req.photos && typeof req.photos === 'object' ? req.photos : {};
+var keys = Object.keys(src).slice(0, 8);
+for (var i = 0; i < keys.length; i++) {
+var key = keys[i];
+if (/^m[0-9]{1,2}_[a-z0-9_]{1,36}$/.test(key) && typeof src[key] === 'string' && !ids[key] && Object.keys(ids).length < 100) {
+var fileId = saveImage_(src[key], 'save_' + id + '_' + key + '.jpg');
+if (fileId) {
+ids[key] = fileId;
+}
+}
+}
+sheet.getRange(row, 7).setNumberFormat('@').setValue(JSON.stringify(ids));
+return { ok: true };
+}
+
+function readSave_(row) {
+var fields = {};
+var multi = [];
+var ids = {};
+try {
+var data = JSON.parse(String(row[5]));
+if (data && data.__m === 1 && Array.isArray(data.m)) {
+fields = data.f && typeof data.f === 'object' ? data.f : {};
+multi = data.m.map(function (f) {
+return { fields: f && typeof f === 'object' ? f : {}, photos: {} };
+});
+} else {
+fields = data;
+}
+ids = JSON.parse(String(row[6]));
+} catch (err) {
+console.error(err);
+}
+var photos = {};
+var keys = Object.keys(ids);
+for (var k = 0; k < keys.length; k++) {
+var url = imageData_(String(ids[keys[k]]));
+if (!url) {
+continue;
+}
+var m = multi.length ? /^m([0-9]+)_([a-z0-9_]+)$/.exec(keys[k]) : null;
+if (m && multi[Number(m[1]) - 1]) {
+multi[Number(m[1]) - 1].photos[m[2]] = url;
+} else {
+photos[keys[k]] = url;
+}
+}
+return { fields: fields, photos: photos, multi: multi, count: keys.length };
+}
+
 function listSaves_(req) {
 var phone = phoneFromToken_(req.token);
 if (!phone) {
@@ -302,28 +387,22 @@ return Number(b[7]) - Number(a[7]);
 });
 mine = mine.slice(0, 10);
 var saves = [];
+var budget = 0;
 for (var j = 0; j < mine.length; j++) {
 var row = mine[j];
 if (have[String(row[1])]) {
 continue;
 }
-var fields = {};
-var ids = {};
-try {
-fields = JSON.parse(String(row[5]));
-ids = JSON.parse(String(row[6]));
-} catch (err) {
-console.error(err);
+var rec = readSave_(row);
+var item = { id: String(row[1]), name: String(row[4]), t: Number(row[7]), fields: rec.fields, photos: rec.photos };
+if (rec.multi.length) {
+item.multi = rec.multi;
 }
-var photos = {};
-var keys = Object.keys(ids);
-for (var k = 0; k < keys.length; k++) {
-var url = imageData_(String(ids[keys[k]]));
-if (url) {
-photos[keys[k]] = url;
+saves.push(item);
+budget += rec.count;
+if (budget >= 40) {
+break;
 }
-}
-saves.push({ id: String(row[1]), name: String(row[4]), t: Number(row[7]), fields: fields, photos: photos });
 }
 return { ok: true, saves: saves };
 }
@@ -370,27 +449,21 @@ missing.push(mine[j]);
 }
 var part = missing.slice(0, 12);
 var saves = [];
+var budget = 0;
 for (var m = 0; m < part.length; m++) {
 var row = part[m];
-var fields = {};
-var ids = {};
-try {
-fields = JSON.parse(String(row[5]));
-ids = JSON.parse(String(row[6]));
-} catch (err) {
-console.error(err);
+var rec = readSave_(row);
+var item = { id: String(row[1]), slug: String(row[2]), name: String(row[4]), t: Number(row[7]), fields: rec.fields, photos: rec.photos };
+if (rec.multi.length) {
+item.multi = rec.multi;
 }
-var photos = {};
-var keys = Object.keys(ids);
-for (var k = 0; k < keys.length; k++) {
-var url = imageData_(String(ids[keys[k]]));
-if (url) {
-photos[keys[k]] = url;
+saves.push(item);
+budget += rec.count;
+if (budget >= 40) {
+break;
 }
 }
-saves.push({ id: String(row[1]), slug: String(row[2]), name: String(row[4]), t: Number(row[7]), fields: fields, photos: photos });
-}
-return { ok: true, saves: saves, more: missing.length > part.length };
+return { ok: true, saves: saves, more: missing.length > saves.length };
 }
 
 function deleteSave_(req) {

@@ -136,6 +136,40 @@ from.addEventListener('input', copy);
 from.addEventListener('g:filled', copy);
 copy();
 });
+G.form.multi = {
+fix: function (name, value, final) {
+if (name === 'member_id') {
+return value.replace(/[^A-Za-z0-9-]/g, '').toUpperCase();
+}
+if (name === 'amount') {
+var s = digits(value).slice(0, 10);
+if (!final) {
+return bn(s);
+}
+s = s.replace(/^0+(?=\d)/, '');
+return s ? bn(group(s)) + '/-' : '';
+}
+return value;
+},
+derive: function (unit) {
+var a = unit.querySelector('[name="amount"]');
+var w = unit.querySelector('[name="amount_words"]');
+if (a) {
+a.value = G.form.multi.fix('amount', a.value, true);
+}
+if (w) {
+var s = digits(a ? a.value : '');
+var v = s ? words(Number(s)) + ' টাকা মাত্র।' : '';
+w.style.fontSize = v.length > 38 ? '7pt' : (v.length > 30 ? '8pt' : '');
+w.value = v;
+}
+var mirrors = unit.querySelectorAll('[data-mirror]');
+Array.prototype.forEach.call(mirrors, function (to) {
+var from = unit.querySelector('[name="' + to.getAttribute('data-mirror') + '"]');
+to.value = from ? from.value : '';
+});
+}
+};
 function align() {
 Array.prototype.forEach.call(document.querySelectorAll('#g-pages .card'), function (card) {
 var rows = [];

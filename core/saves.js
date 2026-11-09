@@ -37,7 +37,14 @@ return Object.keys(src).sort().map(function (k) {
 return [k, src[k]];
 });
 }
-return JSON.stringify([part(data && data.fields), part(data && data.photos)]);
+var out = [part(data && data.fields), part(data && data.photos)];
+var multi = data && Array.isArray(data.multi) ? data.multi : [];
+if (multi.length) {
+out.push(multi.map(function (p) {
+return [part(p && p.fields), part(p && p.photos)];
+}));
+}
+return JSON.stringify(out);
 }
 function valid(item) {
 return item && typeof item.id === 'string' && typeof item.t === 'number' && item.fields && typeof item.fields === 'object';
@@ -94,6 +101,65 @@ out[keys[i]] = src[keys[i]];
 }
 return out;
 }
+function cleanMulti(src) {
+var out = [];
+var arr = Array.isArray(src) ? src.slice(0, 29) : [];
+for (var i = 0; i < arr.length; i++) {
+if (arr[i] && typeof arr[i] === 'object') {
+out.push({ fields: cleanMap(arr[i].fields), photos: cleanMap(arr[i].photos, /^data:image\/jpeg;base64,/) });
+}
+}
+return out;
+}
+function tooBig(item) {
+return JSON.stringify({ __m: 1, f: item.fields, m: item.multi.map(function (p) {
+return p.fields;
+}) }).length > 46000;
+}
+function makeItem(id, data, name) {
+var item = { id: id, t: Date.now(), name: String(name || ''), fields: data.fields || {}, photos: data.photos || {}, sync: 0 };
+var multi = cleanMulti(data.multi);
+if (multi.length) {
+item.multi = multi;
+if (tooBig(item)) {
+item.big = 1;
+}
+}
+return item;
+}
+function hasPhotos(item) {
+if (Object.keys(item.photos).length) {
+return true;
+}
+return (item.multi || []).some(function (p) {
+return Object.keys(p.photos).length > 0;
+});
+}
+function dropPhotos(item) {
+item.photos = {};
+if (item.multi) {
+item.multi = item.multi.map(function (p) {
+return { fields: p.fields, photos: {} };
+});
+}
+item.noPhoto = true;
+}
+function persons(item) {
+var n = item && Array.isArray(item.multi) ? item.multi.length : 0;
+if (item && ((item.fields && Object.keys(item.fields).length) || (item.photos && Object.keys(item.photos).length))) {
+n++;
+}
+return n;
+}
+function markBig(slug, id) {
+var list = read(slug).slice();
+for (var i = 0; i < list.length; i++) {
+if (list[i].id === id) {
+list[i].big = 1;
+}
+}
+write(slug, list);
+}
 function merge(slug, incoming) {
 var list = read(slug).slice();
 var known = {};
@@ -110,19 +176,76 @@ var s = incoming[j];
 if (!s || typeof s.id !== 'string' || !/^[a-z0-9]{6,40}$/.test(s.id) || known[s.id] || typeof s.t !== 'number') {
 continue;
 }
-list.push({
+var rec = {
 id: s.id,
 t: s.t,
 name: typeof s.name === 'string' ? s.name.slice(0, 60) : '',
 fields: cleanMap(s.fields),
 photos: cleanMap(s.photos, /^data:image\/jpeg;base64,/),
 sync: 1
-});
+};
+var extra = cleanMulti(s.multi);
+if (extra.length) {
+rec.multi = extra;
+}
+list.push(rec);
 added = true;
 }
 if (added && write(slug, list)) {
 notify(slug);
 }
+}
+function sendMulti(session, slug, item, done) {
+var jobs = [];
+item.multi.forEach(function (p, i) {
+Object.keys(p.photos || {}).forEach(function (k) {
+jobs.push([('m' + (i + 1) + '_' + k).slice(0, 40), p.photos[k]]);
+});
+});
+function verdict(res) {
+if (res && res.ok) {
+return 'ok';
+}
+return res && res.error === 'bad_request' ? 'bad' : 'wait';
+}
+function batch() {
+if (!jobs.length) {
+done('ok');
+return;
+}
+var map = {};
+jobs.splice(0, 5).forEach(function (j) {
+map[j[0]] = j[1];
+});
+G.sync.post({ action: 'saveFormPhotos', token: session.token, id: item.id, t: item.t, photos: map }).then(function (res) {
+var v = verdict(res);
+if (v === 'ok') {
+batch();
+} else {
+done(v);
+}
+});
+}
+G.sync.post({
+action: 'saveForm',
+token: session.token,
+slug: slug,
+id: item.id,
+name: item.name,
+t: item.t,
+fields: item.fields,
+photos: item.photos,
+multi: item.multi.map(function (p) {
+return p.fields;
+})
+}).then(function (res) {
+var v = verdict(res);
+if (v === 'ok') {
+batch();
+} else {
+done(v);
+}
+});
 }
 function sync(slug, onDone, noPull) {
 function leave() {
@@ -141,7 +264,7 @@ return;
 }
 busy[slug] = true;
 var queue = read(slug).filter(function (item) {
-return !item.sync;
+return !item.sync && !item.big;
 });
 function finish() {
 busy[slug] = false;
@@ -168,6 +291,20 @@ pull();
 return;
 }
 var item = queue.shift();
+if (item.multi && item.multi.length) {
+sendMulti(session, slug, item, function (state) {
+if (state === 'ok') {
+mark(slug, item.id);
+next();
+} else if (state === 'bad') {
+markBig(slug, item.id);
+next();
+} else {
+finish();
+}
+});
+return;
+}
 G.sync.post({
 action: 'saveForm',
 token: session.token,
@@ -281,16 +418,16 @@ return b.t - a.t;
 count: function (slug) {
 return read(slug).length;
 },
+persons: persons,
 add: function (slug, data, name) {
-var item = { id: uid(), t: Date.now(), name: String(name || ''), fields: data.fields || {}, photos: data.photos || {}, sync: 0 };
+var item = makeItem(uid(), data, name);
 var list = read(slug).slice();
 list.unshift(item);
 if (!write(slug, list)) {
-if (!Object.keys(item.photos).length) {
+if (!hasPhotos(item)) {
 return null;
 }
-item.photos = {};
-item.noPhoto = true;
+dropPhotos(item);
 if (!write(slug, list)) {
 return null;
 }
@@ -309,14 +446,13 @@ index = i;
 if (index === -1) {
 return null;
 }
-var item = { id: id, t: Date.now(), name: String(name || ''), fields: data.fields || {}, photos: data.photos || {}, sync: 0 };
+var item = makeItem(id, data, name);
 list[index] = item;
 if (!write(slug, list)) {
-if (!Object.keys(item.photos).length) {
+if (!hasPhotos(item)) {
 return null;
 }
-item.photos = {};
-item.noPhoto = true;
+dropPhotos(item);
 if (!write(slug, list)) {
 return null;
 }

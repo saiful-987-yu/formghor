@@ -57,6 +57,7 @@ tags: { bn: ['সিভি', 'সাইডবার'], en: ['CV', 'Sidebar'] }
 },
 {
 slug: 'nid-info-card',
+multi: true,
 id: 'ID-1740',
 access: 'locked',
 paper: 'A4',
@@ -68,6 +69,7 @@ tags: { bn: ['তথ্য কার্ড', 'নমুনা'], en: ['Info card
 },
 {
 slug: 'office-id-card',
+multi: true,
 id: 'ID-1867',
 access: 'free',
 paper: 'A4',
@@ -79,6 +81,7 @@ tags: { bn: ['আইডি কার্ড', 'অফিস'], en: ['ID card', 'O
 },
 {
 slug: 'office-id-maroon',
+multi: true,
 id: 'ID-1994',
 access: 'free',
 paper: 'A4',
@@ -90,6 +93,7 @@ tags: { bn: ['আইডি কার্ড', 'অফিস'], en: ['ID card', 'O
 },
 {
 slug: 'school-id-card',
+multi: true,
 id: 'ID-2121',
 access: 'free',
 paper: 'A4',
@@ -101,6 +105,7 @@ tags: { bn: ['আইডি কার্ড', 'শিক্ষা'], en: ['ID car
 },
 {
 slug: 'personal-card',
+multi: true,
 id: 'ID-2248',
 access: 'free',
 paper: 'A4',
@@ -135,6 +140,7 @@ tags: { bn: ['ঐক্য বিজনেস গ্রুপ', 'আবেদন
 },
 {
 slug: 'oikkya-deposit-receipt',
+multi: true,
 id: 'ID-2629',
 group: 'institutional',
 access: 'free',
