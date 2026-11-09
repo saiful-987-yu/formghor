@@ -40,12 +40,12 @@
 <div class="box two">
 <div class="col">
 <div class="ln"><b>সদস্যের নাম:</b><input class="g-in" name="member_name" type="text" data-fill="name"></div>
-<div class="ln"><b>জাতীয় পরিচয়পত্র নং:</b><input class="g-in" name="nid_no" type="text" inputmode="numeric" data-fill="nid"></div>
-<div class="ln"><b>জন্ম তারিখ:</b><input class="g-in" name="birth_date" type="text" data-fill="birth" placeholder="দিন/মাস/বছর"></div>
+<div class="ln"><b>জাতীয় পরিচয়পত্র নং:</b><input class="g-in" name="nid_no" data-kind="num" type="text" inputmode="numeric" data-fill="nid"></div>
+<div class="ln"><b>জন্ম তারিখ:</b><input class="g-in" name="birth_date" data-kind="date" type="text" data-fill="birth" placeholder="দিন/মাস/বছর"></div>
 </div>
 <div class="col">
 <div class="ln"><b>পিতার নাম:</b><input class="g-in" name="father_name" type="text" data-fill="father"></div>
-<div class="ln"><b>মোবাইল:</b><input class="g-in" name="mobile" type="text" inputmode="tel" data-fill="phone"></div>
+<div class="ln"><b>মোবাইল:</b><input class="g-in" name="mobile" data-kind="phone" type="text" inputmode="tel" data-fill="phone"></div>
 <div class="ln"><b>জাতীয়তা:</b><input class="g-in" name="nationality" type="text" data-fill="nationality"><b>ধর্ম:</b><input class="g-in" name="religion" type="text" data-fill="religion"></div>
 </div>
 </div>
@@ -75,8 +75,8 @@
 <div class="ln top"><b>ঠিকানা:</b><textarea class="g-in g-ta" name="nominee_address" rows="2"></textarea></div>
 </div>
 <div class="col">
-<div class="ln"><b>এনআইডি নং / সনদ নং:</b><input class="g-in" name="nominee_nid" type="text"></div>
-<div class="ln"><b>সম্পর্ক:</b><input class="g-in" name="nominee_relation" type="text"><b>মোবাঃ</b><input class="g-in" name="nominee_mobile" type="text" inputmode="tel"></div>
+<div class="ln"><b>এনআইডি নং / সনদ নং:</b><input class="g-in" name="nominee_nid" data-kind="num" type="text"></div>
+<div class="ln"><b>সম্পর্ক:</b><input class="g-in" name="nominee_relation" type="text"><b>মোবাঃ</b><input class="g-in" name="nominee_mobile" data-kind="phone" type="text" inputmode="tel"></div>
 </div>
 </div>
 </div>

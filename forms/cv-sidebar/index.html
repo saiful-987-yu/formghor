@@ -39,7 +39,7 @@
 <textarea class="g-in g-ta name" name="full_name" rows="1" placeholder="Your Full Name" data-fill="name"></textarea>
 <textarea class="g-in g-ta role" name="job_title" rows="1" placeholder="Job Title | Field of Work"></textarea>
 <h3 class="sh cd">Contact Details</h3>
-<div class="ct"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><input class="g-in" name="phone" type="tel" placeholder="01XXXXXXXXX" data-fill="phone"></div>
+<div class="ct"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><input class="g-in" name="phone" data-kind="phone" type="tel" placeholder="01XXXXXXXXX" data-fill="phone"></div>
 <div class="ct"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><input class="g-in" name="email" type="email" placeholder="name@example.com" data-fill="email"></div>
 <div class="ct"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><textarea class="g-in g-ta" name="address" rows="1" placeholder="Area, upazila, district" data-fill="address"></textarea></div>
 <h3 class="sh">Skills</h3>
@@ -60,35 +60,35 @@
 <h3 class="mh">Work Experience</h3>
 <div class="job">
 <input class="g-in jt" name="exp1_title" type="text" placeholder="Job title">
-<div class="jm"><input class="g-in" name="exp1_company" type="text" placeholder="Company name"><i>|</i><input class="g-in dt" name="exp1_date" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
+<div class="jm"><input class="g-in" name="exp1_company" type="text" placeholder="Company name"><i>|</i><input class="g-in dt" name="exp1_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <div class="jb"><span>&#9702;</span><textarea class="g-in g-ta" name="exp1_b1" rows="2" placeholder="What you did, in one or two lines."></textarea></div>
 </div>
 <div class="job">
 <input class="g-in jt" name="exp2_title" type="text" placeholder="Job title">
-<div class="jm"><input class="g-in" name="exp2_company" type="text" placeholder="Company name"><i>|</i><input class="g-in dt" name="exp2_date" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
+<div class="jm"><input class="g-in" name="exp2_company" type="text" placeholder="Company name"><i>|</i><input class="g-in dt" name="exp2_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <div class="jb"><span>&#9702;</span><textarea class="g-in g-ta" name="exp2_b1" rows="2" placeholder="What you did, in one or two lines."></textarea></div>
 </div>
 <div class="job">
 <input class="g-in jt" name="exp3_title" type="text" placeholder="Job title">
-<div class="jm"><input class="g-in" name="exp3_company" type="text" placeholder="Company name"><i>|</i><input class="g-in dt" name="exp3_date" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
+<div class="jm"><input class="g-in" name="exp3_company" type="text" placeholder="Company name"><i>|</i><input class="g-in dt" name="exp3_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <div class="jb"><span>&#9702;</span><textarea class="g-in g-ta" name="exp3_b1" rows="2" placeholder="What you did, in one or two lines."></textarea></div>
 </div>
 <h3 class="mh">Educational</h3>
 <div class="ed">
 <input class="g-in b" name="edu1_exam" type="text" placeholder="Exam or degree">
 <input class="g-in" name="edu1_institution" type="text" placeholder="Institution name | Place">
-<input class="g-in" name="edu1_period" type="text" placeholder="Mon yyyy - Mon yyyy">
+<input class="g-in" name="edu1_period" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy">
 <input class="g-in" name="edu1_result" type="text" placeholder="GPA / Result">
 </div>
 <div class="ed">
 <input class="g-in b" name="edu2_exam" type="text" placeholder="Exam or degree">
 <input class="g-in" name="edu2_institution" type="text" placeholder="Institution name | Place">
-<input class="g-in" name="edu2_period" type="text" placeholder="Mon yyyy - Mon yyyy">
+<input class="g-in" name="edu2_period" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy">
 <input class="g-in" name="edu2_result" type="text" placeholder="GPA / Result">
 </div>
 <h3 class="mh">Personal Information</h3>
 <div class="pi">
-<div class="pr"><span class="pl">Date of Birth</span><span class="pc">:</span><input class="g-in" name="birth_date" type="text" placeholder="dd/mm/yyyy" data-fill="birth"></div>
+<div class="pr"><span class="pl">Date of Birth</span><span class="pc">:</span><input class="g-in" name="birth_date" data-kind="date" type="text" placeholder="dd/mm/yyyy" data-fill="birth"></div>
 <div class="pr"><span class="pl">Father's Name</span><span class="pc">:</span><input class="g-in" name="father_name" type="text" placeholder="Father's full name" data-fill="father"></div>
 <div class="pr"><span class="pl">Mother's Name</span><span class="pc">:</span><input class="g-in" name="mother_name" type="text" placeholder="Mother's full name" data-fill="mother"></div>
 <div class="pr"><span class="pl">Nationality</span><span class="pc">:</span><input class="g-in" name="nationality" type="text" placeholder="Nationality" data-fill="nationality"></div>

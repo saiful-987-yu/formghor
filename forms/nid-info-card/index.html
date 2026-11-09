@@ -46,8 +46,8 @@
 <div class="ln"><span>Name:</span><input class="g-in" name="name_en" type="text" placeholder="NAME IN ENGLISH"></div>
 <div class="ln"><span>পিতা:</span><input class="g-in" name="father" type="text" data-fill="father" placeholder="পিতার নাম"></div>
 <div class="ln"><span>মাতা:</span><input class="g-in" name="mother" type="text" data-fill="mother" placeholder="মাতার নাম"></div>
-<div class="ln"><span>Date of Birth:</span><input class="g-in" name="birth" type="text" data-fill="birth" data-fill-format="dd-mon-yyyy" placeholder="09 Aug 2007"></div>
-<div class="ln"><span>ID NO:</span><input class="g-in" name="nid_no" type="text" inputmode="numeric" maxlength="17" data-fill="nid" placeholder="নম্বর"></div>
+<div class="ln"><span>Date of Birth:</span><input class="g-in" name="birth" data-kind="mon" type="text" data-fill="birth" data-fill-format="dd-mon-yyyy" placeholder="09 Aug 2007"></div>
+<div class="ln"><span>ID NO:</span><input class="g-in" name="nid_no" data-kind="num" data-digits="en" type="text" inputmode="numeric" maxlength="17" data-fill="nid" placeholder="নম্বর"></div>
 </div>
 </div>
 <label class="g-photo ib ib2" style="--w:18.5mm;--h:5.125mm"><input type="file" accept="image/*" name="image_box3"><span class="g-photo-hint">ইমেজ দিন</span></label>
@@ -68,7 +68,7 @@
 <div class="zc"><label class="g-photo ib" style="--w:24mm;--h:7mm"><input type="file" accept="image/*" name="image_box"><span class="g-photo-hint">ইমেজ দিতে ক্লিক করুন</span></label></div>
 <div class="zd" aria-hidden="true"></div>
 <div class="bg1">নমুনা: ০১</div>
-<div class="ze"><span class="nm">প্রদানকারী কর্তৃপক্ষের স্বাক্ষর</span><div class="ln"><span>প্রদানের তারিখ:</span><input class="g-in" name="edit_date" type="text" placeholder="দিন/মাস/বছর"></div></div>
+<div class="ze"><span class="nm">প্রদানকারী কর্তৃপক্ষের স্বাক্ষর</span><div class="ln"><span>প্রদানের তারিখ:</span><input class="g-in" name="edit_date" data-kind="date" type="text" placeholder="দিন/মাস/বছর"></div></div>
 <div class="wm" aria-hidden="true">SAMPLE</div>
 </div>
 </div>

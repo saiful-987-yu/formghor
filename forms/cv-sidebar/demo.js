@@ -1,4 +1,4 @@
-G.demo.set('cv-sidebar', function () {
+G.demo.set('cv-sidebar', 1, function () {
 return {
 fields: {
 full_name: 'Saiful Islam',
@@ -47,6 +47,114 @@ nationality: 'Bangladeshi',
 religion: 'Islam',
 marital_status: 'Single',
 blood_group: 'B+'
+},
+photos: { photo: G.demo.photo }
+};
+});
+
+G.demo.set('cv-sidebar', 2, function () {
+return {
+fields: {
+full_name: 'Nusrat Jahan',
+job_title: 'Customer Support and Front Desk Executive',
+phone: '01711-345678',
+email: 'nusrat.demo@example.com',
+address: 'Maijdee Court, Noakhali Sadar, Noakhali',
+skill1: 'Customer Service and Front Desk',
+skill2: 'Data Entry (MS Excel, Google Sheets)',
+skill3: 'Phone and Email Handling',
+skill4: 'Communication and Team Collaboration',
+skill5: 'Polite, Patient, and Well-organized',
+lang1_name: 'English',
+lang1_level: 'Fluent',
+lang2_name: 'Bangla',
+lang2_level: 'Native',
+lang3_name: 'Hindi',
+lang3_level: 'Conversational',
+lang4_name: 'Urdu',
+lang4_level: 'Conversational',
+profile: 'Friendly and well-organized professional with experience in customer support, front desk work and record keeping. Comfortable handling calls, visitors and daily office documents with care and a positive attitude.',
+exp1_title: 'Front Desk Executive',
+exp1_company: 'Sunrise Diagnostic Center',
+exp1_date: 'Feb 2025 - Present',
+exp1_b1: 'Welcomed patients, managed appointments and handled phone enquiries in a polite manner.',
+exp2_title: 'Customer Support Assistant',
+exp2_company: 'Mega Mobile Point',
+exp2_date: 'Jan 2024 - Jan 2025',
+exp2_b1: 'Answered customer questions, recorded service requests and followed up on repair status.',
+exp3_title: 'Office Assistant',
+exp3_company: 'Noor Education Care',
+exp3_date: 'Jun 2023 - Dec 2023',
+exp3_b1: 'Maintained student files, prepared notices and supported daily office work.',
+edu1_exam: 'Secondary School Certificate (SSC)',
+edu1_institution: 'Noakhali Govt. Girls High School | Noakhali',
+edu1_period: 'Jan 2018 - Dec 2019',
+edu1_result: 'GPA: 4.72',
+edu2_exam: 'Higher Secondary Certificate (HSC)',
+edu2_institution: 'Noakhali Govt. Women College | Noakhali',
+edu2_period: 'Jan 2020 - Dec 2022',
+edu2_result: 'GPA: 4.58',
+birth_date: '22/08/2003',
+father_name: 'Md. Shahjahan Mia',
+mother_name: 'Mst. Saleha Begum',
+nationality: 'Bangladeshi',
+religion: 'Islam',
+marital_status: 'Single',
+blood_group: 'O+'
+},
+photos: { photo: G.demo.photo }
+};
+});
+
+G.demo.set('cv-sidebar', 3, function () {
+return {
+fields: {
+full_name: 'Tanvir Hasan',
+job_title: 'Sales and Delivery Coordinator',
+phone: '01811-567890',
+email: 'tanvir.demo@example.com',
+address: 'Kalibari, Cumilla Sadar, Cumilla',
+skill1: 'Sales and Customer Relations',
+skill2: 'Delivery Planning and Tracking',
+skill3: 'Basic Computer (MS Excel, Google Sheets)',
+skill4: 'Communication and Negotiation',
+skill5: 'Hardworking, Honest, and Punctual',
+lang1_name: 'English',
+lang1_level: 'Fluent',
+lang2_name: 'Bangla',
+lang2_level: 'Native',
+lang3_name: 'Hindi',
+lang3_level: 'Conversational',
+lang4_name: 'Urdu',
+lang4_level: 'Conversational',
+profile: 'Energetic and responsible professional with experience in sales support, order handling and delivery coordination. Good at managing schedules, keeping accurate records and building trust with customers.',
+exp1_title: 'Delivery Coordinator',
+exp1_company: 'Fast Track Courier',
+exp1_date: 'Apr 2025 - Present',
+exp1_b1: 'Planned daily delivery routes, tracked parcels and kept customers updated on order status.',
+exp2_title: 'Sales Executive',
+exp2_company: 'City Electronics',
+exp2_date: 'Jan 2024 - Mar 2025',
+exp2_b1: 'Handled counter sales, explained product features and prepared daily sales reports.',
+exp3_title: 'Shop Assistant',
+exp3_company: 'Friends Mart',
+exp3_date: 'Jun 2022 - Dec 2023',
+exp3_b1: 'Managed stock display, billing and customer service during busy hours.',
+edu1_exam: 'Secondary School Certificate (SSC)',
+edu1_institution: 'Zilla School | Cumilla',
+edu1_period: 'Jan 2017 - Dec 2018',
+edu1_result: 'GPA: 4.39',
+edu2_exam: 'Higher Secondary Certificate (HSC)',
+edu2_institution: 'Cumilla Government College | Cumilla',
+edu2_period: 'Jan 2019 - Dec 2021',
+edu2_result: 'GPA: 4.25',
+birth_date: '05/11/2002',
+father_name: 'Md. Anwar Hossain',
+mother_name: 'Mst. Farida Yasmin',
+nationality: 'Bangladeshi',
+religion: 'Islam',
+marital_status: 'Single',
+blood_group: 'A+'
 },
 photos: { photo: G.demo.photo }
 };

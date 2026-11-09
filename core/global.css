@@ -758,8 +758,9 @@ line-height: 1.6;
 color: var(--g-muted);
 }
 .g-badge--freemium {
-border-style: dashed;
-color: var(--g-text);
+background: color-mix(in srgb, var(--g-ink) 72%, var(--g-surface));
+border-color: color-mix(in srgb, var(--g-ink) 72%, var(--g-surface));
+color: var(--g-ink-text);
 }
 .g-badge--locked {
 background: var(--g-ink);

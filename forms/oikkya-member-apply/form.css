@@ -23,7 +23,7 @@ color: #1e293b;
 flex: none;
 }
 .f-oikkya-member-apply .hd {
-padding: 4mm 4mm;
+padding: 3.4mm 4mm;
 border: 2px solid #d97706;
 background: #0f172a;
 text-align: center;
@@ -66,7 +66,7 @@ grid-template-columns: 1fr 1fr;
 }
 .f-oikkya-member-apply .two > .col {
 min-width: 0;
-padding: 2mm 3mm;
+padding: 1.6mm 3mm;
 }
 .f-oikkya-member-apply .two > .col + .col {
 border-left: 1px solid #cbd5e1;
@@ -78,7 +78,7 @@ border-top: 1px solid #cbd5e1;
 display: flex;
 align-items: baseline;
 gap: 1.6mm;
-padding: .8mm 0;
+padding: .5mm 0;
 }
 .f-oikkya-member-apply .ln b {
 flex: none;
@@ -112,14 +112,14 @@ font-size: 9.6pt;
 font-style: italic;
 }
 .f-oikkya-member-apply .pol {
-padding: 2.4mm 3mm;
+padding: 2mm 3mm;
 color: #334155;
 font-size: 9.4pt;
 line-height: 1.5;
 text-align: justify;
 }
 .f-oikkya-member-apply .pol p {
-margin: 0 0 1.8mm;
+margin: 0 0 1.5mm;
 }
 .f-oikkya-member-apply .pol p:last-child {
 margin-bottom: 0;
@@ -203,7 +203,7 @@ grid-template-columns: repeat(3, 1fr);
 border: 1px solid #1e293b;
 }
 .f-oikkya-member-apply .sg > div {
-padding: 10mm 3mm 2mm;
+padding: 8mm 3mm 2mm;
 text-align: center;
 }
 .f-oikkya-member-apply .sg > div + div {
@@ -221,4 +221,9 @@ font-size: 10pt;
 }
 .f-oikkya-member-apply .g-pv .g-page .g-in {
 border-bottom-color: #8f8f98 !important;
+}
+.f-oikkya-member-apply .g-page .g-in {
+color: #000000;
+font-size: 11pt;
+font-style: italic;
 }

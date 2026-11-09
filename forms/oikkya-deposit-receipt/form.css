@@ -95,10 +95,21 @@ white-space: nowrap;
 .f-oikkya-deposit-receipt .ln .g-in {
 flex: 1;
 min-width: 0;
+padding-left: var(--al, 2px);
 color: #334155;
 font-size: 9.5pt;
 font-weight: 600;
 line-height: 1.25;
+}
+.f-oikkya-deposit-receipt .am .amt {
+flex: 0 0 30mm;
+}
+.f-oikkya-deposit-receipt .am .amt + b {
+margin-left: 1.6mm;
+}
+.f-oikkya-deposit-receipt .am .aw {
+font-size: 9pt;
+pointer-events: none;
 }
 .f-oikkya-deposit-receipt .of .g-in {
 pointer-events: none;
@@ -117,6 +128,7 @@ color: transparent;
 }
 .f-oikkya-deposit-receipt .md:has(.g-in:placeholder-shown) .g-in {
 flex: 0 0 8mm;
+padding-left: 2px;
 }
 .f-oikkya-deposit-receipt .dl {
 flex: 1;

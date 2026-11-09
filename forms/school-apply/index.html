@@ -33,7 +33,7 @@
 <div class="head">
 <div class="head-main">
 <h2 class="title">ভর্তির আবেদনপত্র</h2>
-<div class="line date-line"><span>তারিখ:</span><input class="g-in" id="school-apply-date" name="date" type="text" placeholder="দিন/মাস/বছর"></div>
+<div class="line date-line"><span>তারিখ:</span><input class="g-in" id="school-apply-date" name="date" data-kind="date" type="text" placeholder="দিন/মাস/বছর"></div>
 </div>
 <label class="g-photo">
 <input type="file" accept="image/*" name="photo" data-fill="photo">
@@ -52,12 +52,12 @@
 <div class="line"><span>পিতার নাম:</span><input class="g-in" name="father_name" type="text" placeholder="পিতার নাম" data-fill="father"></div>
 <div class="line"><span>মাতার নাম:</span><input class="g-in" name="mother_name" type="text" placeholder="মাতার নাম" data-fill="mother"></div>
 <div class="two">
-<div class="line"><span>জন্ম তারিখ:</span><input class="g-in" name="birth_date" type="text" placeholder="দিন/মাস/বছর" data-fill="birth"></div>
-<div class="line"><span>জন্ম নিবন্ধন নম্বর:</span><input class="g-in" name="birth_reg_no" type="text" placeholder="নম্বর" data-fill="birthreg"></div>
+<div class="line"><span>জন্ম তারিখ:</span><input class="g-in" name="birth_date" data-kind="date" type="text" placeholder="দিন/মাস/বছর" data-fill="birth"></div>
+<div class="line"><span>জন্ম নিবন্ধন নম্বর:</span><input class="g-in" name="birth_reg_no" data-kind="num" type="text" placeholder="নম্বর" data-fill="birthreg"></div>
 </div>
 <div class="line"><span>পূর্ববর্তী বিদ্যালয়:</span><input class="g-in" name="previous_school" type="text" placeholder="স্কুলের নাম"></div>
 <div class="line top"><span>বর্তমান ঠিকানা:</span><textarea class="g-in g-ta" name="address" rows="2" data-fill="address" placeholder="গ্রাম/মহল্লা, ডাকঘর, উপজেলা, জেলা"></textarea></div>
-<div class="line"><span>মোবাইল নম্বর:</span><input class="g-in" name="mobile" type="tel" data-fill="phone" placeholder="০১XXXXXXXXX"></div>
+<div class="line"><span>মোবাইল নম্বর:</span><input class="g-in" name="mobile" data-kind="phone" type="tel" data-fill="phone" placeholder="০১XXXXXXXXX"></div>
 </div>
 <p class="plain">অতএব, মহোদয়ের নিকট বিনীত প্রার্থনা, আমাকে আপনার বিদ্যালয়ে ভর্তির সুযোগ দিয়ে বাধিত করবেন।</p>
 <div class="sign">

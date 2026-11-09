@@ -1,4 +1,4 @@
-G.demo.set('plot-sale-deed', function () {
+G.demo.set('plot-sale-deed', 1, function () {
 return {
 fields: {
 deed_date: '০৮/১১/২০২৬',
@@ -44,6 +44,106 @@ wit2_name: 'মোঃ সাহাব উদ্দিন',
 wit2_father: 'মোঃ ইব্রাহিম খলিল',
 wit2_address: 'গ্রামঃ জনতা বাজার, উপজেলাঃ সুবর্ণচর, নোয়াখালী',
 wit2_nid: '01911-456789'
+}
+};
+});
+
+G.demo.set('plot-sale-deed', 2, function () {
+return {
+fields: {
+deed_date: '১২/১১/২০২৬',
+deed_place: 'মাইজদী, নোয়াখালী',
+seller_name: 'মোঃ আবুল কালাম',
+seller_father: 'মোঃ সিরাজুল ইসলাম',
+seller_mother: 'মোছাঃ হালিমা খাতুন',
+seller_nid: '1975432109876',
+seller_age: '৫২ বছর',
+seller_occupation: 'কৃষি',
+seller_mobile: '01712-234567',
+seller_address: 'গ্রামঃ উত্তর হাজীপুর, ডাকঘরঃ মাইজদী, উপজেলাঃ নোয়াখালী সদর, জেলাঃ নোয়াখালী',
+buyer_name: 'নুসরাত জাহান',
+buyer_father: 'মোঃ শাহজাহান মিয়া',
+buyer_mother: 'মোছাঃ সালেহা বেগম',
+buyer_nid: '1998765432109',
+buyer_age: '২৮ বছর',
+buyer_occupation: 'গৃহিণী',
+buyer_mobile: '01711-345678',
+buyer_address: 'গ্রামঃ দক্ষিণ পাড়া, ডাকঘরঃ মাইজদী, উপজেলাঃ নোয়াখালী সদর, জেলাঃ নোয়াখালী',
+land_district: 'নোয়াখালী',
+land_upazila: 'নোয়াখালী সদর',
+land_union: 'নোয়াখালী পৌরসভা, ৫ নং ওয়ার্ড',
+land_mouza: 'হাজীপুর',
+land_khatian: 'আরএস ৮৯৭',
+land_dag: '২১০৪',
+land_area: '০.০৪ শতাংশ',
+land_class: 'ভিটা',
+shop_desc: 'পাকা দেয়ালের টিনশেড ১টি দোকানঘর, মাপ ১০ ফুট × ১৪ ফুট',
+bound_north: 'পৌর সড়ক',
+bound_south: 'মোঃ আলী আকবরের জমি',
+bound_east: 'মোঃ সোহেলের বসতবাড়ি',
+bound_west: 'সরকারি ড্রেন',
+price_figure: '৪,৫০,০০০/-',
+price_words: 'চার লক্ষ পঞ্চাশ হাজার টাকা মাত্র',
+pay_mode: 'নগদ',
+extra_terms: 'দলিল সম্পাদনের সময় সকল বকেয়া খাজনা ও ইউটিলিটি বিল বিক্রেতা পরিশোধ করিয়াছেন।',
+wit1_name: 'মোঃ হাবিবুর রহমান',
+wit1_father: 'মোঃ আবদুস সালাম',
+wit1_address: 'গ্রামঃ উত্তর হাজীপুর, উপজেলাঃ নোয়াখালী সদর, নোয়াখালী',
+wit1_nid: '01813-456789',
+wit2_name: 'মোঃ নূর আলম',
+wit2_father: 'মোঃ আবু তাহের',
+wit2_address: 'গ্রামঃ মাইজদী, উপজেলাঃ নোয়াখালী সদর, নোয়াখালী',
+wit2_nid: '01912-567890'
+}
+};
+});
+
+G.demo.set('plot-sale-deed', 3, function () {
+return {
+fields: {
+deed_date: '১৫/১১/২০২৬',
+deed_place: 'কুমিল্লা সদর, কুমিল্লা',
+seller_name: 'মোঃ নজরুল ইসলাম',
+seller_father: 'মোঃ আবদুল জব্বার',
+seller_mother: 'মোছাঃ রোকেয়া বেগম',
+seller_nid: '1965432198765',
+seller_age: '৫৮ বছর',
+seller_occupation: 'ব্যবসা',
+seller_mobile: '01713-345678',
+seller_address: 'গ্রামঃ কালিবাড়ী, ডাকঘরঃ কুমিল্লা সদর, উপজেলাঃ কুমিল্লা সদর, জেলাঃ কুমিল্লা',
+buyer_name: 'তানভীর হাসান',
+buyer_father: 'মোঃ আনোয়ার হোসেন',
+buyer_mother: 'মোছাঃ ফরিদা ইয়াসমিন',
+buyer_nid: '1992345678901',
+buyer_age: '৩৪ বছর',
+buyer_occupation: 'ব্যবসা',
+buyer_mobile: '01811-567890',
+buyer_address: 'গ্রামঃ পূর্ব কালিবাড়ী, ডাকঘরঃ কুমিল্লা সদর, উপজেলাঃ কুমিল্লা সদর, জেলাঃ কুমিল্লা',
+land_district: 'কুমিল্লা',
+land_upazila: 'কুমিল্লা সদর',
+land_union: 'কালিবাড়ী, ২ নং ওয়ার্ড',
+land_mouza: 'কালিবাড়ী',
+land_khatian: 'সিএস ৩২১',
+land_dag: '১৭৮৯',
+land_area: '০.০৬ শতাংশ',
+land_class: 'ভিটা',
+shop_desc: 'একতলা পাকা ১টি দোকানঘর, মাপ ১৫ ফুট × ২০ ফুট',
+bound_north: 'কালিবাড়ী বাজার সড়ক',
+bound_south: 'মোঃ জামাল উদ্দিনের জমি',
+bound_east: 'সরকারি নালা',
+bound_west: 'মোঃ বাবুলের দোকান',
+price_figure: '৮,০০,০০০/-',
+price_words: 'আট লক্ষ টাকা মাত্র',
+pay_mode: 'নগদ',
+extra_terms: 'দোকানঘরের গ্যাস ও বিদ্যুৎ সংযোগ ক্রেতার নামে স্থানান্তরে বিক্রেতা সহযোগিতা করিবেন।',
+wit1_name: 'মোঃ মনিরুজ্জামান',
+wit1_father: 'মোঃ আবুল বাশার',
+wit1_address: 'গ্রামঃ কালিবাড়ী, উপজেলাঃ কুমিল্লা সদর, কুমিল্লা',
+wit1_nid: '01814-678901',
+wit2_name: 'মোঃ শফিকুল ইসলাম',
+wit2_father: 'মোঃ আব্দুল মতিন',
+wit2_address: 'গ্রামঃ পূর্ব কালিবাড়ী, উপজেলাঃ কুমিল্লা সদর, কুমিল্লা',
+wit2_nid: '01913-789012'
 }
 };
 });

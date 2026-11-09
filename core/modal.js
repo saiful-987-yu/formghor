@@ -131,7 +131,7 @@ title: opts.title,
 text: opts.text,
 build: function (body, close) {
 body.className += ' g-choice-list';
-opts.choices.forEach(function (c) {
+function pickBtn(c) {
 var b = el('button', 'g-choice', c.label);
 b.type = 'button';
 b.disabled = !!c.disabled;
@@ -139,7 +139,18 @@ b.addEventListener('click', function () {
 close();
 c.onPick();
 });
-body.appendChild(b);
+return b;
+}
+opts.choices.forEach(function (c) {
+if (c.group) {
+var row = el('div', 'g-choice-row');
+c.group.forEach(function (g) {
+row.appendChild(pickBtn(g));
+});
+body.appendChild(row);
+} else {
+body.appendChild(pickBtn(c));
+}
 });
 }
 });

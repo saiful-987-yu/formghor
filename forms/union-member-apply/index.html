@@ -40,7 +40,7 @@
 <div class="top">
 <div class="left">
 <div class="tline">
-<div class="fno"><span>ফরম নং-</span><input class="g-in" id="union-member-apply-no" name="form_no" type="text"></div>
+<div class="fno"><span>ফরম নং-</span><input class="g-in" id="union-member-apply-no" name="form_no" data-kind="num" type="text"></div>
 <div class="ttl">সদস্য আবেদন ফরম</div>
 </div>
 <div class="app">
@@ -61,14 +61,14 @@
 <tr><td class="n">২.</td><td colspan="2">পিতার নামঃ</td><td class="v"><input class="g-in" name="father_name" type="text" data-fill="father"></td></tr>
 <tr><td class="n">৩.</td><td colspan="2">মাতার নামঃ</td><td class="v"><input class="g-in" name="mother_name" type="text" data-fill="mother"></td></tr>
 <tr><td class="n">৪.</td><td colspan="2">স্বামীর নামঃ</td><td class="v"><input class="g-in" name="husband_name" type="text"></td></tr>
-<tr><td class="n">৫.</td><td colspan="2">জাতীয় পরিচয় পত্র নং</td><td class="v"><input class="g-in" name="nid_no" type="text" data-fill="nid"></td></tr>
-<tr><td class="n">৬.</td><td colspan="2">বয়সঃ</td><td class="v"><input class="g-in" name="age" type="text"></td></tr>
+<tr><td class="n">৫.</td><td colspan="2">জাতীয় পরিচয় পত্র নং</td><td class="v"><input class="g-in" name="nid_no" data-kind="num" type="text" data-fill="nid"></td></tr>
+<tr><td class="n">৬.</td><td colspan="2">বয়সঃ</td><td class="v"><input class="g-in" name="age" data-kind="age" data-suffix=" বছর" type="text"></td></tr>
 <tr><td class="n" rowspan="2">৭.</td><td rowspan="2">ঠিকানাঃ</td><td>স্থায়ী</td><td class="v"><textarea class="g-in g-ta" name="address_permanent" rows="1" data-fill="address_perm"></textarea></td></tr>
 <tr><td>বর্তমান</td><td class="v"><textarea class="g-in g-ta" name="address_present" rows="1" data-fill="address"></textarea></td></tr>
 <tr><td class="n">৮.</td><td colspan="2">প্রতিষ্ঠানের নামঃ</td><td class="v"><input class="g-in" name="company_name" type="text"></td></tr>
 <tr><td class="n">৯.</td><td colspan="2">কর্মক্ষেত্রঃ</td><td class="v"><input class="g-in" name="workplace" type="text"></td></tr>
 <tr><td class="n">১০.</td><td colspan="2">পদবী</td><td class="v"><input class="g-in" name="designation" type="text"></td></tr>
-<tr><td class="n">১১.</td><td colspan="2">বর্তমান প্রতিষ্ঠানে চাকরিতে যোগদানের তারিখঃ</td><td class="v"><input class="g-in" name="join_date" type="text" placeholder="দিন/মাস/বছর"></td></tr>
+<tr><td class="n">১১.</td><td colspan="2">বর্তমান প্রতিষ্ঠানে চাকরিতে যোগদানের তারিখঃ</td><td class="v"><input class="g-in" name="join_date" data-kind="date" type="text" placeholder="দিন/মাস/বছর"></td></tr>
 <tr><td class="n">১২.</td><td colspan="2">নমিনির নাম ও সম্পর্ক</td><td class="v"><input class="g-in" name="nominee" type="text"></td></tr>
 <tr><td class="n">১৩.</td><td colspan="2">ব্যাংক স্টেটমেন্টঃ</td><td class="v"><input class="g-in" name="bank_statement" type="text"></td></tr>
 <tr><td class="n">১৪.</td><td colspan="2">বিশেষ সদস্য</td><td class="v"><input class="g-in" name="special_member" type="text"></td></tr>

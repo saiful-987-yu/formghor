@@ -34,7 +34,7 @@
 <div class="ttl">ভিটা বিক্রয়ের দলিল</div>
 <div class="sub">(সম্পূর্ণ মূল্য গ্রহণপূর্বক বিক্রয় ও দখল হস্তান্তর)</div>
 <div class="meta">
-<div class="mi"><span>দলিল সম্পাদনের তারিখঃ</span><input class="g-in" name="deed_date" type="text" placeholder="দিন/মাস/বছর"></div>
+<div class="mi"><span>দলিল সম্পাদনের তারিখঃ</span><input class="g-in" name="deed_date" data-kind="date" type="text" placeholder="দিন/মাস/বছর"></div>
 <div class="mi"><span>স্থানঃ</span><input class="g-in" name="deed_place" type="text"></div>
 </div>
 <p class="plain">অদ্য উপরোক্ত তারিখে নিম্নলিখিত পক্ষগণের মধ্যে এই দলিল সম্পাদিত হইলঃ</p>
@@ -44,8 +44,8 @@
 <tr><td class="l">নামঃ</td><td class="v" colspan="3"><input class="g-in" name="seller_name" type="text"></td></tr>
 <tr><td class="l">পিতা/স্বামীর নামঃ</td><td class="v" colspan="3"><input class="g-in" name="seller_father" type="text"></td></tr>
 <tr><td class="l">মাতার নামঃ</td><td class="v" colspan="3"><input class="g-in" name="seller_mother" type="text"></td></tr>
-<tr><td class="l">জাতীয় পরিচয় পত্র নংঃ</td><td class="v"><input class="g-in" name="seller_nid" type="text"></td><td class="l">বয়সঃ</td><td class="v"><input class="g-in" name="seller_age" type="text"></td></tr>
-<tr><td class="l">পেশাঃ</td><td class="v"><input class="g-in" name="seller_occupation" type="text"></td><td class="l">মোবাইলঃ</td><td class="v"><input class="g-in" name="seller_mobile" type="tel"></td></tr>
+<tr><td class="l">জাতীয় পরিচয় পত্র নংঃ</td><td class="v"><input class="g-in" name="seller_nid" data-kind="num" type="text"></td><td class="l">বয়সঃ</td><td class="v"><input class="g-in" name="seller_age" data-kind="age" data-suffix=" বছর" type="text"></td></tr>
+<tr><td class="l">পেশাঃ</td><td class="v"><input class="g-in" name="seller_occupation" type="text"></td><td class="l">মোবাইলঃ</td><td class="v"><input class="g-in" name="seller_mobile" data-kind="phone" type="tel"></td></tr>
 <tr><td class="l">স্থায়ী ঠিকানাঃ</td><td class="v" colspan="3"><textarea class="g-in g-ta" name="seller_address" rows="2"></textarea></td></tr>
 </table>
 <div class="sh">২. ক্রেতার (দ্বিতীয় পক্ষ) পরিচয়</div>
@@ -54,8 +54,8 @@
 <tr><td class="l">নামঃ</td><td class="v" colspan="3"><input class="g-in" name="buyer_name" type="text" data-fill="name"></td></tr>
 <tr><td class="l">পিতা/স্বামীর নামঃ</td><td class="v" colspan="3"><input class="g-in" name="buyer_father" type="text" data-fill="father"></td></tr>
 <tr><td class="l">মাতার নামঃ</td><td class="v" colspan="3"><input class="g-in" name="buyer_mother" type="text" data-fill="mother"></td></tr>
-<tr><td class="l">জাতীয় পরিচয় পত্র নংঃ</td><td class="v"><input class="g-in" name="buyer_nid" type="text" data-fill="nid"></td><td class="l">বয়সঃ</td><td class="v"><input class="g-in" name="buyer_age" type="text"></td></tr>
-<tr><td class="l">পেশাঃ</td><td class="v"><input class="g-in" name="buyer_occupation" type="text" data-fill="occupation"></td><td class="l">মোবাইলঃ</td><td class="v"><input class="g-in" name="buyer_mobile" type="tel" data-fill="phone"></td></tr>
+<tr><td class="l">জাতীয় পরিচয় পত্র নংঃ</td><td class="v"><input class="g-in" name="buyer_nid" data-kind="num" type="text" data-fill="nid"></td><td class="l">বয়সঃ</td><td class="v"><input class="g-in" name="buyer_age" data-kind="age" data-suffix=" বছর" type="text"></td></tr>
+<tr><td class="l">পেশাঃ</td><td class="v"><input class="g-in" name="buyer_occupation" type="text" data-fill="occupation"></td><td class="l">মোবাইলঃ</td><td class="v"><input class="g-in" name="buyer_mobile" data-kind="phone" type="tel" data-fill="phone"></td></tr>
 <tr><td class="l">স্থায়ী ঠিকানাঃ</td><td class="v" colspan="3"><textarea class="g-in g-ta" name="buyer_address" rows="2" data-fill="address_perm"></textarea></td></tr>
 </table>
 <div class="sh">৩. বিক্রিত ভিটার তফসিল</div>
@@ -72,7 +72,7 @@
 <div class="sh">৪. মূল্য ও পরিশোধ</div>
 <table class="tb">
 <colgroup><col class="a"><col><col class="b"><col></colgroup>
-<tr><td class="l">সর্বমোট মূল্যঃ</td><td class="v"><input class="g-in" name="price_figure" type="text" placeholder="টাকা (সংখ্যায়)"></td><td class="l">কথায়ঃ</td><td class="v"><input class="g-in" name="price_words" type="text"></td></tr>
+<tr><td class="l">সর্বমোট মূল্যঃ</td><td class="v"><input class="g-in" name="price_figure" data-kind="money" type="text" placeholder="টাকা (সংখ্যায়)"></td><td class="l">কথায়ঃ</td><td class="v"><input class="g-in" name="price_words" type="text"></td></tr>
 <tr><td class="l">পরিশোধের মাধ্যমঃ</td><td class="v" colspan="3"><input class="g-in" name="pay_mode" type="text" placeholder="নগদ / ব্যাংক / মোবাইল ব্যাংকিং"></td></tr>
 </table>
 </div>
@@ -116,7 +116,7 @@
 <tr><td class="l">নামঃ</td><td class="v"><input class="g-in" name="wit1_name" type="text"></td></tr>
 <tr><td class="l">পিতার নামঃ</td><td class="v"><input class="g-in" name="wit1_father" type="text"></td></tr>
 <tr><td class="l">ঠিকানাঃ</td><td class="v"><textarea class="g-in g-ta" name="wit1_address" rows="2"></textarea></td></tr>
-<tr><td class="l">জা.প.নং/মোবাইলঃ</td><td class="v"><input class="g-in" name="wit1_nid" type="text"></td></tr>
+<tr><td class="l">জা.প.নং/মোবাইলঃ</td><td class="v"><input class="g-in" name="wit1_nid" data-kind="phone" type="text"></td></tr>
 </table>
 <div class="sbox"></div>
 <div class="sline">স্বাক্ষর</div>
@@ -128,7 +128,7 @@
 <tr><td class="l">নামঃ</td><td class="v"><input class="g-in" name="wit2_name" type="text"></td></tr>
 <tr><td class="l">পিতার নামঃ</td><td class="v"><input class="g-in" name="wit2_father" type="text"></td></tr>
 <tr><td class="l">ঠিকানাঃ</td><td class="v"><textarea class="g-in g-ta" name="wit2_address" rows="2"></textarea></td></tr>
-<tr><td class="l">জা.প.নং/মোবাইলঃ</td><td class="v"><input class="g-in" name="wit2_nid" type="text"></td></tr>
+<tr><td class="l">জা.প.নং/মোবাইলঃ</td><td class="v"><input class="g-in" name="wit2_nid" data-kind="phone" type="text"></td></tr>
 </table>
 <div class="sbox"></div>
 <div class="sline">স্বাক্ষর</div>

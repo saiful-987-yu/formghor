@@ -298,6 +298,32 @@ return null;
 notify(slug);
 return item;
 },
+update: function (slug, id, data, name) {
+var list = read(slug).slice();
+var index = -1;
+for (var i = 0; i < list.length; i++) {
+if (list[i].id === id) {
+index = i;
+}
+}
+if (index === -1) {
+return null;
+}
+var item = { id: id, t: Date.now(), name: String(name || ''), fields: data.fields || {}, photos: data.photos || {}, sync: 0 };
+list[index] = item;
+if (!write(slug, list)) {
+if (!Object.keys(item.photos).length) {
+return null;
+}
+item.photos = {};
+item.noPhoto = true;
+if (!write(slug, list)) {
+return null;
+}
+}
+notify(slug);
+return item;
+},
 remove: function (slug, id) {
 var list = read(slug).filter(function (item) {
 return item.id !== id;

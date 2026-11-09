@@ -223,8 +223,18 @@ if (data.length > 45000) {
 return { ok: false, error: 'bad_request' };
 }
 var sheet = sheet_('Saves', SAVES_HEAD);
-if (findRow_(sheet, 2, id)) {
+var ms = Number(req.t);
+var stamp = String(ms > 0 ? Math.floor(ms) : Date.now());
+var row = findRow_(sheet, 2, id);
+var rec = null;
+if (row) {
+rec = sheet.getRange(row, 1, 1, SAVES_HEAD.length).getValues()[0];
+if (String(rec[3]) !== phone) {
+return { ok: false, error: 'bad_request' };
+}
+if (Number(stamp) <= Number(rec[7])) {
 return { ok: true, duplicate: true };
+}
 }
 var photos = {};
 var photoSrc = req.photos && typeof req.photos === 'object' ? req.photos : {};
@@ -237,8 +247,24 @@ photos[photoKeys[i]] = fileId;
 }
 }
 }
-var ms = Number(req.t);
-appendRow_(sheet, [now_(), id, slug, phone, str_(req.name, 60), data, JSON.stringify(photos), String(ms > 0 ? Math.floor(ms) : Date.now())]);
+if (rec) {
+var oldIds = {};
+try {
+oldIds = JSON.parse(String(rec[6]));
+} catch (err) {
+console.error(err);
+}
+Object.keys(oldIds).forEach(function (k) {
+if (oldIds[k]) {
+trash_(String(oldIds[k]));
+}
+});
+var range = sheet.getRange(row, 1, 1, SAVES_HEAD.length);
+range.setNumberFormat('@');
+range.setValues([[now_(), id, slug, phone, str_(req.name, 60), data, JSON.stringify(photos), stamp]]);
+return { ok: true, updated: true };
+}
+appendRow_(sheet, [now_(), id, slug, phone, str_(req.name, 60), data, JSON.stringify(photos), stamp]);
 return { ok: true };
 }
 
