@@ -403,7 +403,7 @@ return BN_DIGITS.charAt(Number(d));
 }
 function kindLang(node) {
 var force = node.getAttribute('data-digits');
-if (force === 'en' || force === 'bn' || force === 'auto') {
+if (force === 'en' || force === 'bn') {
 return force;
 }
 var kind = KINDS[node.getAttribute('data-kind')];
@@ -418,11 +418,6 @@ var kind = KINDS[node.getAttribute('data-kind')];
 if (!kind) {
 return value;
 }
-var lang = kindLang(node);
-if (lang === 'auto') {
-var first = String(value).match(/[0-9০-৯]/);
-lang = first && /[০-৯]/.test(first[0]) ? 'bn' : 'en';
-}
 var src = digitsToAscii(value);
 var out = '';
 for (var i = 0; i < src.length; i++) {
@@ -431,7 +426,7 @@ out += src.charAt(i);
 }
 }
 out = out.slice(0, kind.max);
-return lang === 'bn' ? digitsToBn(out) : out;
+return kindLang(node) === 'bn' ? digitsToBn(out) : out;
 }
 function sanitizeKind(node, final) {
 var v = cleanKind(node, node.value);
