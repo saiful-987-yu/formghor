@@ -55,7 +55,7 @@ photos: { photo: G.demo.photo }
 G.demo.set('cv-sidebar', 2, function () {
 return {
 fields: {
-full_name: 'Nusrat Jahan',
+full_name: 'Saiful Islam',
 job_title: 'Customer Support and Front Desk Executive',
 phone: '01711-345678',
 email: 'nusrat.demo@example.com',
@@ -102,7 +102,7 @@ religion: 'Islam',
 marital_status: 'Single',
 blood_group: 'O+'
 },
-photos: { photo: G.demo.photo }
+photos: { photo: 'demo.photo.man.png' }
 };
 });
 
@@ -156,6 +156,6 @@ religion: 'Islam',
 marital_status: 'Single',
 blood_group: 'A+'
 },
-photos: { photo: G.demo.photo }
+photos: { photo: 'demo.photo.woman.png' }
 };
 });
