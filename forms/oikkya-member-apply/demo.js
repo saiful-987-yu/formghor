@@ -1,6 +1,35 @@
 G.demo.set('oikkya-member-apply', 1, function () {
 return {
 fields: {
+member_name: 'সদস্যের নাম',
+nid_no: '0000000000',
+birth_date: '০১/০১/২০০০',
+father_name: 'পিতার নাম',
+mobile: '01700-000000',
+nationality: 'বাংলাদেশী',
+religion: 'ধর্ম',
+present_house: 'বাড়ির নাম',
+present_village: 'গ্রাম',
+present_post: 'ডাকঘর',
+present_upazila: 'উপজেলা',
+present_district: 'জেলা',
+permanent_address: 'গ্রাম, ডাকঘর, উপজেলা, জেলা',
+nominee_name: 'নমিনির নাম',
+nominee_address: 'গ্রাম, ডাকঘর, উপজেলা, জেলা',
+nominee_nid: '0000000000',
+nominee_relation: 'সম্পর্ক',
+nominee_mobile: '01700-000000',
+pledge_name: 'সদস্যের নাম',
+approved_name: 'সদস্যের নাম',
+membership_id: 'OBG-000'
+},
+photos: {}
+};
+});
+
+G.demo.set('oikkya-member-apply', 2, function () {
+return {
+fields: {
 member_name: 'সাইফুল ইসলাম',
 nid_no: '1234567890',
 birth_date: '১৫/০৩/১৯৯৫',
@@ -27,7 +56,7 @@ photos: {}
 };
 });
 
-G.demo.set('oikkya-member-apply', 2, function () {
+G.demo.set('oikkya-member-apply', 3, function () {
 return {
 fields: {
 member_name: 'নুসরাত জাহান',
@@ -51,35 +80,6 @@ nominee_mobile: '01712-654321',
 pledge_name: 'নুসরাত জাহান',
 approved_name: 'নুসরাত জাহান',
 membership_id: 'OBG-002'
-},
-photos: {}
-};
-});
-
-G.demo.set('oikkya-member-apply', 3, function () {
-return {
-fields: {
-member_name: 'তানভীর হাসান',
-nid_no: '3456789012',
-birth_date: '০৫/১১/১৯৯২',
-father_name: 'মোঃ আনোয়ার হোসেন',
-mobile: '01811-567890',
-nationality: 'বাংলাদেশী',
-religion: 'ইসলাম',
-present_house: 'হোসেন ভিলা',
-present_village: 'কালিবাড়ী',
-present_post: 'কুমিল্লা সদর',
-present_upazila: 'কুমিল্লা সদর',
-present_district: 'কুমিল্লা',
-permanent_address: 'গ্রাম: কালিবাড়ী, ডাকঘর: কুমিল্লা সদর - ৩৫০০, উপজেলা: কুমিল্লা সদর, জেলা: কুমিল্লা',
-nominee_name: 'ফরিদা ইয়াসমিন',
-nominee_address: 'গ্রাম: কালিবাড়ী, ডাকঘর: কুমিল্লা সদর, উপজেলা: কুমিল্লা সদর, জেলা: কুমিল্লা',
-nominee_nid: '7654321098',
-nominee_relation: 'মা',
-nominee_mobile: '01813-765432',
-pledge_name: 'তানভীর হাসান',
-approved_name: 'তানভীর হাসান',
-membership_id: 'OBG-003'
 },
 photos: {}
 };

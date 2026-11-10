@@ -3,6 +3,26 @@ var LOGO = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDA
 G.demo.set('office-id-card', 1, function () {
 return {
 fields: {
+org_name: 'প্রতিষ্ঠানের নাম',
+name: 'আপনার নাম',
+designation: 'পদবি',
+department: 'বিভাগের নাম',
+emp_id: 'EMP-0000',
+phone: '01700-000000',
+email: 'name@example.com',
+blood: 'A+',
+join_date: '01/01/2025',
+valid_till: '31/12/2027',
+org_address: 'বাড়ি/প্লট, রোড, এলাকা, জেলা-০০০০',
+org_contact: '০২-০০০০০০০ | www.example.com'
+},
+photos: { photo: G.demo.photo, logo: LOGO }
+};
+});
+
+G.demo.set('office-id-card', 2, function () {
+return {
+fields: {
 org_name: 'আদর্শ টেক লিমিটেড',
 name: 'সাইফুল ইসলাম',
 designation: 'সিনিয়র এক্সিকিউটিভ',
@@ -16,11 +36,11 @@ valid_till: '31/12/2027',
 org_address: 'হাউজ ১২, রোড ৫, ধানমন্ডি, ঢাকা-১২০৫',
 org_contact: '০২-৯৮৭৬৫৪৩ | www.example.com'
 },
-photos: { photo: G.demo.photo, logo: LOGO }
+photos: { photo: 'demo.photo.man.png', logo: LOGO }
 };
 });
 
-G.demo.set('office-id-card', 2, function () {
+G.demo.set('office-id-card', 3, function () {
 return {
 fields: {
 org_name: 'গ্রিন ভ্যালি এগ্রো লিমিটেড',
@@ -36,27 +56,7 @@ valid_till: '31/12/2027',
 org_address: 'প্লট ৮, সেক্টর ৩, উত্তরা, ঢাকা-১২৩০',
 org_contact: '০২-৮৮১২৩৪৫ | www.example.com'
 },
-photos: { photo: G.demo.photo, logo: LOGO }
-};
-});
-
-G.demo.set('office-id-card', 3, function () {
-return {
-fields: {
-org_name: 'ব্লু স্কাই সফট লিমিটেড',
-name: 'তানভীর হাসান',
-designation: 'সহকারী ম্যানেজার',
-department: 'হিসাব বিভাগ',
-emp_id: 'EMP-0342',
-phone: '01811-567890',
-email: 'tanvir@example.com',
-blood: 'B+',
-join_date: '01/07/2023',
-valid_till: '30/06/2027',
-org_address: 'হাউজ ২৫, রোড ১০, মিরপুর-১০, ঢাকা-১২১৬',
-org_contact: '০২-৯০১২৩৪৫ | www.example.com'
-},
-photos: { photo: G.demo.photo, logo: LOGO }
+photos: { photo: 'demo.photo.woman.png', logo: LOGO }
 };
 });
 })();

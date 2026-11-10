@@ -3,6 +3,26 @@ var LOGO = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDA
 G.demo.set('office-id-maroon', 1, function () {
 return {
 fields: {
+org_name: 'প্রতিষ্ঠানের নাম',
+name: 'আপনার নাম',
+designation: 'পদবি',
+department: 'বিভাগের নাম',
+emp_id: 'XX-0000',
+phone: '01700-000000',
+email: 'name@example.com',
+blood: 'A+',
+join_date: '01/01/2025',
+valid_till: '31/12/2027',
+org_address: 'বাড়ি/প্লট, রোড, এলাকা, জেলা-০০০০',
+org_contact: '০২-০০০০০০০ | example.com'
+},
+photos: { photo: G.demo.photo, logo: LOGO }
+};
+});
+
+G.demo.set('office-id-maroon', 2, function () {
+return {
+fields: {
 org_name: 'সোনার তরী গ্রুপ লিমিটেড',
 name: 'সাইফুল ইসলাম',
 designation: 'ম্যানেজার',
@@ -16,11 +36,11 @@ valid_till: '31/12/2027',
 org_address: 'হাউজ ১২, রোড ৫, ধানমন্ডি, ঢাকা-১২০৫',
 org_contact: '০২-৯৮৭৬৫৪৩ | example.com'
 },
-photos: { photo: G.demo.photo, logo: LOGO }
+photos: { photo: 'demo.photo.man.png', logo: LOGO }
 };
 });
 
-G.demo.set('office-id-maroon', 2, function () {
+G.demo.set('office-id-maroon', 3, function () {
 return {
 fields: {
 org_name: 'পদ্মা গ্রুপ লিমিটেড',
@@ -36,27 +56,7 @@ valid_till: '31/12/2027',
 org_address: 'বাড়ি ৫, রোড ২, গুলশান-১, ঢাকা-১২১২',
 org_contact: '০২-৮৮৪৫৬৭৮ | example.com'
 },
-photos: { photo: 'developer.jpg', logo: 'og-image.png' }
-};
-});
-
-G.demo.set('office-id-maroon', 3, function () {
-return {
-fields: {
-org_name: 'মেঘনা ট্রেডিং কোম্পানি',
-name: 'তানভীর হাসান',
-designation: 'অ্যাকাউন্ট্যান্ট',
-department: 'হিসাব ও অর্থ বিভাগ',
-emp_id: 'MT-0342',
-phone: '01811-567890',
-email: 'tanvir@example.com',
-blood: 'B+',
-join_date: '01/07/2023',
-valid_till: '30/06/2027',
-org_address: 'আগ্রাবাদ বাণিজ্যিক এলাকা, চট্টগ্রাম-৪১০০',
-org_contact: '০৩১-২৫১২৩৪৫ | example.com'
-},
-photos: { photo: G.demo.photo, logo: LOGO }
+photos: { photo: 'demo.photo.woman.png', logo: 'og-image.png' }
 };
 });
 })();

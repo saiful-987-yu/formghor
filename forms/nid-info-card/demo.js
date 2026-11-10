@@ -1,6 +1,24 @@
 G.demo.set('nid-info-card', 1, function () {
 return {
 fields: {
+name_bn: 'আপনার নাম',
+name_en: 'YOUR NAME',
+father: 'পিতার নাম',
+mother: 'মাতার নাম',
+birth: '01 Jan 2000',
+nid_no: '0000000000',
+address: 'বাসা/হোল্ডিং: ..., ডাকঘর: ..., উপজেলা, জেলা',
+blood: 'A+',
+birth_place: 'জেলার নাম',
+edit_date: '০১/০১/২০২৫'
+},
+photos: { photo: G.demo.photo }
+};
+});
+
+G.demo.set('nid-info-card', 2, function () {
+return {
+fields: {
 name_bn: 'সাইফুল ইসলাম',
 name_en: 'SAIFUL ISLAM',
 father: 'নজরুল ইসলাম',
@@ -12,11 +30,11 @@ blood: 'A+',
 birth_place: 'নোয়াখালী',
 edit_date: '১৬/০৪/২০২৫'
 },
-photos: { photo: G.demo.photo }
+photos: { photo: 'demo.photo.man.png' }
 };
 });
 
-G.demo.set('nid-info-card', 2, function () {
+G.demo.set('nid-info-card', 3, function () {
 return {
 fields: {
 name_bn: 'নুসরাত জাহান',
@@ -30,24 +48,6 @@ blood: 'O+',
 birth_place: 'নোয়াখালী',
 edit_date: '২০/০৫/২০২৫'
 },
-photos: { photo: G.demo.photo }
-};
-});
-
-G.demo.set('nid-info-card', 3, function () {
-return {
-fields: {
-name_bn: 'তানভীর হাসান',
-name_en: 'TANVIR HASAN',
-father: 'আনোয়ার হোসেন',
-mother: 'ফরিদা ইয়াসমিন',
-birth: '05 Nov 1992',
-nid_no: '3456789012',
-address: 'বাসা/হোল্ডিং: হোসেন ভিলা, ডাকঘর: কুমিল্লা সদর - ৩৫০০, কুমিল্লা সদর, কুমিল্লা',
-blood: 'B+',
-birth_place: 'কুমিল্লা',
-edit_date: '১০/০৮/২০২৫'
-},
-photos: { photo: G.demo.photo }
+photos: { photo: 'demo.photo.woman.png' }
 };
 });

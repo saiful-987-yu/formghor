@@ -144,3 +144,7 @@ text-align: center;
 .f-union-member-apply .s1 {
 grid-row: span 2;
 }
+.f-union-member-apply .tb.addr-small textarea[name="address_permanent"],
+.f-union-member-apply .tb.addr-small textarea[name="address_present"] {
+font-size: 80%;
+}

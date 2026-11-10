@@ -1,6 +1,60 @@
 G.demo.set('cv-sidebar', 1, function () {
 return {
 fields: {
+full_name: 'Your Full Name',
+job_title: 'Job Title | Field of Work',
+phone: '01700-000000',
+email: 'name@example.com',
+address: 'Area, Upazila, District',
+skill1: 'Skill one (demo)',
+skill2: 'Skill two (demo)',
+skill3: 'Skill three (demo)',
+skill4: 'Skill four (demo)',
+skill5: 'Skill five (demo)',
+lang1_name: 'Language 1',
+lang1_level: 'Level',
+lang2_name: 'Language 2',
+lang2_level: 'Level',
+lang3_name: 'Language 3',
+lang3_level: 'Level',
+lang4_name: 'Language 4',
+lang4_level: 'Level',
+profile: 'Write two or three lines about your experience, strengths and goals here. This is only demo text, replace it with your own details.',
+exp1_title: 'Job Title',
+exp1_company: 'Company Name',
+exp1_date: 'Mon 2024 - Present',
+exp1_b1: 'Describe your main duties and achievements here in a line or two. This is demo text.',
+exp2_title: 'Job Title',
+exp2_company: 'Company Name',
+exp2_date: 'Mon 2022 - Mon 2023',
+exp2_b1: 'Describe your main duties and achievements here in a line or two. This is demo text.',
+exp3_title: 'Job Title',
+exp3_company: 'Company Name',
+exp3_date: 'Mon 2020 - Mon 2021',
+exp3_b1: 'Describe your main duties and achievements here in a line or two. This is demo text.',
+edu1_exam: 'Exam or Degree',
+edu1_institution: 'Institution Name | Place',
+edu1_period: 'Mon 2018 - Mon 2020',
+edu1_result: 'GPA / Result',
+edu2_exam: 'Exam or Degree',
+edu2_institution: 'Institution Name | Place',
+edu2_period: 'Mon 2016 - Mon 2018',
+edu2_result: 'GPA / Result',
+birth_date: '01/01/2000',
+father_name: 'Father Name',
+mother_name: 'Mother Name',
+nationality: 'Nationality',
+religion: 'Religion',
+marital_status: 'Single / Married',
+blood_group: 'A+'
+},
+photos: { photo: G.demo.photo }
+};
+});
+
+G.demo.set('cv-sidebar', 2, function () {
+return {
+fields: {
 full_name: 'Saiful Islam',
 job_title: 'Office Support & Logistics Operations',
 phone: '01610-622995',
@@ -48,14 +102,14 @@ religion: 'Islam',
 marital_status: 'Single',
 blood_group: 'B+'
 },
-photos: { photo: G.demo.photo }
+photos: { photo: 'demo.photo.man.png' }
 };
 });
 
-G.demo.set('cv-sidebar', 2, function () {
+G.demo.set('cv-sidebar', 3, function () {
 return {
 fields: {
-full_name: 'Saiful Islam',
+full_name: 'Nusrat Jahan',
 job_title: 'Customer Support and Front Desk Executive',
 phone: '01711-345678',
 email: 'nusrat.demo@example.com',
@@ -101,60 +155,6 @@ nationality: 'Bangladeshi',
 religion: 'Islam',
 marital_status: 'Single',
 blood_group: 'O+'
-},
-photos: { photo: 'demo.photo.man.png' }
-};
-});
-
-G.demo.set('cv-sidebar', 3, function () {
-return {
-fields: {
-full_name: 'Tanvir Hasan',
-job_title: 'Sales and Delivery Coordinator',
-phone: '01811-567890',
-email: 'tanvir.demo@example.com',
-address: 'Kalibari, Cumilla Sadar, Cumilla',
-skill1: 'Sales and Customer Relations',
-skill2: 'Delivery Planning and Tracking',
-skill3: 'Basic Computer (MS Excel, Google Sheets)',
-skill4: 'Communication and Negotiation',
-skill5: 'Hardworking, Honest, and Punctual',
-lang1_name: 'English',
-lang1_level: 'Fluent',
-lang2_name: 'Bangla',
-lang2_level: 'Native',
-lang3_name: 'Hindi',
-lang3_level: 'Conversational',
-lang4_name: 'Urdu',
-lang4_level: 'Conversational',
-profile: 'Energetic and responsible professional with experience in sales support, order handling and delivery coordination. Good at managing schedules, keeping accurate records and building trust with customers.',
-exp1_title: 'Delivery Coordinator',
-exp1_company: 'Fast Track Courier',
-exp1_date: 'Apr 2025 - Present',
-exp1_b1: 'Planned daily delivery routes, tracked parcels and kept customers updated on order status.',
-exp2_title: 'Sales Executive',
-exp2_company: 'City Electronics',
-exp2_date: 'Jan 2024 - Mar 2025',
-exp2_b1: 'Handled counter sales, explained product features and prepared daily sales reports.',
-exp3_title: 'Shop Assistant',
-exp3_company: 'Friends Mart',
-exp3_date: 'Jun 2022 - Dec 2023',
-exp3_b1: 'Managed stock display, billing and customer service during busy hours.',
-edu1_exam: 'Secondary School Certificate (SSC)',
-edu1_institution: 'Zilla School | Cumilla',
-edu1_period: 'Jan 2017 - Dec 2018',
-edu1_result: 'GPA: 4.39',
-edu2_exam: 'Higher Secondary Certificate (HSC)',
-edu2_institution: 'Cumilla Government College | Cumilla',
-edu2_period: 'Jan 2019 - Dec 2021',
-edu2_result: 'GPA: 4.25',
-birth_date: '05/11/2002',
-father_name: 'Md. Anwar Hossain',
-mother_name: 'Mst. Farida Yasmin',
-nationality: 'Bangladeshi',
-religion: 'Islam',
-marital_status: 'Single',
-blood_group: 'A+'
 },
 photos: { photo: 'demo.photo.woman.png' }
 };

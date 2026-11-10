@@ -3,6 +3,28 @@ var LOGO = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFB
 G.demo.set('school-id-card', 1, function () {
 return {
 fields: {
+org_name: 'বিদ্যালয়ের নাম',
+name: 'শিক্ষার্থীর নাম',
+class_name: 'শ্রেণি',
+section: 'শাখা',
+roll: '০০',
+student_id: 'STD-0000',
+father_name: 'পিতার নাম',
+mother_name: 'মাতার নাম',
+birth_date: '01/01/2012',
+blood: 'A+',
+guardian_phone: '01700-000000',
+session: '২০২৬',
+org_address: 'এলাকা, উপজেলা, জেলা',
+org_contact: '০২-০০০০০০০ | www.example.com'
+},
+photos: { photo: G.demo.photo, logo: LOGO }
+};
+});
+
+G.demo.set('school-id-card', 2, function () {
+return {
+fields: {
 org_name: 'আদর্শ উচ্চ বিদ্যালয়',
 name: 'মোঃ রাফি আহমেদ',
 class_name: 'দশম',
@@ -18,11 +40,11 @@ session: '২০২৬',
 org_address: 'জনতা বাজার, সুবর্ণচর, নোয়াখালী',
 org_contact: '০২-৯৮৭৬৫৪৩ | www.example.com'
 },
-photos: { photo: G.demo.photo, logo: LOGO }
+photos: { photo: 'demo.photo.man.png', logo: LOGO }
 };
 });
 
-G.demo.set('school-id-card', 2, function () {
+G.demo.set('school-id-card', 3, function () {
 return {
 fields: {
 org_name: 'নোয়াখালী সরকারি বালিকা উচ্চ বিদ্যালয়',
@@ -40,29 +62,7 @@ session: '২০২৬',
 org_address: 'মাইজদী কোর্ট, নোয়াখালী সদর, নোয়াখালী',
 org_contact: '০৩২১-৭১২৩৪ | www.example.com'
 },
-photos: { photo: G.demo.photo, logo: LOGO }
-};
-});
-
-G.demo.set('school-id-card', 3, function () {
-return {
-fields: {
-org_name: 'শহীদ স্মৃতি মাদ্রাসা',
-name: 'মোঃ তানভীর হাসান',
-class_name: 'সপ্তম',
-section: 'গ',
-roll: '২১',
-student_id: 'STD-0342',
-father_name: 'মোঃ আনোয়ার হোসেন',
-mother_name: 'মোছাঃ ফরিদা ইয়াসমিন',
-birth_date: '05/11/2013',
-blood: 'B+',
-guardian_phone: '01811-567890',
-session: '২০২৬',
-org_address: 'বাজার রোড, কুমিল্লা সদর, কুমিল্লা',
-org_contact: '০৮১-৬৫৪৩২ | www.example.com'
-},
-photos: { photo: G.demo.photo, logo: LOGO }
+photos: { photo: 'demo.photo.woman.png', logo: LOGO }
 };
 });
 })();
