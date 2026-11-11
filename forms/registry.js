@@ -33,6 +33,17 @@ sub: { bn: 'ইটের লাল রঙের আধুনিক ও নজর
 tags: { bn: ['সিভি', 'মডার্ন'], en: ['CV', 'Modern'] }
 },
 {
+slug: 'resume',
+id: 'ID-3010',
+access: 'free',
+paper: 'A4',
+pages: 1,
+title: { bn: 'রেজুমি (এক পাতা)', en: 'Resume (one page)' },
+desc: { bn: 'ছবি, দক্ষতা ও কাজের অভিজ্ঞতাসহ এক পাতার আধুনিক রেজুমি।', en: 'A modern one-page resume with photo, skills and work experience.' },
+sub: { bn: 'চাকরির আবেদনের জন্য সবুজ-নীল ও সোনালি রঙের এক পাতার আধুনিক রেজুমি বানান। উপরের হেডারে নাম, পদবি ও ছবি বসান। ডান পাশে যোগাযোগ, দক্ষতা, ভাষা ও ব্যক্তিগত তথ্য, বাঁ পাশে প্রোফাইল, কাজের অভিজ্ঞতা, শিক্ষাগত যোগ্যতা এবং প্রশিক্ষণ ও সনদ লিখুন। এক পাতায় সংক্ষেপে নিজের পরিচয় তুলে ধরতে রেজুমি সবচেয়ে ভালো, বিস্তারিত চাইলে সিভি ফর্মগুলো ব্যবহার করুন।', en: 'Make a modern one-page resume in teal and gold for job applications. Put your name, job title and photo in the header at the top. Write contact details, skills, languages and personal details on the right, and your profile, work experience, education and training and certificates on the left. A resume is best for a short, one-page introduction, and the CV forms are better when you need more detail.' },
+tags: { bn: ['রেজুমি', 'সিভি'], en: ['Resume', 'CV'] }
+},
+{
 slug: 'office-id-card',
 multi: true,
 id: 'ID-1867',
