@@ -81,6 +81,18 @@ sub: { bn: 'স্কুল বা মাদ্রাসার শিক্ষ�
 tags: { bn: ['আইডি কার্ড', 'শিক্ষা'], en: ['ID card', 'Education'] }
 },
 {
+slug: 'teacher-id-card',
+multi: true,
+id: 'ID-2883',
+access: 'free',
+paper: 'A4',
+pages: 1,
+title: { bn: 'শিক্ষক আইডি কার্ড', en: 'Teacher ID card' },
+desc: { bn: 'স্কুল ও মাদ্রাসার শিক্ষকদের জন্য সামনে-পিছনের আইডি কার্ড, এক পাতায়।', en: 'A front and back ID card for school and madrasa teachers, on one page.' },
+sub: { bn: 'স্কুল, মাদ্রাসা ও কলেজের শিক্ষকদের জন্য ঘন নীল-সবুজ ও কমলা রঙের আইডি কার্ড বানান। সামনে গোল ছবি, প্রতিষ্ঠানের নাম ও লোগো, শিক্ষকের নাম, পদবি, বিষয়, আইডি বা ইনডেক্স নম্বর ও কার্ডের মেয়াদ বসান। পিছনে মোবাইল নম্বর, রক্তের গ্রুপ, যোগদানের তারিখ, জাতীয় পরিচয় পত্র নম্বর, ঠিকানা, প্রতিষ্ঠানের ঠিকানা ও প্রধান শিক্ষকের স্বাক্ষরের জায়গা আছে। সামনে ও পিছনের পাশ একসাথে A4 কাগজে প্রিন্ট হবে।', en: 'Make a deep teal and orange ID card for teachers of schools, madrasas and colleges. Put the round photo, institution name and logo, teacher\'s name, designation, subject, ID or index number and validity on the front. The back has the mobile number, blood group, joining date, national ID number, address, the institution\'s address and a space for the head teacher\'s signature. The front and back print together on an A4 sheet.' },
+tags: { bn: ['আইডি কার্ড', 'শিক্ষা'], en: ['ID card', 'Education'] }
+},
+{
 slug: 'personal-card',
 multi: true,
 id: 'ID-2248',
