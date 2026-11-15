@@ -1,0 +1,319 @@
+.f-teacher-id-card .g-page {
+-webkit-print-color-adjust: exact;
+print-color-adjust: exact;
+}
+.f-teacher-id-card .g-page-inner {
+padding: 5mm;
+}
+.f-teacher-id-card .cards {
+display: flex;
+align-items: flex-start;
+justify-content: center;
+gap: 8mm;
+}
+.f-teacher-id-card .card {
+position: relative;
+flex: none;
+width: 54mm;
+height: 85.6mm;
+box-sizing: border-box;
+overflow: hidden;
+border-radius: 3mm;
+background: #ffffff;
+color: #12343d;
+font-size: 2.6mm;
+line-height: 1.3;
+}
+.f-teacher-id-card .card::after {
+content: "";
+position: absolute;
+inset: 0;
+z-index: 6;
+border-radius: 3mm;
+box-shadow: inset 0 0 0 .25mm #b7ccd2;
+pointer-events: none;
+}
+.f-teacher-id-card .hd0,
+.f-teacher-id-card .hd {
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+}
+.f-teacher-id-card .hd0 {
+height: 35mm;
+background: #e0861a;
+clip-path: polygon(0 0, 100% 0, 100% 76%, 0 100%);
+}
+.f-teacher-id-card .hd {
+height: 33mm;
+background: linear-gradient(160deg, #146679, #0b3a47);
+clip-path: polygon(0 0, 100% 0, 100% 76%, 0 100%);
+}
+.f-teacher-id-card .hd::before {
+content: "";
+position: absolute;
+right: -7mm;
+top: -8mm;
+width: 24mm;
+height: 24mm;
+border-radius: 50%;
+background: rgba(255, 255, 255, .08);
+}
+.f-teacher-id-card .lgo {
+position: absolute;
+left: 3.5mm;
+top: 3.5mm;
+z-index: 2;
+border: .35mm solid #ffffff;
+border-radius: 2.2mm;
+background: #ffffff;
+font-size: 2mm;
+}
+.f-teacher-id-card .lgo img {
+object-fit: contain;
+background: #ffffff;
+}
+.f-teacher-id-card .org {
+position: absolute;
+left: 15.5mm;
+right: 3mm;
+top: 3.6mm;
+z-index: 2;
+width: auto;
+color: #ffffff;
+font-size: 2.7mm;
+font-weight: 700;
+line-height: 1.25;
+text-align: left;
+}
+.f-teacher-id-card .pic {
+position: absolute;
+left: 14mm;
+top: 19mm;
+z-index: 3;
+border: .8mm solid #ffffff;
+border-radius: 50%;
+background: #e8f1f3;
+box-shadow: 0 0 0 .6mm #e0861a;
+}
+.f-teacher-id-card .nm,
+.f-teacher-id-card .dg {
+position: absolute;
+left: 3mm;
+right: 3mm;
+width: auto;
+text-align: center;
+}
+.f-teacher-id-card .nm {
+top: 47.5mm;
+color: #0b3a47;
+font-size: 4.1mm;
+font-weight: 700;
+}
+.f-teacher-id-card .dg {
+top: 53.8mm;
+color: #b85f0a;
+font-size: 2.9mm;
+font-weight: 700;
+}
+.f-teacher-id-card .ln {
+display: flex;
+align-items: baseline;
+justify-content: center;
+gap: 1mm;
+}
+.f-teacher-id-card .ln > .g-in {
+min-width: 0;
+text-align: center;
+}
+.f-teacher-id-card .sb {
+position: absolute;
+left: 4mm;
+right: 4mm;
+top: 58.8mm;
+color: #4c6670;
+font-size: 2.6mm;
+}
+.f-teacher-id-card .sb > span {
+flex: none;
+}
+.f-teacher-id-card .sb > .g-in {
+flex: 1;
+color: #12343d;
+font-weight: 600;
+text-align: left;
+}
+.f-teacher-id-card .idn {
+position: absolute;
+left: 9mm;
+right: 9mm;
+top: 65.2mm;
+box-sizing: border-box;
+padding: .7mm 2mm;
+border-radius: 3mm;
+background: #e8f1f3;
+}
+.f-teacher-id-card .idn > span {
+flex: none;
+color: #0b3a47;
+font-size: 2.4mm;
+font-weight: 700;
+}
+.f-teacher-id-card .idn > .g-in {
+flex: 1;
+color: #0b3a47;
+font-size: 2.7mm;
+font-weight: 700;
+}
+.f-teacher-id-card .vd {
+position: absolute;
+left: 8mm;
+right: 8mm;
+top: 71.6mm;
+color: #4c6670;
+font-size: 2.2mm;
+}
+.f-teacher-id-card .vd > span {
+flex: none;
+}
+.f-teacher-id-card .vd > .g-in {
+flex: 1;
+color: #12343d;
+font-size: 2.3mm;
+font-weight: 600;
+}
+.f-teacher-id-card .ft {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 5mm;
+background: #0b3a47;
+box-shadow: 0 -.5mm 0 #e0861a;
+}
+.f-teacher-id-card .ft::after {
+content: "TEACHER ID CARD";
+color: #ffffff;
+font-size: 1.9mm;
+font-weight: 700;
+letter-spacing: .5mm;
+}
+.f-teacher-id-card .hd2o,
+.f-teacher-id-card .hd2 {
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+}
+.f-teacher-id-card .hd2o {
+height: 16mm;
+background: #e0861a;
+clip-path: polygon(0 0, 100% 0, 100% 72%, 0 100%);
+}
+.f-teacher-id-card .hd2 {
+height: 14.5mm;
+background: linear-gradient(160deg, #146679, #0b3a47);
+clip-path: polygon(0 0, 100% 0, 100% 72%, 0 100%);
+}
+.f-teacher-id-card .bt {
+position: absolute;
+left: 4.5mm;
+top: 3mm;
+z-index: 2;
+display: flex;
+flex-direction: column;
+color: #ffffff;
+line-height: 1.2;
+}
+.f-teacher-id-card .bt b {
+font-size: 3.4mm;
+}
+.f-teacher-id-card .bt span {
+font-size: 2.1mm;
+letter-spacing: .2mm;
+}
+.f-teacher-id-card .rows {
+position: absolute;
+left: 4.5mm;
+right: 4.5mm;
+top: 19mm;
+display: flex;
+flex-direction: column;
+gap: 1.4mm;
+}
+.f-teacher-id-card .fd {
+display: flex;
+flex-direction: column;
+min-width: 0;
+}
+.f-teacher-id-card .fd > span {
+color: #5d737c;
+font-size: 2mm;
+line-height: 1.2;
+}
+.f-teacher-id-card .fd > .g-in {
+color: #12343d;
+font-size: 2.7mm;
+font-weight: 700;
+}
+.f-teacher-id-card .fd > .g-ta {
+font-size: 2.5mm;
+line-height: 1.3;
+}
+.f-teacher-id-card .fd > .g-in.bd {
+color: #d60000;
+}
+.f-teacher-id-card .two {
+display: grid;
+grid-template-columns: .8fr 1.2fr;
+gap: 3mm;
+}
+.f-teacher-id-card .rt {
+position: absolute;
+left: 4.5mm;
+right: 4.5mm;
+top: 53mm;
+margin: 0;
+color: #4c6670;
+font-size: 1.9mm;
+line-height: 1.35;
+text-align: center;
+}
+.f-teacher-id-card .ob {
+position: absolute;
+left: 4.5mm;
+right: 4.5mm;
+top: 59.5mm;
+display: flex;
+flex-direction: column;
+gap: .6mm;
+}
+.f-teacher-id-card .ob .g-in {
+color: #0b3a47;
+font-size: 2.3mm;
+font-weight: 600;
+text-align: center;
+}
+.f-teacher-id-card .ob .g-ta {
+line-height: 1.3;
+}
+.f-teacher-id-card .sg {
+position: absolute;
+left: 13mm;
+right: 13mm;
+bottom: 7.2mm;
+display: flex;
+flex-direction: column;
+gap: .7mm;
+color: #4c6670;
+font-size: 1.9mm;
+line-height: 1.2;
+text-align: center;
+}
+.f-teacher-id-card .sg .sl {
+border-top: .25mm solid #12343d;
+}

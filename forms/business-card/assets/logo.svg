@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 8 138 138" fill="none">
+<title>Logo</title>
+<g stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 40L38 44L56 97L128 99L122 112L51 114" stroke="#76aa48" stroke-width="9"/>
+<ellipse cx="21" cy="41" rx="7" ry="6" fill="#76aa48"/>
+<circle cx="62" cy="129" r="8.5" fill="#76aa48"/>
+<circle cx="111" cy="129" r="8.5" fill="#76aa48"/>
+</g>
+<path d="M54 43L90 43L90 62L86 88L64 87Z" fill="#2f6b32"/>
+<path d="M54 43L90 62L86 88L64 87Z" fill="#2a5f2f"/>
+<path d="M68 38A19 19 0 0 1 106 38" stroke="#ffffff" stroke-width="5.5" stroke-linecap="butt"/>
+<rect x="52" y="36" width="66" height="7" rx="1" fill="#ffffff"/>
+<path d="M137 40C139 63 129 81 108 89C98 93 91 92 89 90C85 72 92 55 108 47C119 42 129 40 137 40Z" fill="#ffffff" stroke="#0d2b1e" stroke-width="3.5" paint-order="stroke"/>
+<path d="M93 87C103 73 113 63 127 52" stroke="#2b6230" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

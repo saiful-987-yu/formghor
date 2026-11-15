@@ -1,0 +1,233 @@
+.f-cv-classic .g-page {
+font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+}
+.f-cv-classic .g-page-inner {
+display: flex;
+flex-direction: column;
+font-size: 10pt;
+line-height: 1.5;
+color: #262626;
+}
+.f-cv-classic .g-page-inner > * {
+flex: none;
+}
+.f-cv-classic .g-in {
+padding: 0;
+border-bottom-color: transparent;
+}
+.f-cv-classic .g-in:hover {
+border-bottom-color: #c4c4cc;
+}
+.f-cv-classic .g-in:focus {
+background: #f1f4f8;
+border-bottom: 1px solid #1f3a5f;
+}
+.f-cv-classic .head {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 8mm;
+}
+.f-cv-classic .head-main {
+flex: 1;
+min-width: 0;
+display: flex;
+flex-direction: column;
+gap: 1mm;
+}
+.f-cv-classic .name {
+font-size: 22pt;
+font-weight: 700;
+line-height: 1.25;
+color: #111111;
+}
+.f-cv-classic .role {
+margin-bottom: 3mm;
+}
+.f-cv-classic .ct {
+display: flex;
+align-items: baseline;
+gap: 1.5mm;
+}
+.f-cv-classic .ct b {
+flex: none;
+}
+.f-cv-classic .ct .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-classic .g-photo {
+border: 0;
+background: #f1f1f3;
+}
+.f-cv-classic .sec {
+margin: 5mm 0 2mm;
+padding-bottom: .6mm;
+border-bottom: 1px solid #1f3a5f;
+font-size: 11pt;
+font-weight: 700;
+line-height: 1.4;
+text-transform: uppercase;
+color: #1f3a5f;
+}
+.f-cv-classic .sec.first {
+margin-top: 0;
+}
+.f-cv-classic .obj {
+font-style: italic;
+text-align: justify;
+}
+.f-cv-classic .etab {
+border: 1px solid #b9c0c9;
+font-size: 8.5pt;
+}
+.f-cv-classic .ehead,
+.f-cv-classic .erow {
+display: grid;
+grid-template-columns: 24mm 1fr 20mm 17mm 13mm 25mm;
+}
+.f-cv-classic .ehead {
+background: #1f3a5f;
+color: #ffffff;
+font-weight: 700;
+}
+.f-cv-classic .ehead > span {
+padding: 1.4mm 1.6mm;
+border-right: 1px solid #b9c0c9;
+}
+.f-cv-classic .erow {
+border-top: 1px solid #b9c0c9;
+}
+.f-cv-classic .erow > * {
+padding: 1.4mm 1.6mm;
+border-right: 1px solid #b9c0c9;
+font-size: 8.5pt;
+line-height: 1.4;
+min-width: 0;
+}
+.f-cv-classic .ehead > span:last-child,
+.f-cv-classic .erow > *:last-child {
+border-right: 0;
+}
+.f-cv-classic .erow .b {
+font-weight: 700;
+}
+.f-cv-classic .skills {
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: repeat(4, auto);
+grid-auto-flow: column;
+gap: 0 8mm;
+}
+.f-cv-classic .bul {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+}
+.f-cv-classic .bul > span {
+flex: none;
+width: 3mm;
+text-align: center;
+}
+.f-cv-classic .bul .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-classic .lang {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+}
+.f-cv-classic .lang .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-classic .lang .b {
+flex: none;
+width: 26mm;
+font-weight: 700;
+}
+.f-cv-classic .lang > span {
+flex: none;
+}
+.f-cv-classic .job {
+margin-bottom: 4mm;
+}
+.f-cv-classic .job-top {
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+gap: 4mm;
+}
+.f-cv-classic .job-top .b {
+flex: 1;
+min-width: 0;
+font-weight: 700;
+font-size: 10.5pt;
+}
+.f-cv-classic .job-top .dt {
+flex: none;
+width: 44mm;
+text-align: right;
+font-size: 9pt;
+color: #595959;
+}
+.f-cv-classic .co {
+margin-bottom: 1mm;
+font-style: italic;
+color: #1f3a5f;
+}
+.f-cv-classic .ptab {
+border-bottom: 1px solid #e3e3e3;
+}
+.f-cv-classic .prow {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+padding: 1.5mm 2mm;
+border-top: 1px solid #e3e3e3;
+}
+.f-cv-classic .pl {
+flex: none;
+width: 38mm;
+font-weight: 700;
+}
+.f-cv-classic .pc {
+flex: none;
+}
+.f-cv-classic .prow .g-in {
+flex: 1;
+min-width: 0;
+}
+.f-cv-classic .decl {
+margin: 5mm 0 0;
+font-style: italic;
+}
+.f-cv-classic .sign {
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+margin-top: auto;
+padding-top: 8mm;
+}
+.f-cv-classic .sign-box {
+width: 62mm;
+}
+.f-cv-classic .sign-line {
+display: block;
+border-top: 1px solid #262626;
+}
+.f-cv-classic .sign-box .g-in {
+text-align: center;
+font-weight: 700;
+}
+.f-cv-classic .date-box {
+display: flex;
+align-items: baseline;
+gap: 1.5mm;
+font-size: 8.5pt;
+color: #595959;
+}
+.f-cv-classic .date-box .g-in {
+width: 28mm;
+}

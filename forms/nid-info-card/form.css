@@ -1,0 +1,425 @@
+.f-nid-info-card .g-page {
+-webkit-print-color-adjust: exact;
+print-color-adjust: exact;
+}
+.f-nid-info-card .g-page-inner {
+padding: 5mm;
+}
+.f-nid-info-card .cards {
+position: relative;
+display: flex;
+align-items: flex-start;
+gap: 2mm;
+}
+.f-nid-info-card .card {
+position: relative;
+display: flex;
+flex: none;
+flex-direction: column;
+width: 85.6mm;
+height: 54mm;
+box-sizing: border-box;
+border: 0;
+overflow: hidden;
+z-index: 1;
+background: transparent;
+font-size: 7.5pt;
+line-height: 1.3;
+}
+.f-nid-info-card .ch {
+display: flex;
+flex: none;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+height: 16.5mm;
+padding-top: .4mm;
+padding-left: 11mm;
+color: #000000;
+text-align: center;
+line-height: 1.2;
+}
+.f-nid-info-card .ch-bn {
+position: relative;
+top: -.79mm;
+font-size: 4mm;
+font-weight: 400;
+}
+.f-nid-info-card .lb {
+position: absolute;
+left: calc(50% - 13.25mm);
+top: 16.77mm;
+z-index: -1;
+width: 31.5mm;
+height: 31.5mm;
+background: url('assets/logo-bg.png') center / contain no-repeat;
+opacity: .3;
+pointer-events: none;
+}
+.f-nid-info-card .lg {
+position: absolute;
+left: 2mm;
+top: 3mm;
+z-index: 2;
+width: 9mm;
+height: 9mm;
+background: url('assets/logo.png') center / contain no-repeat;
+pointer-events: none;
+}
+.f-nid-info-card .ch-en {
+position: relative;
+top: -.53mm;
+color: #008000;
+font-size: 3mm;
+letter-spacing: .3px;
+}
+.f-nid-info-card .ch-mix {
+position: relative;
+top: 0;
+font-size: 2.7mm;
+}
+.f-nid-info-card .ch-mix .rd {
+color: #e60000;
+}
+.f-nid-info-card .cb {
+display: flex;
+flex: 1;
+gap: 2.5mm;
+min-height: 0;
+padding: 2.4mm 3mm 0;
+}
+.f-nid-info-card .cb .g-photo {
+position: absolute;
+left: .9mm;
+top: 17.43mm;
+}
+.f-nid-info-card .cb .g-photo.g-photo--filled {
+border: 0;
+}
+.f-nid-info-card .ib2 {
+position: absolute;
+left: .93mm;
+top: 38.83mm;
+}
+.f-nid-info-card .rows {
+margin-left: 18.4mm;
+display: flex;
+flex: 1;
+flex-direction: column;
+gap: 0;
+min-width: 0;
+}
+.f-nid-info-card .ln {
+display: flex;
+align-items: baseline;
+gap: 1.5mm;
+}
+.f-nid-info-card .ln > span {
+flex: none;
+min-width: 17mm;
+white-space: nowrap;
+color: #000000;
+font-weight: 700;
+}
+.f-nid-info-card .ln > .g-in {
+flex: 1;
+min-width: 0;
+font-size: 8.5pt;
+font-weight: 600;
+}
+.f-nid-info-card .ln.top {
+align-items: flex-start;
+}
+.f-nid-info-card .g-ta {
+line-height: 1.4;
+}
+.f-nid-info-card .wm {
+position: absolute;
+left: 50%;
+top: 50%;
+z-index: 2;
+color: rgba(0, 0, 0, .1);
+font-size: 28pt;
+font-weight: 700;
+letter-spacing: 2px;
+pointer-events: none;
+user-select: none;
+transform: translate(-50%, -50%) rotate(-18deg);
+}
+.f-nid-info-card .hl {
+position: absolute;
+left: 0;
+right: 0;
+z-index: 1;
+height: .4mm;
+background: #000000;
+pointer-events: none;
+}
+.f-nid-info-card .hlf {
+top: 16.5mm;
+}
+.f-nid-info-card .hl1 {
+top: 9mm;
+}
+.f-nid-info-card .hl2 {
+top: 27mm;
+}
+.f-nid-info-card .hl3 {
+top: 39mm;
+}
+.f-nid-info-card .card::after {
+content: "";
+position: absolute;
+inset: 0;
+z-index: 3;
+box-shadow: inset 0 0 0 .4mm #000000;
+pointer-events: none;
+}
+.f-nid-info-card .nt {
+position: absolute;
+left: 0;
+right: 0;
+top: .52mm;
+box-sizing: border-box;
+height: 7.48mm;
+padding: .99mm 2.38mm 1.06mm 2.38mm;
+color: #000000;
+font-size: 2.5mm;
+font-weight: 400;
+line-height: 1.25;
+text-align: justify;
+}
+.f-nid-info-card .zb {
+position: absolute;
+left: 0;
+right: 0;
+top: 9.4mm;
+box-sizing: border-box;
+height: 17.6mm;
+padding: .99mm 1.85mm 1.06mm 1.59mm;
+font-size: 2.5mm;
+line-height: 1.2;
+}
+.f-nid-info-card .zc {
+position: absolute;
+left: 4.4mm;
+top: 28mm;
+}
+.f-nid-info-card .zd {
+position: absolute;
+left: 2.4mm;
+top: 40.4mm;
+width: 81.8mm;
+height: 11.2mm;
+background: url('assets/card-bottom.png') center / 100% 100% no-repeat;
+pointer-events: none;
+}
+.f-nid-info-card .ib {
+background: #ffffff;
+font-size: 2.2mm;
+line-height: 1.1;
+}
+.f-nid-info-card .ib.g-photo--filled {
+border: 0;
+}
+.f-nid-info-card .ib img {
+object-fit: contain;
+background: #ffffff;
+}
+.f-nid-info-card .bg1 {
+position: absolute;
+right: 0;
+bottom: 27mm;
+z-index: 2;
+padding: .2mm .8mm;
+background: #000000;
+color: #ffffff;
+font-size: 2.5mm;
+line-height: 1.2;
+white-space: nowrap;
+}
+.f-nid-info-card .zb .ln.top {
+height: 1cm;
+}
+.f-nid-info-card .zb .ln.top > .g-in {
+flex: none;
+width: 7.1cm;
+}
+.f-nid-info-card .zb .g-ta {
+line-height: 1.2;
+}
+.f-nid-info-card .zb .ln > span {
+min-width: .8cm;
+}
+.f-nid-info-card .zb .ln > .g-in {
+font-size: 2.5mm;
+}
+.f-nid-info-card .two {
+position: absolute;
+left: 1.59mm;
+right: 10.5mm;
+bottom: .3mm;
+display: grid;
+grid-template-columns: auto 1fr;
+gap: .15cm;
+align-items: center;
+line-height: 1.1;
+}
+.f-nid-info-card .two .g-in.bd {
+flex: none;
+width: 6mm;
+padding-left: 0;
+color: #d60000;
+}
+.f-nid-info-card .two .ln:first-child {
+gap: .65mm;
+}
+.f-nid-info-card .two .ln > span {
+min-width: 0;
+}
+.f-nid-info-card .cards::before {
+content: "";
+position: absolute;
+left: 0;
+top: 0;
+z-index: 0;
+width: 173.2mm;
+height: 54mm;
+background: url('assets/nid-bg.jpg') center / 100% 100% no-repeat;
+opacity: .3;
+pointer-events: none;
+}
+.f-nid-info-card .ze {
+position: absolute;
+left: 1.59mm;
+right: 1.85mm;
+bottom: 15.3mm;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: .3cm;
+font-size: 2.5mm;
+line-height: 1.1;
+}
+.f-nid-info-card .ze .nm {
+position: relative;
+left: 2mm;
+color: #000000;
+font-weight: 400;
+white-space: nowrap;
+}
+.f-nid-info-card .ze .ln > span {
+min-width: 0;
+}
+.f-nid-info-card .ze .ln > .g-in {
+flex: none;
+width: 17mm;
+font-size: 2.5mm;
+}
+.f-nid-info-card .rows .ln {
+font-size: 3mm;
+}
+.f-nid-info-card .rows .ln > span {
+min-width: 10.35mm;
+font-weight: 400;
+}
+.f-nid-info-card .rows .ln > .g-in {
+font-size: inherit;
+}
+.f-nid-info-card .rows .ln:nth-child(1) {
+font-size: 3.1mm;
+}
+.f-nid-info-card .rows .ln:nth-child(2) {
+font-size: 2.7mm;
+}
+.f-nid-info-card .rows .ln:nth-child(5) > span {
+width: auto;
+min-width: 0;
+}
+.f-nid-info-card .rows .ln:nth-child(6) {
+font-size: 3.5mm;
+}
+.f-nid-info-card .rows .ln:nth-child(6) > span {
+width: auto;
+min-width: 0;
+}
+.f-nid-info-card .rows .ln:nth-child(1) > .g-in {
+font-weight: 700;
+}
+.f-nid-info-card .rows .ln:nth-child(2) > .g-in,
+.f-nid-info-card .rows .ln:nth-child(6) > .g-in {
+font-weight: 500;
+}
+.f-nid-info-card .rows .ln:nth-child(2) {
+margin-top: 2.12mm;
+}
+.f-nid-info-card .rows .ln:nth-child(3) {
+margin-top: 1.85mm;
+}
+.f-nid-info-card .rows .ln:nth-child(4) {
+margin-top: 1.14mm;
+}
+.f-nid-info-card .rows .ln:nth-child(5) {
+margin-top: 1.42mm;
+}
+.f-nid-info-card .rows .ln:nth-child(6) {
+margin-top: .3mm;
+}
+.f-nid-info-card .rows .ln:nth-child(5) > .g-in {
+color: #e60000;
+}
+.f-nid-info-card .rows .ln:nth-child(6) > .g-in {
+color: #e60000;
+}
+.f-nid-info-card .rows .ln:nth-child(-n+4) > .g-in {
+margin-left: -2mm;
+}
+.f-nid-info-card .rows .ln:nth-child(5),
+.f-nid-info-card .rows .ln:nth-child(6) {
+gap: 1.2mm;
+}
+.f-nid-info-card .rows .ln:nth-child(1) > .g-in {
+font-size: 3.4mm;
+line-height: 4.03mm;
+}
+.f-nid-info-card .rows .ln:nth-child(2) > .g-in {
+font-size: 3.3mm;
+line-height: 3.9mm;
+}
+.f-nid-info-card .rows .ln:nth-child(3) > .g-in,
+.f-nid-info-card .rows .ln:nth-child(4) > .g-in {
+font-size: 2.7mm;
+line-height: 3.9mm;
+}
+.f-nid-info-card .rows .ln:nth-child(3),
+.f-nid-info-card .rows .ln:nth-child(4) {
+height: 4.16mm;
+}
+.f-nid-info-card .zb .ln > span,
+.f-nid-info-card .ze .ln > span,
+.f-nid-info-card .zb .ln > .g-in,
+.f-nid-info-card .ze .ln > .g-in {
+font-weight: 400;
+}
+.f-nid-info-card .zb .two .ln > .g-in.bd {
+font-weight: 600;
+}
+.f-nid-info-card .g-pv--stack .cards {
+align-items: flex-start;
+}
+.f-nid-info-card .g-pv--stack .cards::before {
+display: none;
+}
+.f-nid-info-card .g-pv--stack .card::before {
+content: "";
+position: absolute;
+inset: 0;
+z-index: -1;
+background: url('assets/nid-bg.jpg') 0 0 / 173.2mm 54mm no-repeat;
+opacity: .3;
+pointer-events: none;
+}
+.f-nid-info-card .g-pv--stack .card + .card::before {
+background-position: -87.6mm 0;
+}
