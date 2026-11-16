@@ -171,7 +171,7 @@ box-sizing: border-box;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-padding: 22px 0 14px;
+padding: 16px 0 10px;
 }
 .f-business-card .nm {
 color: #0a0a0a;
@@ -196,7 +196,7 @@ background: var(--green);
 .f-business-card .cl {
 display: flex;
 flex-direction: column;
-gap: 8px;
+gap: 6px;
 }
 .f-business-card .ct {
 display: flex;
@@ -227,7 +227,7 @@ fill: #ffffff;
 .f-business-card .dv {
 position: relative;
 height: 1px;
-margin: 4px 0;
+margin: 2px 0;
 background: #e4e4e4;
 }
 .f-business-card .ds {
@@ -254,9 +254,9 @@ gap: 14px;
 .f-business-card .qf {
 flex: none;
 box-sizing: border-box;
-width: 82px;
-height: 82px;
-padding: 5px;
+width: 94px;
+height: 94px;
+padding: 4px;
 border: 2.5px solid var(--green);
 border-radius: 10px;
 background: #ffffff;

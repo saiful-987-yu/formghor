@@ -208,29 +208,12 @@ return String(value || '').replace(/[\u09e6-\u09ef]/g, function (d) {
 return String('\u09e6\u09e7\u09e8\u09e9\u09ea\u09eb\u09ec\u09ed\u09ee\u09ef'.indexOf(d));
 }).replace(/[^\d+]/g, '');
 }
-function phoneE164(value) {
-var d = digitsOf(value);
-if (!d) {
-return '';
-}
-if (d.charAt(0) === '+') {
-return d;
-}
-if (d.indexOf('00') === 0) {
-return '+' + d.slice(2);
-}
-if (d.indexOf('880') === 0) {
-return '+' + d;
-}
-if (d.charAt(0) === '0') {
-return '+88' + d;
+function phoneLocal(value) {
+var d = digitsOf(value).replace(/^\+/, '');
+if (d.indexOf('880') === 0 && d.length === 13) {
+d = '0' + d.slice(3);
 }
 return d;
-}
-function vEsc(text) {
-return String(text).replace(/\\/g, '\\\\').replace(/[,;]/g, function (c) {
-return '\\' + c;
-}).replace(/[\r\n]+/g, ' ');
 }
 function updateContactQr() {
 var view = document.querySelector('.f-business-card .qfv');
@@ -238,13 +221,26 @@ if (!view) {
 return;
 }
 var wrap = view.parentNode;
-var phone = field('phone');
-var name = field('name');
-var tel = phoneE164(phone ? phone.value : '');
+var id = (field('member_id') ? field('member_id').value : '').replace(/^\s*ID\s*[:\-]?\s*/i, '').trim();
+var name = (field('name') ? field('name').value : '').trim();
+var phone = phoneLocal(field('phone') ? field('phone').value : '');
+var email = (field('email') ? field('email').value : '').trim();
+var lines = [];
+if (id) {
+lines.push('\ud83c\udd94 ' + id);
+}
+if (name) {
+lines.push('\ud83d\udc64 ' + name);
+}
+if (phone) {
+lines.push('\ud83d\udcde ' + phone);
+}
+if (email) {
+lines.push('\u2709\ufe0f ' + email);
+}
 var markup = '';
-if (tel && G.qr && G.qr.svg) {
-var fn = (name && name.value.trim()) || tel;
-markup = G.qr.svg('BEGIN:VCARD\nVERSION:3.0\nFN:' + vEsc(fn) + '\nTEL;TYPE=CELL:' + tel + '\nEND:VCARD');
+if (lines.length && G.qr && G.qr.svg) {
+markup = G.qr.svg(lines.join('\n'));
 }
 view.innerHTML = markup;
 view.hidden = !markup;
@@ -258,7 +254,7 @@ document.addEventListener('input', function (e) {
 var n = e.target && e.target.getAttribute ? e.target.getAttribute('name') : '';
 if (n === 'brand_a' || n === 'brand_b') {
 mirrorBrand();
-} else if (n === 'name' || n === 'phone') {
+} else if (n === 'name' || n === 'phone' || n === 'email' || n === 'member_id') {
 updateContactQr();
 }
 });
