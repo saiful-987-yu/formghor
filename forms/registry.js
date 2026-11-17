@@ -48,6 +48,18 @@ tags: { bn: ['রেজুমি', 'সিভি'], en: ['Resume', 'CV'] },
 keys: ['রেজুমি', 'রেজিউমি', 'রিজিউম', 'resume', 'rezume', 'rejumi', 'সিভি', 'cv', 'curriculum vitae', 'বায়োডাটা', 'biodata', 'জীবনবৃত্তান্ত', 'চাকরি', 'job', 'sibhi', 'sivi', 'এক পাতা', 'one page']
 },
 {
+slug: 'cv-green',
+id: 'ID-2994',
+access: 'free',
+paper: 'A4',
+pages: 1,
+title: { bn: 'গ্রিন সিভি (এক পাতা)', en: 'Green CV (one page)' },
+desc: { bn: 'গোল ছবি, ভাষা ও দক্ষতার বারসহ সবুজ রঙের এক পাতার সিভি।', en: 'A one-page green CV with a round photo and language and skill bars.' },
+sub: { bn: 'চাকরি বা আবেদনের জন্য সবুজ রঙের আধুনিক এক পাতার সিভি বানান। বাঁ পাশে নাম, পদবি, গোল ছবি, ভাষা, দক্ষতা, শখ ও রেফারেন্স, ডান পাশে নিজের সম্পর্কে, যোগাযোগ ও সামাজিক মাধ্যম, কাজের অভিজ্ঞতা এবং শিক্ষা লিখুন। ভাষা ও দক্ষতার বারে ক্লিক করে স্তর ঠিক করা যায়।', en: 'Make a modern one-page green CV for jobs and applications. Write your name, job title, round photo, languages, skills, hobbies and references on the left, and about you, contact and social links, work experience and education on the right. Click on a language or skill bar to set its level.' },
+tags: { bn: ['সিভি', 'সবুজ'], en: ['CV', 'Green'] },
+keys: ['সিভি', 'cv', 'curriculum vitae', 'বায়োডাটা', 'biodata', 'জীবনবৃত্তান্ত', 'চাকরি', 'job', 'sibhi', 'sivi', 'গ্রিন সিভি', 'green cv', 'সবুজ', 'green', 'sobuj', 'এক পাতা', 'one page', 'গোল ছবি', 'round photo', 'দক্ষতা বার', 'skill bar']
+},
+{
 slug: 'office-id-card',
 multi: true,
 id: 'ID-1867',

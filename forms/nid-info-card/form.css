@@ -22,7 +22,7 @@ box-sizing: border-box;
 border: 0;
 overflow: hidden;
 z-index: 1;
-background: transparent;
+background: #ffffff;
 font-size: 7.5pt;
 line-height: 1.3;
 }
@@ -278,18 +278,6 @@ gap: .65mm;
 .f-nid-info-card .two .ln > span {
 min-width: 0;
 }
-.f-nid-info-card .cards::before {
-content: "";
-position: absolute;
-left: 0;
-top: 0;
-z-index: 0;
-width: 173.2mm;
-height: 54mm;
-background: url('assets/nid-bg.jpg') center / 100% 100% no-repeat;
-opacity: .3;
-pointer-events: none;
-}
 .f-nid-info-card .ze {
 position: absolute;
 left: 1.59mm;
@@ -407,19 +395,4 @@ font-weight: 600;
 }
 .f-nid-info-card .g-pv--stack .cards {
 align-items: flex-start;
-}
-.f-nid-info-card .g-pv--stack .cards::before {
-display: none;
-}
-.f-nid-info-card .g-pv--stack .card::before {
-content: "";
-position: absolute;
-inset: 0;
-z-index: -1;
-background: url('assets/nid-bg.jpg') 0 0 / 173.2mm 54mm no-repeat;
-opacity: .3;
-pointer-events: none;
-}
-.f-nid-info-card .g-pv--stack .card + .card::before {
-background-position: -87.6mm 0;
 }

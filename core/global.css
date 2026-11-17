@@ -516,6 +516,22 @@ font-size: .7rem;
 .g-pcard-badge.g-badge--free {
 background: var(--g-surface);
 }
+.g-pcard-wrap {
+position: relative;
+}
+.g-pcard-remove {
+position: absolute;
+top: 8px;
+left: 8px;
+width: 34px;
+min-width: 34px;
+height: 34px;
+padding: 0;
+}
+.g-pcard-remove svg {
+width: 16px;
+height: 16px;
+}
 .g-pcard-title {
 margin: 0;
 padding: 0 4px;

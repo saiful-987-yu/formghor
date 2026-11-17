@@ -242,10 +242,8 @@ paperText += ' · ' + G.t('card.pages').replace('{n}', String(pages));
 card.appendChild(el('span', 'g-card-meta', paperText));
 return card;
 }
-function favItem(form, lang, base) {
-var wrap = el('div', 'g-fav-item');
-wrap.appendChild(buildCard(form, lang, base, true));
-var btn = el('button', 'g-iconbtn g-fav g-fav-item-btn');
+function favBtn(form) {
+var btn = el('button', 'g-iconbtn g-fav g-pcard-remove');
 btn.type = 'button';
 btn.setAttribute('aria-pressed', 'true');
 btn.setAttribute('aria-label', G.t('fav.remove'));
@@ -265,8 +263,7 @@ G.favs.remove(form.slug);
 G.favs.remove(form.slug);
 }
 });
-wrap.appendChild(btn);
-return wrap;
+return btn;
 }
 var pvCols = 0;
 function pvMeta(slug) {
@@ -283,7 +280,7 @@ function pvHeight(meta, colW) {
 var pad = meta.m === 'card' ? 0.16 : 0.22;
 return colW * (pad + (1 - pad) * meta.h / meta.w) + 56;
 }
-function buildPreviewCard(form, lang, root, base) {
+function buildPreviewCard(form, lang, root, base, favMode) {
 var meta = pvMeta(form.slug);
 var access = accessKey(form.access);
 var card = el('a', 'g-pcard g-pcard--' + (meta.m === 'card' ? 'card' : 'doc'));
@@ -320,7 +317,7 @@ badge.appendChild(el('span', '', G.t('access.' + access)));
 tile.appendChild(badge);
 card.appendChild(tile);
 var title = el('h3', 'g-pcard-title');
-if (window.G && G.favs && G.favs.has(form.slug)) {
+if (!favMode && window.G && G.favs && G.favs.has(form.slug)) {
 var heart = el('span', 'g-card-fav');
 heart.setAttribute('aria-hidden', 'true');
 heart.innerHTML = HEART_SVG;
@@ -328,9 +325,15 @@ title.appendChild(heart);
 }
 title.appendChild(document.createTextNode(pick(form.title, lang)));
 card.appendChild(title);
+if (favMode) {
+var wrap = el('div', 'g-pcard-wrap');
+wrap.appendChild(card);
+wrap.appendChild(favBtn(form));
+return wrap;
+}
 return card;
 }
-function pvBlock(items, cols, colW, lang, root, base) {
+function pvBlock(items, cols, colW, lang, root, base, favMode) {
 var block = el('div', 'g-pgrid');
 var colEls = [];
 var heights = [];
@@ -347,7 +350,7 @@ if (heights[k] < heights[at] - 1) {
 at = k;
 }
 }
-colEls[at].appendChild(buildPreviewCard(items[i], lang, root, base));
+colEls[at].appendChild(buildPreviewCard(items[i], lang, root, base, favMode));
 heights[at] += pvHeight(pvMeta(items[i].slug), colW);
 }
 return block;
@@ -364,7 +367,7 @@ midLink.appendChild(midArrow);
 mid.appendChild(midLink);
 return mid;
 }
-function renderPreview(grid, shown, lang, base, limit) {
+function renderPreview(grid, shown, lang, base, limit, favMode) {
 var width = grid.clientWidth;
 var cols = pvColumns(width);
 pvCols = cols;
@@ -375,11 +378,11 @@ if (!shown.length) {
 return;
 }
 if (limit && shown.length > 4) {
-grid.appendChild(pvBlock(shown.slice(0, 4), cols, colW, lang, root, base));
+grid.appendChild(pvBlock(shown.slice(0, 4), cols, colW, lang, root, base, favMode));
 grid.appendChild(buildMoreRow());
-grid.appendChild(pvBlock(shown.slice(4), cols, colW, lang, root, base));
+grid.appendChild(pvBlock(shown.slice(4), cols, colW, lang, root, base, favMode));
 } else {
-grid.appendChild(pvBlock(shown, cols, colW, lang, root, base));
+grid.appendChild(pvBlock(shown, cols, colW, lang, root, base, favMode));
 }
 }
 function render() {
@@ -409,14 +412,8 @@ valid.push(list[i]);
 }
 grid.textContent = '';
 var shown = limit && valid.length > limit ? valid.slice(0, limit) : valid;
-grid.classList.toggle('g-forms-grid--p', !favMode);
-if (favMode) {
-for (var j = 0; j < shown.length; j++) {
-grid.appendChild(favItem(shown[j], lang, base));
-}
-} else {
-renderPreview(grid, shown, lang, base, limit);
-}
+grid.classList.add('g-forms-grid--p');
+renderPreview(grid, shown, lang, base, limit, favMode);
 if (!shown.length) {
 grid.appendChild(el('div', 'g-empty', G.t(favMode ? 'favp.empty' : (searching ? 'forms.search.none' : 'forms.empty'))));
 }
@@ -440,7 +437,7 @@ window.addEventListener('resize', function () {
 clearTimeout(resizeTimer);
 resizeTimer = setTimeout(function () {
 var grid = document.getElementById('g-forms-grid');
-if (grid && !grid.hasAttribute('data-favs') && pvColumns(grid.clientWidth) !== pvCols) {
+if (grid && pvColumns(grid.clientWidth) !== pvCols) {
 render();
 }
 }, 150);

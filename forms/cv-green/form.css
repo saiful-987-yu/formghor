@@ -1,0 +1,426 @@
+.f-cv-green .g-page {
+font-family: Roboto, Arial, "Liberation Sans", Helvetica, sans-serif;
+-webkit-print-color-adjust: exact;
+print-color-adjust: exact;
+}
+.f-cv-green .g-page-inner {
+overflow: hidden;
+padding: 0;
+border: 0;
+border-radius: 6mm;
+color: #333333;
+font-size: 9pt;
+line-height: 1.4;
+}
+.f-cv-green .g-in {
+padding: 0;
+border-bottom-color: transparent;
+}
+.f-cv-green .g-in:hover {
+border-bottom-color: #c4c4cc;
+}
+.f-cv-green .g-in:focus {
+background: #f0f6e8;
+border-bottom: 1px solid #7da843;
+}
+.f-cv-green .g-in::placeholder {
+color: #b4b8bb;
+}
+.f-cv-green .cs {
+position: absolute;
+z-index: 0;
+width: 24mm;
+height: 24mm;
+background: #7da843;
+}
+.f-cv-green .cs::after {
+content: "";
+position: absolute;
+width: 24mm;
+height: 24mm;
+background: #ffffff;
+}
+.f-cv-green .tr {
+top: 0;
+right: 0;
+}
+.f-cv-green .tr::after {
+top: -2.2mm;
+right: -2.2mm;
+border-bottom-left-radius: 100%;
+}
+.f-cv-green .bl {
+bottom: 0;
+left: 0;
+}
+.f-cv-green .bl::after {
+bottom: -2.2mm;
+left: -2.2mm;
+border-top-right-radius: 100%;
+}
+.f-cv-green .c1,
+.f-cv-green .c2 {
+position: absolute;
+z-index: 1;
+}
+.f-cv-green .c1 {
+top: 12mm;
+left: 8mm;
+width: 60mm;
+text-align: center;
+}
+.f-cv-green .c2 {
+top: 11mm;
+left: 79mm;
+width: 103mm;
+}
+.f-cv-green .n1,
+.f-cv-green .n2 {
+font-family: "Roboto Condensed", "Arial Narrow", "Liberation Sans Narrow", Arial, sans-serif;
+font-size: 29pt;
+font-weight: 700;
+line-height: 1.02;
+text-align: center;
+text-transform: uppercase;
+}
+.f-cv-green .n1::placeholder,
+.f-cv-green .n2::placeholder {
+font-size: 17pt;
+}
+.f-cv-green .n1 {
+color: #7da843;
+}
+.f-cv-green .n2 {
+color: #333333;
+}
+.f-cv-green .tt {
+margin-top: 1.2mm;
+font-size: 8.6pt;
+letter-spacing: .8px;
+text-align: center;
+text-transform: uppercase;
+}
+.f-cv-green .arch {
+box-sizing: border-box;
+width: 49mm;
+height: 28mm;
+margin: 4.5mm auto 0;
+border: .55mm solid #7da843;
+border-bottom: 0;
+border-radius: 24.5mm 24.5mm 0 0;
+}
+.f-cv-green .pic {
+position: relative;
+z-index: 2;
+margin: -26mm auto 0;
+border: 1.9mm solid #ffffff;
+border-radius: 50%;
+background: #dde1e3;
+box-sizing: border-box;
+}
+.f-cv-green .lg {
+box-sizing: border-box;
+margin-top: -14mm;
+padding: 18.5mm 6mm 5mm;
+border-radius: 7mm;
+background: #7da843;
+color: #ffffff;
+}
+.f-cv-green .lg h4 {
+margin: 0 0 2.4mm;
+font-family: "Roboto Condensed", "Arial Narrow", "Liberation Sans Narrow", Arial, sans-serif;
+font-size: 13.5pt;
+font-weight: 700;
+text-transform: uppercase;
+}
+.f-cv-green .lg .g-in {
+color: #ffffff;
+}
+.f-cv-green .lg .lv-in {
+color: transparent;
+}
+.f-cv-green .lg .g-in::placeholder {
+color: rgba(255, 255, 255, .6);
+}
+.f-cv-green .lg .g-in:hover {
+border-bottom-color: rgba(255, 255, 255, .55);
+}
+.f-cv-green .lg .g-in:focus {
+background: rgba(255, 255, 255, .18);
+border-bottom-color: #ffffff;
+}
+.f-cv-green .ln {
+font-size: 8.4pt;
+text-align: center;
+text-transform: uppercase;
+}
+.f-cv-green .lr {
+margin-bottom: 2.6mm;
+}
+.f-cv-green .lv {
+position: relative;
+}
+.f-cv-green .lv-in {
+position: absolute;
+inset: -1.2mm 0;
+width: 100%;
+height: auto;
+background: transparent;
+border: 0;
+color: transparent;
+cursor: pointer;
+font-size: 7pt;
+text-align: right;
+}
+.f-cv-green .lv-in:hover,
+.f-cv-green .lv-in:focus {
+border-bottom-color: transparent;
+}
+.f-cv-green .lv-in:focus {
+color: #333333;
+}
+.f-cv-green .lg .lv-in:focus {
+color: #ffffff;
+background: transparent;
+}
+.f-cv-green .lv-dot {
+height: 3mm;
+margin-top: 1.4mm;
+}
+.f-cv-green .lv-dot::before {
+content: "";
+position: absolute;
+top: 1.25mm;
+right: 0;
+left: 0;
+height: .5mm;
+background: #ffffff;
+}
+.f-cv-green .lv-dot::after {
+content: "";
+position: absolute;
+top: .5mm;
+left: var(--lv, 0%);
+box-sizing: border-box;
+width: 2mm;
+height: 2mm;
+margin-left: -1mm;
+border: .35mm solid #ffffff;
+border-radius: 50%;
+background: #7da843;
+}
+.f-cv-green .lv-bar {
+height: 1.5mm;
+margin: 1.2mm 0 1.8mm;
+border-radius: 1mm;
+background: #e4e6e8;
+}
+.f-cv-green .lv-fill {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+width: var(--lv, 0%);
+border-radius: 1mm;
+background: #7da843;
+}
+.f-cv-green .lv-fill::after {
+content: "";
+position: absolute;
+top: -.7mm;
+right: -.3mm;
+box-sizing: border-box;
+width: .8mm;
+height: 2.9mm;
+border: .2mm solid #7da843;
+background: #ffffff;
+}
+.f-cv-green .lv-bar:not([style]) .lv-fill::after {
+display: none;
+}
+.f-cv-green .sh {
+margin: 4.6mm 0 1.6mm;
+font-family: "Roboto Condensed", "Arial Narrow", "Liberation Sans Narrow", Arial, sans-serif;
+font-size: 14.5pt;
+font-weight: 700;
+line-height: 1.1;
+text-align: center;
+text-transform: uppercase;
+}
+.f-cv-green .bx {
+border: 1px solid #e6e8ea;
+border-top: .55mm solid #7da843;
+background: #ffffff;
+text-align: left;
+}
+.f-cv-green .sk {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1.4mm 4mm;
+padding: 2.4mm 3.2mm 1mm;
+}
+.f-cv-green .si .g-in {
+font-size: 6.9pt;
+font-weight: 500;
+text-transform: uppercase;
+}
+.f-cv-green .li {
+position: relative;
+padding: 1.7mm 2.5mm 1.7mm 7mm;
+border-bottom: 1px solid #e6e8ea;
+}
+.f-cv-green .li:last-child {
+border-bottom: 0;
+}
+.f-cv-green .li::before {
+content: "";
+position: absolute;
+top: 3.5mm;
+left: 3mm;
+width: 1.6mm;
+height: 1.6mm;
+border-radius: 50%;
+background: #7da843;
+}
+.f-cv-green .li .g-in {
+font-size: 8.6pt;
+text-transform: uppercase;
+}
+.f-cv-green .li .rc {
+color: #666666;
+font-size: 7.8pt;
+text-transform: none;
+}
+.f-cv-green .hd {
+display: flex;
+align-items: center;
+gap: 2.2mm;
+margin: 5.2mm 0 2mm;
+font-family: "Roboto Condensed", "Arial Narrow", "Liberation Sans Narrow", Arial, sans-serif;
+font-size: 16pt;
+font-weight: 700;
+line-height: 1.1;
+text-transform: uppercase;
+}
+.f-cv-green .c2 > .hd:first-child {
+margin-top: 0;
+}
+.f-cv-green .hd .ic {
+display: inline-flex;
+width: 5mm;
+height: 5mm;
+color: #7da843;
+}
+.f-cv-green .hd .ic svg {
+width: 100%;
+height: 100%;
+fill: currentColor;
+}
+.f-cv-green .hl {
+padding-left: 2mm;
+}
+.f-cv-green .hl::after {
+content: "";
+flex: 1;
+height: 1px;
+background: #dfe2e4;
+}
+.f-cv-green .ab {
+width: calc(100% - 10mm);
+color: #666666;
+font-size: 8.4pt;
+line-height: 1.75;
+}
+.f-cv-green .ct {
+display: grid;
+grid-template-columns: 1fr 1fr;
+border: .55mm solid #7da843;
+}
+.f-cv-green .ci {
+display: flex;
+align-items: center;
+gap: 1.6mm;
+box-sizing: border-box;
+min-height: 11.5mm;
+padding: 1.2mm 2mm;
+border-bottom: 1px solid #dfe4d6;
+}
+.f-cv-green .ci:nth-child(even) {
+border-left: 1px solid #dfe4d6;
+}
+.f-cv-green .ci:nth-last-child(-n+2) {
+border-bottom: 0;
+}
+.f-cv-green .cic {
+display: inline-flex;
+flex: none;
+width: 3.6mm;
+height: 3.6mm;
+color: #555555;
+}
+.f-cv-green .cic svg {
+width: 100%;
+height: 100%;
+fill: currentColor;
+}
+.f-cv-green .cv {
+flex: 1;
+min-width: 0;
+font-size: 8pt;
+}
+.f-cv-green .cv b {
+display: block;
+font-size: 7.6pt;
+text-transform: uppercase;
+}
+.f-cv-green .cv .g-in {
+font-size: 8pt;
+}
+.f-cv-green .cs2 .g-in {
+text-align: center;
+}
+.f-cv-green .ex {
+position: relative;
+margin: 0 0 3.6mm 1.8mm;
+padding-left: 6.5mm;
+border-left: .5mm solid #e3e5e7;
+}
+.f-cv-green .ex::before {
+content: "";
+position: absolute;
+top: .6mm;
+left: -1.7mm;
+width: 2.9mm;
+height: 4.3mm;
+background: #7da843;
+}
+.f-cv-green .et {
+font-family: "Roboto Condensed", "Arial Narrow", "Liberation Sans Narrow", Arial, sans-serif;
+font-size: 11.4pt;
+font-weight: 700;
+text-transform: uppercase;
+}
+.f-cv-green .er {
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+gap: 3mm;
+margin: .4mm 0 .8mm;
+}
+.f-cv-green .ec {
+flex: 1;
+min-width: 0;
+font-size: 8.8pt;
+}
+.f-cv-green .ed {
+flex: none;
+width: 33mm;
+font-size: 7.8pt;
+font-weight: 700;
+text-align: right;
+}
+.f-cv-green .eb {
+color: #666666;
+font-size: 8pt;
+line-height: 1.65;
+}
