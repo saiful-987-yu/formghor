@@ -55,6 +55,11 @@
 <button class="g-iconbtn g-share" type="button" data-share="form.back" data-i18n-label="share.label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg></button>
 </div>
 <p class="g-section-sub" data-i18n="forms.sub">আবেদনপত্র থেকে সিভি, সব ধরনের ফর্ম এখানে এক জায়গায়। পছন্দের ফর্মটি বেছে নিন, তথ্য ও ছবি দিয়ে পূরণ করুন, তারপর সাইজ ঠিক রেখে সরাসরি A4 কাগজে প্রিন্ট করুন। প্রোফাইলে একবার তথ্য সেভ করলে অটো-ফিলে প্রতিটি ফর্মে নিজে থেকেই বসে যাবে।</p>
+<div class="g-search" id="g-form-search" role="search">
+<svg class="g-search-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+<input class="g-search-input" id="g-form-search-input" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ফর্ম খুঁজুন, যেমন সিভি, এনআইডি, আইডি কার্ড" aria-label="ফর্ম খুঁজুন">
+<button class="g-search-clear" id="g-form-search-clear" type="button" hidden aria-label="লেখা মুছুন" title="লেখা মুছুন"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
 <div class="g-form-tabs" id="g-form-tabs">
 <button class="g-form-tab g-form-tab--on" type="button" data-group="public" aria-pressed="true" data-i18n="forms.tab.public">পাবলিক</button>
 <button class="g-form-tab" type="button" data-group="institutional" aria-pressed="false" data-i18n="forms.tab.org">প্রাতিষ্ঠানিক</button>
@@ -74,6 +79,7 @@
 <script src="../core/favs.js"></script>
 <script src="../core/profile.js"></script>
 <script src="registry.js"></script>
+<script src="previews.js"></script>
 <script src="../core/footer.js"></script>
 <script src="../core/home.js"></script>
 </body>

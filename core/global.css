@@ -430,6 +430,181 @@ display: grid;
 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 gap: 16px;
 }
+.g-forms-grid--p {
+display: block;
+}
+.g-pgrid {
+display: flex;
+align-items: flex-start;
+gap: 14px;
+}
+.g-pcol {
+display: flex;
+flex: 1 1 0;
+flex-direction: column;
+gap: 14px;
+min-width: 0;
+}
+.g-pcard {
+display: flex;
+flex-direction: column;
+gap: 8px;
+color: inherit;
+text-decoration: none;
+}
+.g-pcard-tile {
+position: relative;
+display: block;
+padding: 11%;
+background: color-mix(in srgb, var(--pc) 15%, var(--g-surface));
+border: 1px solid color-mix(in srgb, var(--pc) 24%, var(--g-line));
+border-radius: 18px;
+transition: transform .18s ease, box-shadow .18s ease;
+}
+.g-pcard--card .g-pcard-tile {
+padding: 8%;
+}
+.g-pcard:hover .g-pcard-tile {
+transform: translateY(-3px);
+box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+}
+.g-pcard-frame {
+position: relative;
+display: block;
+width: 100%;
+}
+.g-pcard-ph {
+position: absolute;
+inset: 0;
+background: #ffffff;
+border-radius: 3px;
+box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+transition: opacity .2s ease;
+}
+.g-pcard--card .g-pcard-ph {
+border-radius: 8px;
+}
+.g-pcard-img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: contain;
+opacity: 0;
+transition: opacity .25s ease;
+}
+.g-pcard.is-ready .g-pcard-img {
+opacity: 1;
+}
+.g-pcard.is-ready .g-pcard-ph {
+opacity: 0;
+}
+.g-pcard--doc .g-pcard-img {
+border-radius: 3px;
+box-shadow: 0 8px 20px rgba(0, 0, 0, .16);
+}
+.g-pcard--card .g-pcard-img {
+filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .22));
+}
+.g-pcard-badge {
+position: absolute;
+top: 8px;
+right: 8px;
+padding: 0 8px;
+font-size: .7rem;
+}
+.g-pcard-badge.g-badge--free {
+background: var(--g-surface);
+}
+.g-pcard-title {
+margin: 0;
+padding: 0 4px;
+font-size: .95rem;
+font-weight: 600;
+line-height: 1.45;
+text-align: center;
+}
+@media (min-width: 820px) {
+.g-pgrid {
+gap: 20px;
+}
+.g-pcol {
+gap: 20px;
+}
+}
+.g-search {
+position: relative;
+display: flex;
+align-items: center;
+width: 100%;
+max-width: 560px;
+margin: 0 0 18px;
+}
+.g-search-ico {
+position: absolute;
+left: 18px;
+width: 20px;
+height: 20px;
+fill: none;
+stroke: var(--g-muted);
+stroke-width: 2;
+stroke-linecap: round;
+stroke-linejoin: round;
+pointer-events: none;
+}
+.g-search-input {
+width: 100%;
+height: 52px;
+padding: 0 54px 0 48px;
+border: 1px solid var(--g-line);
+border-radius: 999px;
+background: var(--g-surface);
+color: var(--g-text);
+font: inherit;
+font-size: 1rem;
+box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+-webkit-appearance: none;
+appearance: none;
+outline: none;
+transition: border-color .15s ease, box-shadow .15s ease;
+}
+.g-search-input::placeholder {
+color: var(--g-muted);
+opacity: 1;
+}
+.g-search-input:focus {
+border-color: var(--g-text);
+box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-text) 10%, transparent);
+}
+.g-search-clear {
+position: absolute;
+right: 9px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 34px;
+height: 34px;
+padding: 0;
+border: 0;
+border-radius: 50%;
+background: color-mix(in srgb, var(--g-text) 10%, transparent);
+color: var(--g-text);
+cursor: pointer;
+}
+.g-search-clear:hover {
+background: color-mix(in srgb, var(--g-text) 18%, transparent);
+}
+.g-search-clear svg {
+width: 16px;
+height: 16px;
+fill: none;
+stroke: currentColor;
+stroke-width: 2.4;
+stroke-linecap: round;
+}
+.g-search-clear[hidden] {
+display: none;
+}
 .g-form-tabs {
 display: flex;
 gap: 10px;
@@ -607,6 +782,46 @@ font-weight: 500;
 display: flex;
 justify-content: center;
 margin-top: 24px;
+}
+.g-grid-more {
+display: flex;
+justify-content: center;
+margin: 20px 0;
+}
+.g-title-link {
+display: inline-flex;
+align-items: center;
+gap: 4px;
+color: inherit;
+text-decoration: none;
+}
+.g-title-arrow {
+width: 1.15em;
+height: 1.15em;
+fill: none;
+stroke: currentColor;
+stroke-width: 2.4;
+stroke-linecap: round;
+stroke-linejoin: round;
+opacity: .55;
+transition: transform .15s ease, opacity .15s ease;
+}
+.g-title-link:hover .g-title-arrow {
+transform: translateX(3px);
+opacity: 1;
+}
+.g-btn-arrow {
+display: inline-flex;
+margin-left: 8px;
+}
+.g-btn-arrow svg {
+width: 18px;
+height: 18px;
+fill: none;
+stroke: currentColor;
+stroke-width: 2;
+stroke-linecap: round;
+stroke-linejoin: round;
 }
 .g-page-head {
 padding-top: 28px;

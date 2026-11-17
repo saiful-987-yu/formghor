@@ -1,0 +1,19 @@
+window.G_PREVIEWS = {
+"cv-sidebar": {"w":560,"h":793,"c":"#3c4e61","m":"doc"},
+"cv-classic": {"w":560,"h":793,"c":"#8c9aac","m":"doc"},
+"cv-modern": {"w":560,"h":793,"c":"#6b7280","m":"doc"},
+"resume": {"w":560,"h":793,"c":"#0c5651","m":"doc"},
+"office-id-card": {"w":640,"h":475,"c":"#13305c","m":"card"},
+"office-id-maroon": {"w":640,"h":475,"c":"#891a2c","m":"card"},
+"school-id-card": {"w":640,"h":475,"c":"#1356b8","m":"card"},
+"school-id-card-2": {"w":498,"h":640,"c":"#0b6b3f","m":"card"},
+"teacher-id-card": {"w":640,"h":475,"c":"#0f5565","m":"card"},
+"personal-card": {"w":488,"h":640,"c":"#0e6a52","m":"card"},
+"nid-info-card": {"w":495,"h":640,"c":"#6b7280","m":"card"},
+"plot-sale-deed": {"w":560,"h":923,"c":"#6b7280","m":"doc"},
+"school-apply": {"w":560,"h":793,"c":"#6b7280","m":"doc"},
+"union-member-apply": {"w":560,"h":793,"c":"#6b7280","m":"doc"},
+"oikkya-member-apply": {"w":560,"h":923,"c":"#0e162a","m":"doc"},
+"oikkya-deposit-receipt": {"w":640,"h":538,"c":"#8186b5","m":"card"},
+"business-card": {"w":552,"h":640,"c":"#0c2b1e","m":"card"}
+};
