@@ -1,6 +1,7 @@
 window.G_FORMS = [
 {
 slug: 'cv-sidebar',
+home: 1,
 id: 'ID-1613',
 access: 'freemium',
 paper: 'A4',
@@ -13,6 +14,7 @@ keys: ['সিভি', 'cv', 'curriculum vitae', 'বায়োডাটা', 
 },
 {
 slug: 'cv-classic',
+home: 2,
 id: 'ID-1238',
 access: 'free',
 paper: 'A4',
@@ -25,6 +27,7 @@ keys: ['সিভি', 'cv', 'curriculum vitae', 'বায়োডাটা', 
 },
 {
 slug: 'cv-modern',
+home: 3,
 id: 'ID-1359',
 access: 'locked',
 paper: 'A4',
@@ -37,6 +40,7 @@ keys: ['সিভি', 'cv', 'curriculum vitae', 'বায়োডাটা', 
 },
 {
 slug: 'resume',
+home: 4,
 id: 'ID-3010',
 access: 'free',
 paper: 'A4',
@@ -61,6 +65,7 @@ keys: ['সিভি', 'cv', 'curriculum vitae', 'বায়োডাটা', 
 },
 {
 slug: 'office-id-card',
+home: 5,
 multi: true,
 id: 'ID-1867',
 access: 'free',
@@ -74,6 +79,7 @@ keys: ['আইডি কার্ড', 'id card', 'আইডি', 'id', 'পর�
 },
 {
 slug: 'office-id-maroon',
+home: 6,
 multi: true,
 id: 'ID-1994',
 access: 'free',
@@ -87,6 +93,7 @@ keys: ['আইডি কার্ড', 'id card', 'আইডি', 'id', 'পর�
 },
 {
 slug: 'school-id-card',
+home: 7,
 multi: true,
 id: 'ID-2121',
 access: 'free',
@@ -113,6 +120,7 @@ keys: ['আইডি কার্ড', 'id card', 'আইডি', 'id', 'পর�
 },
 {
 slug: 'teacher-id-card',
+home: 8,
 multi: true,
 id: 'ID-2883',
 access: 'free',

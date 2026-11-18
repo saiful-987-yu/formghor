@@ -391,15 +391,6 @@ height: 16px;
 right: 0;
 bottom: 6px;
 }
-.g-pp-avbtn--del {
-top: 6px;
-right: 2px;
-width: 30px;
-height: 30px;
-}
-.g-pp-avbtn[hidden] {
-display: none;
-}
 .g-pp-file {
 position: absolute;
 width: 1px;
@@ -546,14 +537,17 @@ height: 17px;
 }
 .g-pp-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-gap: 14px 20px;
+grid-template-columns: repeat(12, minmax(0, 1fr));
+gap: 14px 16px;
 }
 .g-pp-field {
+grid-column: span var(--c, 12);
 min-width: 0;
 }
-.g-pp-field--wide {
-grid-column: 1 / -1;
+@media (min-width: 640px) {
+.g-pp-field {
+grid-column: span var(--d, var(--c, 12));
+}
 }
 .g-pp-label {
 display: block;
@@ -770,6 +764,49 @@ pointer-events: none;
 .g-pp-toast--show {
 opacity: 1;
 transform: translate(-50%, 0);
+}
+.g-pp-pvwrap {
+display: flex;
+justify-content: center;
+}
+.g-pp-pv {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 168px;
+height: 168px;
+overflow: hidden;
+border-radius: 50%;
+background: var(--g-bg);
+color: var(--g-muted);
+}
+.g-pp-pv img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.g-pp-pv .g-pp-ico svg {
+width: 56px;
+height: 56px;
+}
+.g-pp-pvnote {
+min-height: 1.4em;
+margin: 12px 0 0;
+color: var(--g-muted);
+font-size: .9rem;
+text-align: center;
+}
+.g-pp-pvactions {
+justify-content: center;
+margin-top: 6px;
+}
+.g-pp-pvactions .g-btn {
+position: relative;
+cursor: pointer;
+}
+.g-pp-danger {
+color: var(--g-bad);
 }
 .g-pp-lock {
 overflow: hidden;

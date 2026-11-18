@@ -410,6 +410,17 @@ if (list[i] && /^[a-z0-9-]+$/.test(list[i].slug || '') && (favMode ? (G.favs && 
 valid.push(list[i]);
 }
 }
+if (limit && !searching && !favMode) {
+valid = valid.map(function (f, i) {
+return { f: f, i: i };
+}).sort(function (a, b) {
+var ha = a.f.home || 999;
+var hb = b.f.home || 999;
+return ha !== hb ? ha - hb : a.i - b.i;
+}).map(function (x) {
+return x.f;
+});
+}
 grid.textContent = '';
 var shown = limit && valid.length > limit ? valid.slice(0, limit) : valid;
 grid.classList.add('g-forms-grid--p');

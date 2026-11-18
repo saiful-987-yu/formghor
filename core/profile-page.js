@@ -33,15 +33,15 @@ id: 'personal',
 title: 'pf.sec.personal',
 size: 'wide',
 fields: [
-{ k: 'name', l: 'pf.name', max: 100, auto: 'name' },
-{ k: 'birth', l: 'pf.birth', max: 10, ph: 'pf.phBirth', auto: 'bday' },
-{ k: 'gender', l: 'pf.gender', t: 'select' },
-{ k: 'blood', l: 'pf.blood', t: 'select' },
-{ k: 'religion', l: 'pf.religion', t: 'select' },
-{ k: 'marital', l: 'pf.marital', t: 'select' },
-{ k: 'nationality', l: 'pf.nationality', max: 60, auto: 'off' },
-{ k: 'occupation', l: 'pf.occupation', max: 100, auto: 'organization-title' },
-{ k: 'education', l: 'pf.education', max: 100, auto: 'off' }
+{ k: 'name', l: 'pf.name', max: 100, auto: 'name', c: 12, d: 5 },
+{ k: 'birth', l: 'pf.birth', max: 10, ph: 'pf.phBirth', auto: 'bday', c: 6, d: 4 },
+{ k: 'gender', l: 'pf.gender', t: 'select', c: 6, d: 3 },
+{ k: 'blood', l: 'pf.blood', t: 'select', c: 6, d: 3 },
+{ k: 'religion', l: 'pf.religion', t: 'select', c: 6, d: 3 },
+{ k: 'marital', l: 'pf.marital', t: 'select', c: 6, d: 3 },
+{ k: 'nationality', l: 'pf.nationality', max: 60, auto: 'off', c: 6, d: 3 },
+{ k: 'occupation', l: 'pf.occupation', max: 100, auto: 'organization-title', c: 12, d: 6 },
+{ k: 'education', l: 'pf.education', max: 100, auto: 'off', c: 12, d: 6 }
 ]
 },
 {
@@ -49,8 +49,8 @@ id: 'family',
 title: 'pf.sec.family',
 size: 'half',
 fields: [
-{ k: 'father', l: 'pf.father', max: 100, auto: 'off' },
-{ k: 'mother', l: 'pf.mother', max: 100, auto: 'off' }
+{ k: 'father', l: 'pf.father', max: 100, auto: 'off', c: 12 },
+{ k: 'mother', l: 'pf.mother', max: 100, auto: 'off', c: 12 }
 ]
 },
 {
@@ -58,9 +58,9 @@ id: 'ident',
 title: 'pf.sec.id',
 size: 'half',
 fields: [
-{ k: 'nid', l: 'pf.nid', max: 30, mode: 'numeric', auto: 'off' },
-{ k: 'birthreg', l: 'pf.birthreg', max: 30, mode: 'numeric', auto: 'off' },
-{ k: 'passport', l: 'pf.passport', max: 30, auto: 'off' }
+{ k: 'nid', l: 'pf.nid', max: 30, mode: 'numeric', auto: 'off', c: 12 },
+{ k: 'birthreg', l: 'pf.birthreg', max: 30, mode: 'numeric', auto: 'off', c: 7 },
+{ k: 'passport', l: 'pf.passport', max: 30, auto: 'off', c: 5 }
 ]
 },
 {
@@ -68,9 +68,9 @@ id: 'contact',
 title: 'pf.sec.contact',
 size: 'half',
 fields: [
-{ k: 'phone', l: 'pf.phone', t: 'tel', max: 20, auto: 'tel', wide: true },
-{ k: 'phone_alt', l: 'pf.phoneAlt', t: 'tel', max: 20, auto: 'off', wide: true },
-{ k: 'email', l: 'pf.email', t: 'email', max: 100, auto: 'email', wide: true }
+{ k: 'phone', l: 'pf.phone', t: 'tel', max: 20, auto: 'tel', c: 6 },
+{ k: 'phone_alt', l: 'pf.phoneAlt', t: 'tel', max: 20, auto: 'off', c: 6 },
+{ k: 'email', l: 'pf.email', t: 'email', max: 100, auto: 'email', c: 12 }
 ]
 },
 {
@@ -78,12 +78,12 @@ id: 'address',
 title: 'pf.sec.address',
 size: 'half',
 fields: [
-{ k: 'address', l: 'pf.address', t: 'area', max: 300, wide: true, auto: 'street-address' },
-{ k: 'present_village', l: 'pf.village', max: 100, auto: 'off' },
-{ k: 'present_post', l: 'pf.post', max: 100, auto: 'off' },
-{ k: 'present_upazila', l: 'pf.upazila', max: 100, auto: 'off' },
-{ k: 'present_district', l: 'pf.district', max: 100, auto: 'off' },
-{ k: 'address_perm', l: 'pf.addressPerm', t: 'area', max: 300, wide: true, auto: 'off' }
+{ k: 'address', l: 'pf.address', t: 'area', max: 300, auto: 'street-address', c: 12 },
+{ k: 'present_village', l: 'pf.village', max: 100, auto: 'off', c: 6 },
+{ k: 'present_post', l: 'pf.post', max: 100, auto: 'off', c: 6 },
+{ k: 'present_upazila', l: 'pf.upazila', max: 100, auto: 'off', c: 6 },
+{ k: 'present_district', l: 'pf.district', max: 100, auto: 'off', c: 6 },
+{ k: 'address_perm', l: 'pf.addressPerm', t: 'area', max: 300, auto: 'off', c: 12 }
 ]
 }
 ];
@@ -681,7 +681,7 @@ n++;
 }
 return Math.round(n * 100 / COMPLETE_KEYS.length);
 }
-function savePhoto(url) {
+function savePhoto(url, msg) {
 var data = current();
 data.photo = url;
 if (!G.profile.save(data)) {
@@ -693,7 +693,97 @@ G.sync.pushProfile(remoteProfile(data));
 }
 saved = current();
 renderHero();
-toast(G.t('pf.saved'));
+toast(G.t(msg || 'pf.saved'));
+}
+function photoPreview(url) {
+var box = el('div', 'g-pp-pv');
+if (/^data:image\//.test(url || '')) {
+var img = el('img');
+img.alt = '';
+img.src = url;
+box.appendChild(img);
+} else {
+box.appendChild(icon('user'));
+}
+return box;
+}
+function confirmRemovePhoto() {
+dialog({
+title: G.t('pf.photoRemoveTitle'),
+text: G.t('pf.photoRemoveText'),
+yesLabel: G.t('pf.photoRemove'),
+onYes: function () {
+savePhoto('', 'pf.photoRemoved');
+}
+});
+}
+function openPhoto() {
+var has = /^data:image\//.test(saved.photo || '');
+dialog({
+title: G.t('pf.photoTitle'),
+build: function (body, close) {
+var pending = '';
+var pv = el('div', 'g-pp-pvwrap');
+var note = el('p', 'g-pp-pvnote');
+var rowEl = el('div', 'g-pp-actions g-pp-pvactions');
+var file = el('input', 'g-pp-file');
+file.type = 'file';
+file.accept = 'image/*';
+function draw() {
+pv.textContent = '';
+pv.appendChild(photoPreview(pending || saved.photo));
+note.textContent = pending ? G.t('pf.photoNew') : '';
+rowEl.textContent = '';
+if (pending) {
+var keep = el('button', 'g-btn');
+keep.type = 'button';
+i18n(keep, 'pf.save');
+keep.addEventListener('click', function () {
+var url = pending;
+close();
+savePhoto(url, 'pf.saved');
+});
+var drop = el('button', 'g-btn g-btn--ghost');
+drop.type = 'button';
+i18n(drop, 'pf.cancel');
+drop.addEventListener('click', function () {
+pending = '';
+draw();
+});
+rowEl.appendChild(keep);
+rowEl.appendChild(drop);
+return;
+}
+var pick = el('label', 'g-btn');
+pick.appendChild(i18n(el('span'), has ? 'pf.photoChange' : 'pf.photoPick'));
+pick.appendChild(file);
+rowEl.appendChild(pick);
+if (has) {
+var del = el('button', 'g-btn g-btn--ghost g-pp-danger');
+del.type = 'button';
+i18n(del, 'pf.photoRemove');
+del.addEventListener('click', confirmRemovePhoto);
+rowEl.appendChild(del);
+}
+}
+file.addEventListener('change', function () {
+var f = file.files && file.files[0];
+G.photoToDataUrl(f, function (url) {
+file.value = '';
+if (url) {
+pending = url;
+draw();
+} else {
+toast(G.t('pf.photoBad'));
+}
+});
+});
+body.appendChild(pv);
+body.appendChild(note);
+body.appendChild(rowEl);
+draw();
+}
+});
 }
 function buildHero() {
 var hero = el('section', 'g-pp-hero');
@@ -702,19 +792,12 @@ av.innerHTML = '<svg class="g-pp-ring" viewBox="0 0 120 120" aria-hidden="true">
 ui.ringFg = av.querySelector('.g-pp-ring-fg');
 ui.photo = el('div', 'g-pp-photo');
 av.appendChild(ui.photo);
-var pick = el('label', 'g-pp-avbtn g-pp-avbtn--cam');
-label(pick, 'pf.photoPick');
-ui.file = el('input', 'g-pp-file');
-ui.file.type = 'file';
-ui.file.accept = 'image/*';
-pick.appendChild(ui.file);
+var pick = el('button', 'g-pp-avbtn g-pp-avbtn--cam');
+pick.type = 'button';
+label(pick, 'pf.photoTitle');
 pick.appendChild(icon('camera'));
+pick.addEventListener('click', openPhoto);
 av.appendChild(pick);
-ui.photoDel = el('button', 'g-pp-avbtn g-pp-avbtn--del');
-ui.photoDel.type = 'button';
-label(ui.photoDel, 'pf.photoRemove');
-ui.photoDel.appendChild(icon('x'));
-av.appendChild(ui.photoDel);
 hero.appendChild(av);
 var info = el('div', 'g-pp-hero-info');
 ui.heroName = el('h2', 'g-pp-hero-name');
@@ -725,18 +808,6 @@ info.appendChild(ui.heroPhone);
 info.appendChild(ui.heroPct);
 info.appendChild(i18n(el('p', 'g-pp-hint'), 'pf.completeHint'));
 hero.appendChild(info);
-ui.file.addEventListener('change', function () {
-var file = ui.file.files && ui.file.files[0];
-G.photoToDataUrl(file, function (url) {
-ui.file.value = '';
-if (url) {
-savePhoto(url);
-}
-});
-});
-ui.photoDel.addEventListener('click', function () {
-savePhoto('');
-});
 return hero;
 }
 function renderHero() {
@@ -750,7 +821,6 @@ ui.photo.appendChild(img);
 } else {
 ui.photo.appendChild(icon('user'));
 }
-ui.photoDel.hidden = !has;
 var name = saved.name || '';
 ui.heroName.textContent = name || G.t('pf.noName');
 ui.heroName.className = 'g-pp-hero-name' + (name ? '' : ' g-pp-hero-name--empty');
@@ -762,7 +832,7 @@ ui.ringFg.style.strokeDashoffset = String(339.3 * (1 - p / 100));
 }
 function buildTiles() {
 var row = el('nav', 'g-pp-tiles');
-[['bookmark', 'menu.saved', '../saved/index.html'], ['heart', 'menu.fav', '../favorites/index.html'], ['grid', 'pf.allForms', '../index.html']].forEach(function (t) {
+[['bookmark', 'menu.saved', '../saved/index.html'], ['heart', 'menu.fav', '../favorites/index.html'], ['grid', 'pf.allForms', '../forms/index.html']].forEach(function (t) {
 var a = el('a', 'g-pp-tile');
 a.href = t[2];
 var ic = icon(t[0], 'g-pp-tile-ico');
@@ -798,7 +868,11 @@ sel.appendChild(o);
 sel.value = keep;
 }
 function buildField(c, f) {
-var wrap = el('div', 'g-pp-field' + (f.wide ? ' g-pp-field--wide' : ''));
+var wrap = el('div', 'g-pp-field');
+wrap.style.setProperty('--c', String(f.c || 12));
+if (f.d) {
+wrap.style.setProperty('--d', String(f.d));
+}
 var id = 'g-pp-' + f.k;
 var lab = el('label', 'g-pp-label');
 lab.setAttribute('for', id);

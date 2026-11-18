@@ -127,3 +127,27 @@ G.setTheme(G.getTheme() === 'dark' ? 'light' : 'dark');
 }
 });
 })();
+(function () {
+if (!('serviceWorker' in navigator)) {
+return;
+}
+var host = window.location.hostname;
+if (window.location.protocol !== 'https:' && host !== 'localhost' && host !== '127.0.0.1') {
+return;
+}
+var base = '';
+var scripts = document.getElementsByTagName('script');
+for (var i = 0; i < scripts.length; i++) {
+var m = /^(.*\/)core\/global\.js(?:\?.*)?$/.exec(scripts[i].src || '');
+if (m) {
+base = m[1];
+break;
+}
+}
+if (!base) {
+return;
+}
+window.addEventListener('load', function () {
+navigator.serviceWorker.register(base + 'sw.js', { scope: base }).catch(function () {});
+});
+})();
