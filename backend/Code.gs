@@ -1,6 +1,6 @@
 var TZ = 'Asia/Dhaka';
 var PROPS = PropertiesService.getScriptProperties();
-var PROFILE_KEYS = ['father', 'mother', 'birth', 'gender', 'blood', 'religion', 'nationality', 'marital', 'occupation', 'nid', 'birthreg', 'passport', 'address_perm'];
+var PROFILE_KEYS = ['father', 'mother', 'birth', 'gender', 'blood', 'religion', 'nationality', 'marital', 'occupation', 'nid', 'birthreg', 'passport', 'address_perm', 'phone_alt', 'education', 'present_village', 'present_post', 'present_upazila', 'present_district'];
 var USERS_HEAD = ['phone', 'name', 'email', 'address', 'photo_file_id', 'salt', 'pass_hash', 'created', 'updated'].concat(PROFILE_KEYS);
 var SESSIONS_HEAD = ['token_hash', 'phone', 'created'];
 var HISTORY_HEAD = ['time', 'ref', 'form', 'phone', 'data', 'photo_ids', 'account'];
@@ -57,6 +57,8 @@ function route_(req) {
 switch (req.action) {
 case 'ping':
 return { ok: true };
+case 'phones':
+return phones_();
 case 'register':
 return register_(req);
 case 'login':
@@ -101,7 +103,34 @@ var salt = Utilities.getUuid();
 var fileId = typeof p.photo === 'string' && p.photo ? saveImage_(p.photo, 'profile_' + phone + '.jpg') : '';
 var now = now_();
 appendRow_(users, [phone, str_(p.name, 100), str_(p.email, 100), str_(p.address, 300), fileId, salt, hashPass_(salt, pass), now, now].concat(profileExtra_(p)));
+CacheService.getScriptCache().remove('phones_v1');
 return { ok: true, phone: phone, token: newSession_(phone) };
+}
+
+function phoneTag_(phone) {
+return hash_('fg:' + phone).slice(0, 10);
+}
+
+function phones_() {
+var cache = CacheService.getScriptCache();
+var hit = cache.get('phones_v1');
+if (hit !== null) {
+return { ok: true, list: hit };
+}
+var users = sheet_('Users', USERS_HEAD);
+var last = users.getLastRow();
+var tags = [];
+if (last > 1) {
+var vals = users.getRange(2, 1, last - 1, 1).getValues();
+for (var i = 0; i < vals.length; i++) {
+tags.push(phoneTag_(String(vals[i][0])));
+}
+}
+var out = tags.join(',');
+if (out.length < 90000) {
+cache.put('phones_v1', out, 600);
+}
+return { ok: true, list: out };
 }
 
 function login_(req) {
@@ -755,6 +784,9 @@ sh = ss.insertSheet(name);
 if (sh.getLastRow() === 0) {
 sh.getRange(1, 1, 1, head.length).setValues([head]);
 sh.setFrozenRows(1);
+} else if (sh.getLastColumn() < head.length) {
+var have = sh.getLastColumn();
+sh.getRange(1, have + 1, 1, head.length - have).setValues([head.slice(have)]);
 }
 return sh;
 }

@@ -1,7 +1,7 @@
 window.G = window.G || {};
 G.config = G.config || {};
 G.config.creator = 'Saiful Islam ( Chiam )';
-G.config.api = 'https://script.google.com/macros/s/AKfycbxtl_9UcS8gRNKHPPtg9fcQnzNMP7OKhB5UD78ETsznAzoo-zpYGxxHqS08dPmvEsg6WQ/exec';
+G.config.api = 'https://script.google.com/macros/s/AKfycbz0_Jh7up0eVMP095ztsHYm7DD2ECzKfSfhahRciD8IwIogITmgzSXVgEVFuuaxPEPX4g/exec';
 G.config.photo = 'assets/developer.jpg';
 G.config.social = {
 call: '01610-622995',

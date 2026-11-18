@@ -1,7 +1,7 @@
 (function () {
 var G = window.G = window.G || {};
 var KEY = 'g.profile';
-var FIELDS = ['name', 'phone', 'email', 'address', 'photo', 'father', 'mother', 'birth', 'gender', 'blood', 'religion', 'nationality', 'marital', 'occupation', 'nid', 'birthreg', 'passport', 'address_perm'];
+var FIELDS = ['name', 'phone', 'email', 'address', 'photo', 'father', 'mother', 'birth', 'gender', 'blood', 'religion', 'nationality', 'marital', 'occupation', 'nid', 'birthreg', 'passport', 'address_perm', 'phone_alt', 'education', 'present_village', 'present_post', 'present_upazila', 'present_district'];
 var USER_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
 var OPTIONS = {
 gender: [['male', 'পুরুষ', 'Male'], ['female', 'নারী', 'Female'], ['other', 'অন্যান্য', 'Other']],

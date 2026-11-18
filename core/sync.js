@@ -182,6 +182,9 @@ if (G.favs) {
 G.favs.clearLocal();
 }
 },
+phones: function () {
+return post({ action: 'phones' });
+},
 changePassword: function (oldPassword, newPassword) {
 var s = getSession();
 if (!s) {
