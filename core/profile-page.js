@@ -273,6 +273,20 @@ ui.cancel.addEventListener('click', onCancel);
 ui.clear.addEventListener('click', onClear);
 return box;
 }
+function pwField(id, labelKey, auto) {
+var box = el('div', 'g-pp-field');
+var label = el('label', 'g-pp-label');
+label.setAttribute('for', id);
+i18n(label, labelKey);
+var input = el('input', 'g-pp-input');
+input.id = id;
+input.type = 'password';
+input.maxLength = 64;
+input.setAttribute('autocomplete', auto);
+box.appendChild(label);
+box.appendChild(input);
+return { box: box, input: input };
+}
 function buildAccount() {
 acc.appendChild(i18n(el('h2', 'g-pp-card-title'), 'pf.account'));
 ui.accNote = el('p', 'g-pp-note');
@@ -314,6 +328,28 @@ row.appendChild(ui.login);
 row.appendChild(ui.register);
 row.appendChild(ui.logout);
 acc.appendChild(row);
+ui.pwBox = el('div', 'g-pp-pw');
+ui.pwBox.appendChild(i18n(el('h3', 'g-pp-pw-title'), 'pf.pwTitle'));
+var pwGrid = el('div', 'g-pp-grid');
+var fOld = pwField('g-pp-pw-old', 'pf.pwOld', 'current-password');
+var fNew = pwField('g-pp-pw-new', 'pf.pwNew', 'new-password');
+var fNew2 = pwField('g-pp-pw-new2', 'pf.pwNew2', 'new-password');
+ui.pwOld = fOld.input;
+ui.pwNew = fNew.input;
+ui.pwNew2 = fNew2.input;
+pwGrid.appendChild(fOld.box);
+pwGrid.appendChild(fNew.box);
+pwGrid.appendChild(fNew2.box);
+ui.pwBox.appendChild(pwGrid);
+ui.pwMsg = el('p', 'g-pp-msg');
+ui.pwMsg.setAttribute('role', 'status');
+ui.pwBox.appendChild(ui.pwMsg);
+var pwRow = el('div', 'g-pp-actions');
+ui.pwBtn = button('g-btn', 'pf.pwChange');
+pwRow.appendChild(ui.pwBtn);
+ui.pwBox.appendChild(pwRow);
+acc.appendChild(ui.pwBox);
+ui.pwBtn.addEventListener('click', onChangePassword);
 ui.login.addEventListener('click', onLogin);
 ui.register.addEventListener('click', onRegister);
 ui.logout.addEventListener('click', onLogout);
@@ -368,6 +404,7 @@ ui.accGrid.hidden = !!s;
 ui.login.hidden = !!s;
 ui.register.hidden = !!s;
 ui.logout.hidden = !s;
+ui.pwBox.hidden = !s;
 if (!s && !ui.accPhone.value) {
 ui.accPhone.value = saved.phone || '';
 }
@@ -465,6 +502,44 @@ function setBusy(busy) {
 ui.login.disabled = busy;
 ui.register.disabled = busy;
 ui.logout.disabled = busy;
+ui.pwBtn.disabled = busy;
+}
+function pwMessage(key) {
+ui.pwMsg.textContent = key ? G.t(key) : '';
+ui.pwMsg.setAttribute('data-key', key || '');
+}
+function onChangePassword() {
+var oldPass = ui.pwOld.value;
+var newPass = ui.pwNew.value;
+if (!oldPass) {
+pwMessage('pf.errOldPass');
+return;
+}
+if (newPass.length < 6) {
+pwMessage('pf.badPass');
+return;
+}
+if (newPass !== ui.pwNew2.value) {
+pwMessage('pf.pwMismatch');
+return;
+}
+setBusy(true);
+pwMessage('pf.wait');
+G.sync.changePassword(oldPass, newPass).then(function (res) {
+setBusy(false);
+if (res.ok) {
+ui.pwOld.value = '';
+ui.pwNew.value = '';
+ui.pwNew2.value = '';
+pwMessage('pf.pwDone');
+} else if (res.error === 'unauthorized') {
+pwMessage('');
+renderAccount();
+accMessage('pf.sessionOver');
+} else {
+pwMessage(res.error === 'bad_credentials' ? 'pf.errOldPass' : errKey(res.error));
+}
+});
 }
 function accMessage(key) {
 ui.accMsg.textContent = key ? G.t(key) : '';
@@ -550,6 +625,10 @@ showMsg(msgKey);
 var k = ui.accMsg.getAttribute('data-key');
 if (k) {
 accMessage(k);
+}
+var pk = ui.pwMsg.getAttribute('data-key');
+if (pk) {
+pwMessage(pk);
 }
 }
 G.pageTitle = function () {

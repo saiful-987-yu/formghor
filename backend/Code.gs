@@ -3,11 +3,16 @@ var PROPS = PropertiesService.getScriptProperties();
 var PROFILE_KEYS = ['father', 'mother', 'birth', 'gender', 'blood', 'religion', 'nationality', 'marital', 'occupation', 'nid', 'birthreg', 'passport', 'address_perm'];
 var USERS_HEAD = ['phone', 'name', 'email', 'address', 'photo_file_id', 'salt', 'pass_hash', 'created', 'updated'].concat(PROFILE_KEYS);
 var SESSIONS_HEAD = ['token_hash', 'phone', 'created'];
-var HISTORY_HEAD = ['time', 'ref', 'form', 'phone', 'data', 'photo_ids'];
+var HISTORY_HEAD = ['time', 'ref', 'form', 'phone', 'data', 'photo_ids', 'account'];
 var SAVES_HEAD = ['time', 'save_id', 'form', 'phone', 'name', 'data', 'photo_ids', 'client_ms'];
 var FAVS_HEAD = ['phone', 'form', 'time'];
+var SESSION_DAYS = 90;
 
 function setup() {
+var active = SpreadsheetApp.getActiveSpreadsheet();
+if (active) {
+PROPS.setProperty('SS_ID', active.getId());
+}
 spreadsheet_();
 photosFolder_();
 sheet_('Users', USERS_HEAD);
@@ -56,6 +61,10 @@ case 'register':
 return register_(req);
 case 'login':
 return login_(req);
+case 'logout':
+return logout_(req);
+case 'changePassword':
+return changePassword_(req);
 case 'saveProfile':
 return saveProfile_(req);
 case 'history':
@@ -128,6 +137,103 @@ profile[PROFILE_KEYS[i]] = String(rec[9 + i] || '');
 return { ok: true, token: newSession_(phone), profile: profile };
 }
 
+function logout_(req) {
+var token = typeof req.token === 'string' ? req.token : '';
+if (token.length < 40) {
+return { ok: true };
+}
+var sessions = sheet_('Sessions', SESSIONS_HEAD);
+var row = findRow_(sessions, 1, hash_(token));
+if (row) {
+sessions.deleteRow(row);
+}
+return { ok: true };
+}
+
+function changePassword_(req) {
+var phone = phoneFromToken_(req.token);
+if (!phone) {
+return { ok: false, error: 'unauthorized' };
+}
+var oldPass = typeof req.oldPassword === 'string' ? req.oldPassword : '';
+var newPass = typeof req.newPassword === 'string' ? req.newPassword : '';
+if (!oldPass || newPass.length < 6 || newPass.length > 64) {
+return { ok: false, error: 'bad_request' };
+}
+var cache = CacheService.getScriptCache();
+var failKey = 'fail_' + phone;
+var fails = Number(cache.get(failKey) || 0);
+if (fails >= 5) {
+return { ok: false, error: 'too_many' };
+}
+var users = sheet_('Users', USERS_HEAD);
+var row = findRow_(users, 1, phone);
+if (!row) {
+return { ok: false, error: 'unauthorized' };
+}
+var rec = users.getRange(row, 1, 1, USERS_HEAD.length).getValues()[0];
+if (hashPass_(String(rec[5]), oldPass) !== String(rec[6])) {
+cache.put(failKey, String(fails + 1), 900);
+return { ok: false, error: 'bad_credentials' };
+}
+cache.remove(failKey);
+setPassword_(users, row, newPass);
+return { ok: true };
+}
+
+function resetPassword() {
+var phone = normPhone_('01700000000');
+var newPassword = 'change-this-password';
+if (!validPhone_(phone) || newPassword.length < 6 || newPassword.length > 64) {
+throw new Error('invalid');
+}
+var users = sheet_('Users', USERS_HEAD);
+var row = findRow_(users, 1, phone);
+if (!row) {
+throw new Error('not_found');
+}
+setPassword_(users, row, newPassword);
+var sessions = sheet_('Sessions', SESSIONS_HEAD);
+var last = sessions.getLastRow();
+if (last > 1) {
+var phones = sessions.getRange(2, 2, last - 1, 1).getValues();
+for (var i = phones.length - 1; i >= 0; i--) {
+if (String(phones[i][0]) === phone) {
+sessions.deleteRow(i + 2);
+}
+}
+}
+CacheService.getScriptCache().remove('fail_' + phone);
+}
+
+function setPassword_(users, row, pass) {
+var salt = Utilities.getUuid();
+var range = users.getRange(row, 6, 1, 2);
+range.setNumberFormat('@');
+range.setValues([[salt, hashPass_(salt, pass)]]);
+users.getRange(row, 9).setValue(now_());
+}
+
+function accountInfo_(phone) {
+if (!phone) {
+return '';
+}
+var users = sheet_('Users', USERS_HEAD);
+var row = findRow_(users, 1, phone);
+if (!row) {
+return '';
+}
+var rec = users.getRange(row, 1, 1, USERS_HEAD.length).getValues()[0];
+var out = { name: String(rec[1]), email: String(rec[2]), address: String(rec[3]) };
+for (var i = 0; i < PROFILE_KEYS.length; i++) {
+var v = String(rec[9 + i] || '');
+if (v) {
+out[PROFILE_KEYS[i]] = v;
+}
+}
+return JSON.stringify(out);
+}
+
 function saveProfile_(req) {
 var phone = phoneFromToken_(req.token);
 if (!phone) {
@@ -194,7 +300,7 @@ photos[photoKeys[j]] = id;
 }
 }
 var phone = phoneFromToken_(req.token);
-appendRow_(sheet, [now_(), ref, slug, phone, data, JSON.stringify(photos)]);
+appendRow_(sheet, [now_(), ref, slug, phone, data, JSON.stringify(photos), accountInfo_(phone)]);
 return { ok: true };
 }
 
@@ -568,8 +674,36 @@ return false;
 
 function newSession_(phone) {
 var token = Utilities.getUuid().replace(/-/g, '') + Utilities.getUuid().replace(/-/g, '');
-appendRow_(sheet_('Sessions', SESSIONS_HEAD), [hash_(token), phone, now_()]);
+var sessions = sheet_('Sessions', SESSIONS_HEAD);
+purgeSessions_(sessions);
+appendRow_(sessions, [hash_(token), phone, now_()]);
 return token;
+}
+
+function sessionExpired_(created) {
+var ms = 0;
+if (created instanceof Date) {
+ms = created.getTime();
+} else {
+var m = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/.exec(String(created));
+if (m) {
+ms = Date.UTC(Number(m[3]), Number(m[2]) - 1, Number(m[1]), Number(m[4]) - 6, Number(m[5]), Number(m[6]));
+}
+}
+return !ms || Date.now() - ms > SESSION_DAYS * 86400000;
+}
+
+function purgeSessions_(sessions) {
+var last = sessions.getLastRow();
+if (last < 2) {
+return;
+}
+var vals = sessions.getRange(2, 3, last - 1, 1).getValues();
+for (var i = vals.length - 1; i >= 0; i--) {
+if (sessionExpired_(vals[i][0])) {
+sessions.deleteRow(i + 2);
+}
+}
 }
 
 function phoneFromToken_(token) {
@@ -578,7 +712,15 @@ return '';
 }
 var sessions = sheet_('Sessions', SESSIONS_HEAD);
 var row = findRow_(sessions, 1, hash_(token));
-return row ? String(sessions.getRange(row, 2).getValue()) : '';
+if (!row) {
+return '';
+}
+var rec = sessions.getRange(row, 2, 1, 2).getValues()[0];
+if (sessionExpired_(rec[1])) {
+sessions.deleteRow(row);
+return '';
+}
+return String(rec[0]);
 }
 
 function spreadsheet_() {
@@ -590,6 +732,11 @@ return SpreadsheetApp.openById(id);
 console.error(err);
 }
 }
+var bound = SpreadsheetApp.getActiveSpreadsheet();
+if (bound) {
+PROPS.setProperty('SS_ID', bound.getId());
+return bound;
+}
 var ss = SpreadsheetApp.create('FormGhor Data');
 PROPS.setProperty('SS_ID', ss.getId());
 ss.getSheets()[0].setName('Users');
@@ -599,6 +746,9 @@ return ss;
 function sheet_(name, head) {
 var ss = spreadsheet_();
 var sh = ss.getSheetByName(name);
+if (!sh && name === 'Users' && ss.getSheets().length === 1 && ss.getSheets()[0].getLastRow() === 0 && ss.getSheets()[0].getLastColumn() === 0) {
+sh = ss.getSheets()[0].setName('Users');
+}
 if (!sh) {
 sh = ss.insertSheet(name);
 }

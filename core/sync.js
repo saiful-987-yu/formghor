@@ -55,7 +55,11 @@ signal: ctrl ? ctrl.signal : undefined
 return r.json();
 }).then(function (json) {
 window.clearTimeout(timer);
-resolve(json && typeof json === 'object' ? json : { ok: false, error: 'network' });
+var out = json && typeof json === 'object' ? json : { ok: false, error: 'network' };
+if (out.error === 'unauthorized') {
+clearSession();
+}
+resolve(out);
 }).catch(function () {
 window.clearTimeout(timer);
 resolve({ ok: false, error: 'network' });
@@ -90,6 +94,24 @@ clearSession();
 removeItem(item.id);
 flush();
 });
+}
+function shrinkPhoto(url, done) {
+var img = new Image();
+img.onerror = function () {
+done(url);
+};
+img.onload = function () {
+var ratio = Math.min(1, 400 / Math.max(img.width, img.height));
+var canvas = document.createElement('canvas');
+canvas.width = Math.max(1, Math.round(img.width * ratio));
+canvas.height = Math.max(1, Math.round(img.height * ratio));
+var ctx = canvas.getContext('2d');
+ctx.fillStyle = '#ffffff';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+done(canvas.toDataURL('image/jpeg', 0.7));
+};
+img.src = url;
 }
 function stripPhotos(payload) {
 var copy = JSON.parse(JSON.stringify(payload));
@@ -151,10 +173,21 @@ return res;
 });
 },
 logout: function () {
+var s = getSession();
+if (s) {
+enqueue('logout', { action: 'logout', token: s.token });
+}
 clearSession();
 if (G.favs) {
 G.favs.clearLocal();
 }
+},
+changePassword: function (oldPassword, newPassword) {
+var s = getSession();
+if (!s) {
+return Promise.resolve({ ok: false, error: 'unauthorized' });
+}
+return post({ action: 'changePassword', token: s.token, oldPassword: oldPassword, newPassword: newPassword });
 },
 pushProfile: function (profile) {
 var s = getSession();
@@ -170,15 +203,30 @@ enqueue('delete', { action: 'deleteSave', token: s.token, slug: slug, id: id });
 },
 queueHistory: function (data) {
 var s = getSession();
-return enqueue('history', {
+var payload = {
 action: 'history',
 ref: uid(),
 slug: data.slug,
 fields: data.fields,
-photos: data.photos,
+photos: {},
 token: s ? s.token : '',
 clientTime: new Date().toISOString()
+};
+var names = Object.keys(data.photos || {});
+var left = names.length;
+if (!left) {
+return enqueue('history', payload);
+}
+names.forEach(function (name) {
+shrinkPhoto(data.photos[name], function (small) {
+payload.photos[name] = small;
+left--;
+if (left === 0) {
+enqueue('history', payload);
+}
 });
+});
+return true;
 },
 flush: flush
 };

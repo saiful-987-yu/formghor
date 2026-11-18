@@ -190,6 +190,16 @@ font-size: .92rem;
 .g-pp-acc .g-pp-actions {
 margin-top: 12px;
 }
+.g-pp-pw {
+margin-top: 20px;
+padding-top: 16px;
+border-top: 1px solid var(--g-line);
+}
+.g-pp-pw-title {
+margin: 0 0 12px;
+font-size: 1rem;
+font-weight: 700;
+}
 @media (min-width: 640px) {
 .g-pp-grid {
 grid-template-columns: 1fr 1fr;
