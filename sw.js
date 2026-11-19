@@ -37,6 +37,8 @@ var SHELL = [
 'core/saved-page.js',
 'core/saves.js',
 'core/share.js',
+'core/suggest-data.js',
+'core/suggest.js',
 'core/sync.js',
 'core/theme-init.js'
 ];

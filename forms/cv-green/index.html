@@ -42,7 +42,7 @@
 <div class="c1">
 <input class="g-in n1" name="first_name" type="text" placeholder="First name" data-fill="name-first">
 <input class="g-in n2" name="last_name" type="text" placeholder="Last name" data-fill="name-last">
-<input class="g-in tt" name="job_title" type="text" placeholder="Your job title">
+<input class="g-in tt" name="job_title" type="text" placeholder="Your job title" data-suggest="title">
 <div class="arch"></div>
 <label class="g-photo pic" style="--w:39mm;--h:39mm">
 <input type="file" accept="image/*" name="photo" data-fill="photo">
@@ -56,16 +56,16 @@
 </div>
 <h3 class="sh">Skills</h3>
 <div class="bx sk">
-<div class="si"><input class="g-in" name="skill1_name" type="text" placeholder="Skill"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill1_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
-<div class="si"><input class="g-in" name="skill2_name" type="text" placeholder="Skill"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill2_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
-<div class="si"><input class="g-in" name="skill3_name" type="text" placeholder="Skill"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill3_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
-<div class="si"><input class="g-in" name="skill4_name" type="text" placeholder="Skill"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill4_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
+<div class="si"><input class="g-in" name="skill1_name" type="text" placeholder="Skill" data-suggest="skills"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill1_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
+<div class="si"><input class="g-in" name="skill2_name" type="text" placeholder="Skill" data-suggest="skills"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill2_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
+<div class="si"><input class="g-in" name="skill3_name" type="text" placeholder="Skill" data-suggest="skills"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill3_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
+<div class="si"><input class="g-in" name="skill4_name" type="text" placeholder="Skill" data-suggest="skills"><div class="lv lv-bar"><span class="lv-fill"></span><input class="g-in lv-in" name="skill4_lv" type="text" inputmode="none" maxlength="3" autocomplete="off" aria-label="Level"></div></div>
 </div>
 <h3 class="sh">Hobbies</h3>
 <div class="bx">
-<div class="li"><input class="g-in" name="hobby1" type="text" placeholder="Hobby"></div>
-<div class="li"><input class="g-in" name="hobby2" type="text" placeholder="Hobby"></div>
-<div class="li"><input class="g-in" name="hobby3" type="text" placeholder="Hobby"></div>
+<div class="li"><input class="g-in" name="hobby1" type="text" placeholder="Hobby" data-suggest="hobby"></div>
+<div class="li"><input class="g-in" name="hobby2" type="text" placeholder="Hobby" data-suggest="hobby"></div>
+<div class="li"><input class="g-in" name="hobby3" type="text" placeholder="Hobby" data-suggest="hobby"></div>
 </div>
 <h3 class="sh">References</h3>
 <div class="bx">
@@ -75,7 +75,7 @@
 </div>
 <div class="c2">
 <h3 class="hd"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><circle cx="12" cy="9.5" r="3.6" fill="#fff"/><path d="M5.2 19a7 7 0 0 1 13.6 0A10.6 10.6 0 0 1 12 22.6 10.6 10.6 0 0 1 5.2 19z" fill="#fff"/></svg></span>About Me</h3>
-<textarea class="g-in g-ta ab" name="about" rows="4" placeholder="Four or five lines about yourself, your strengths and what you are looking for."></textarea>
+<textarea class="g-in g-ta ab" name="about" rows="4" placeholder="Four or five lines about yourself, your strengths and what you are looking for." data-suggest="objective"></textarea>
 <h3 class="hd hl">Contact Me</h3>
 <div class="ct">
 <div class="ci"><span class="cic"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><div class="cv"><b>Location :</b><textarea class="g-in g-ta" name="address" rows="1" placeholder="Area, district" data-fill="address"></textarea></div></div>
@@ -89,17 +89,17 @@
 <div class="ex">
 <input class="g-in et" name="exp1_title" type="text" placeholder="Job title">
 <div class="er"><input class="g-in ec" name="exp1_company" type="text" placeholder="Company name"><input class="g-in ed" name="exp1_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
-<textarea class="g-in g-ta eb" name="exp1_desc" rows="2" placeholder="What you did and achieved, in one or two lines."></textarea>
+<textarea class="g-in g-ta eb" name="exp1_desc" rows="2" placeholder="What you did and achieved, in one or two lines." data-suggest="duty"></textarea>
 </div>
 <div class="ex">
 <input class="g-in et" name="exp2_title" type="text" placeholder="Job title">
 <div class="er"><input class="g-in ec" name="exp2_company" type="text" placeholder="Company name"><input class="g-in ed" name="exp2_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
-<textarea class="g-in g-ta eb" name="exp2_desc" rows="2" placeholder="What you did and achieved, in one or two lines."></textarea>
+<textarea class="g-in g-ta eb" name="exp2_desc" rows="2" placeholder="What you did and achieved, in one or two lines." data-suggest="duty"></textarea>
 </div>
 <div class="ex">
 <input class="g-in et" name="exp3_title" type="text" placeholder="Job title">
 <div class="er"><input class="g-in ec" name="exp3_company" type="text" placeholder="Company name"><input class="g-in ed" name="exp3_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
-<textarea class="g-in g-ta eb" name="exp3_desc" rows="2" placeholder="What you did and achieved, in one or two lines."></textarea>
+<textarea class="g-in g-ta eb" name="exp3_desc" rows="2" placeholder="What you did and achieved, in one or two lines." data-suggest="duty"></textarea>
 </div>
 <h3 class="hd"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V16h2V9zM5 13.2V17c0 1.6 3.1 3 7 3s7-1.4 7-3v-3.8l-7 3.8z"/></svg></span>Education</h3>
 <div class="ex">
@@ -136,6 +136,8 @@
 <script src="../../core/demo.js"></script>
 <script src="demo.js"></script>
 <script src="../../core/form.js"></script>
+<script src="../../core/suggest-data.js"></script>
+<script src="../../core/suggest.js"></script>
 <script src="form.js"></script>
 </body>
 </html>

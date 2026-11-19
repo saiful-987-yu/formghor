@@ -37,7 +37,7 @@
 <div class="head">
 <div class="head-main">
 <input class="g-in name" name="full_name" type="text" placeholder="Your Full Name" data-fill="name">
-<input class="g-in role" name="job_title" type="text" placeholder="Job Title | Field of Work">
+<input class="g-in role" name="job_title" type="text" placeholder="Job Title | Field of Work" data-suggest="title">
 <div class="ct"><b>Phone:</b><input class="g-in" name="phone" data-kind="phone" type="tel" placeholder="01XXXXXXXXX" data-fill="phone"></div>
 <div class="ct"><b>Email:</b><input class="g-in" name="email" type="email" placeholder="name@example.com" data-fill="email"></div>
 <div class="ct"><b>Address:</b><input class="g-in" name="address" type="text" placeholder="Village / area, upazila, district" data-fill="address"></div>
@@ -48,7 +48,7 @@
 </label>
 </div>
 <h3 class="sec">Career Objective</h3>
-<textarea class="g-in g-ta obj" name="objective" rows="4" placeholder="Two or three lines about your experience, strengths and what you are looking for."></textarea>
+<textarea class="g-in g-ta obj" name="objective" rows="4" placeholder="Two or three lines about your experience, strengths and what you are looking for." data-suggest="objective"></textarea>
 <h3 class="sec">Educational Qualification</h3>
 <div class="etab">
 <div class="ehead"><span>Exam</span><span>Institution</span><span>Board</span><span>Group</span><span>Year</span><span>Result</span></div>
@@ -79,23 +79,23 @@
 </div>
 <h3 class="sec">Skills</h3>
 <div class="skills">
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill1" type="text" placeholder="Skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill2" type="text" placeholder="Skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill3" type="text" placeholder="Skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill4" type="text" placeholder="Skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill5" type="text" placeholder="Skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill6" type="text" placeholder="Skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill7" type="text" placeholder="Skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="skill8" type="text" placeholder="Skill"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill1" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill2" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill3" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill4" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill5" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill6" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill7" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="skill8" type="text" placeholder="Skill" data-suggest="skills"></div>
 </div>
 <h3 class="sec">Languages</h3>
 <div class="lang"><input class="g-in b" name="lang1_name" type="text" placeholder="Language"><span>&mdash;</span><input class="g-in" name="lang1_level" type="text" placeholder="Proficiency level"></div>
 <div class="lang"><input class="g-in b" name="lang2_name" type="text" placeholder="Language"><span>&mdash;</span><input class="g-in" name="lang2_level" type="text" placeholder="Proficiency level"></div>
 <div class="lang"><input class="g-in b" name="lang3_name" type="text" placeholder="Language"><span>&mdash;</span><input class="g-in" name="lang3_level" type="text" placeholder="Proficiency level"></div>
 <h3 class="sec">Technical &amp; Digital Skills</h3>
-<div class="bul"><span>&bull;</span><input class="g-in" name="tech1" type="text" placeholder="Technical or digital skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="tech2" type="text" placeholder="Technical or digital skill"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="tech3" type="text" placeholder="Technical or digital skill"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="tech1" type="text" placeholder="Technical or digital skill" data-suggest="tech"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="tech2" type="text" placeholder="Technical or digital skill" data-suggest="tech"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="tech3" type="text" placeholder="Technical or digital skill" data-suggest="tech"></div>
 </div>
 </section>
 <section class="g-page" lang="en">
@@ -104,20 +104,20 @@
 <div class="job">
 <div class="job-top"><input class="g-in b" name="exp1_title" type="text" placeholder="Job title"><input class="g-in dt" name="exp1_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <input class="g-in co" name="exp1_company" type="text" placeholder="Company name, place">
-<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b1" rows="1" placeholder="What you did, in one or two lines."></textarea></div>
-<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b2" rows="1" placeholder="Another responsibility or result."></textarea></div>
+<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b1" rows="1" placeholder="What you did, in one or two lines." data-suggest="duty"></textarea></div>
+<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b2" rows="1" placeholder="Another responsibility or result." data-suggest="duty"></textarea></div>
 </div>
 <div class="job">
 <div class="job-top"><input class="g-in b" name="exp2_title" type="text" placeholder="Job title"><input class="g-in dt" name="exp2_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <input class="g-in co" name="exp2_company" type="text" placeholder="Company name, place">
-<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b1" rows="1" placeholder="What you did, in one or two lines."></textarea></div>
-<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b2" rows="1" placeholder="Another responsibility or result."></textarea></div>
+<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b1" rows="1" placeholder="What you did, in one or two lines." data-suggest="duty"></textarea></div>
+<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b2" rows="1" placeholder="Another responsibility or result." data-suggest="duty"></textarea></div>
 </div>
 <div class="job">
 <div class="job-top"><input class="g-in b" name="exp3_title" type="text" placeholder="Job title"><input class="g-in dt" name="exp3_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <input class="g-in co" name="exp3_company" type="text" placeholder="Company name, place">
-<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b1" rows="1" placeholder="What you did, in one or two lines."></textarea></div>
-<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b2" rows="1" placeholder="Another responsibility or result."></textarea></div>
+<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b1" rows="1" placeholder="What you did, in one or two lines." data-suggest="duty"></textarea></div>
+<div class="bul"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b2" rows="1" placeholder="Another responsibility or result." data-suggest="duty"></textarea></div>
 </div>
 <h3 class="sec">Personal Details</h3>
 <div class="ptab">
@@ -129,10 +129,10 @@
 <div class="prow"><span class="pl">Permanent Address</span><span class="pc">:</span><textarea class="g-in g-ta" name="permanent_address" rows="2" placeholder="Village, post office, upazila, district" data-fill="address_perm"></textarea></div>
 </div>
 <h3 class="sec">Professional Strengths</h3>
-<div class="bul"><span>&bull;</span><input class="g-in" name="strength1" type="text" placeholder="A strength in one line"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="strength2" type="text" placeholder="A strength in one line"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="strength3" type="text" placeholder="A strength in one line"></div>
-<div class="bul"><span>&bull;</span><input class="g-in" name="strength4" type="text" placeholder="A strength in one line"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="strength1" type="text" placeholder="A strength in one line" data-suggest="strength"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="strength2" type="text" placeholder="A strength in one line" data-suggest="strength"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="strength3" type="text" placeholder="A strength in one line" data-suggest="strength"></div>
+<div class="bul"><span>&bull;</span><input class="g-in" name="strength4" type="text" placeholder="A strength in one line" data-suggest="strength"></div>
 <p class="decl">I hereby declare that the information given above is true and correct to the best of my knowledge.</p>
 <div class="sign">
 <div class="date-box"><span>Date:</span><input class="g-in" name="sign_date" data-kind="date" type="text" placeholder="dd/mm/yyyy"></div>
@@ -156,6 +156,8 @@
 <script src="../../core/demo.js"></script>
 <script src="demo.js"></script>
 <script src="../../core/form.js"></script>
+<script src="../../core/suggest-data.js"></script>
+<script src="../../core/suggest.js"></script>
 <script src="form.js"></script>
 </body>
 </html>

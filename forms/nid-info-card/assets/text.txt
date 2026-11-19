@@ -3,3 +3,8 @@
 
 মুদ্রণ
 SAMPLE ² 🙂‍↔️
+
+
+
+logo.png = national-emblem-of-bangladesh-logo-organization-business.png
+logo-bg.png = national-emblem-of-bangladesh-flag-of-bangladesh-taiwan-card.png

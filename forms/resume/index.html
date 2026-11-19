@@ -37,7 +37,7 @@
 <div class="hdr">
 <div class="ht">
 <input class="g-in nm" name="full_name" type="text" placeholder="Your Full Name" data-fill="name">
-<input class="g-in tt" name="job_title" type="text" placeholder="Job Title | Field of Work">
+<input class="g-in tt" name="job_title" type="text" placeholder="Job Title | Field of Work" data-suggest="title">
 </div>
 <label class="g-photo pic" style="--w:30mm;--h:36mm">
 <input type="file" accept="image/*" name="photo" data-fill="photo">
@@ -47,25 +47,25 @@
 <div class="cols">
 <div class="main">
 <h3 class="mh">Profile</h3>
-<textarea class="g-in g-ta prof" name="profile" rows="4" placeholder="Three or four lines about your experience, strengths and what you are looking for."></textarea>
+<textarea class="g-in g-ta prof" name="profile" rows="4" placeholder="Three or four lines about your experience, strengths and what you are looking for." data-suggest="objective"></textarea>
 <h3 class="mh">Work Experience</h3>
 <div class="job">
 <div class="jh"><input class="g-in jt" name="exp1_title" type="text" placeholder="Job title"><input class="g-in dt" name="exp1_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <input class="g-in jc" name="exp1_company" type="text" placeholder="Company name | Place">
-<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b1" rows="1" placeholder="What you did, in one or two lines."></textarea></div>
-<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b2" rows="1" placeholder="Another responsibility or result."></textarea></div>
+<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b1" rows="1" placeholder="What you did, in one or two lines." data-suggest="duty"></textarea></div>
+<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp1_b2" rows="1" placeholder="Another responsibility or result." data-suggest="duty"></textarea></div>
 </div>
 <div class="job">
 <div class="jh"><input class="g-in jt" name="exp2_title" type="text" placeholder="Job title"><input class="g-in dt" name="exp2_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <input class="g-in jc" name="exp2_company" type="text" placeholder="Company name | Place">
-<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b1" rows="1" placeholder="What you did, in one or two lines."></textarea></div>
-<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b2" rows="1" placeholder="Another responsibility or result."></textarea></div>
+<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b1" rows="1" placeholder="What you did, in one or two lines." data-suggest="duty"></textarea></div>
+<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp2_b2" rows="1" placeholder="Another responsibility or result." data-suggest="duty"></textarea></div>
 </div>
 <div class="job">
 <div class="jh"><input class="g-in jt" name="exp3_title" type="text" placeholder="Job title"><input class="g-in dt" name="exp3_date" data-kind="mon" type="text" placeholder="Mon yyyy - Mon yyyy"></div>
 <input class="g-in jc" name="exp3_company" type="text" placeholder="Company name | Place">
-<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b1" rows="1" placeholder="What you did, in one or two lines."></textarea></div>
-<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b2" rows="1" placeholder="Another responsibility or result."></textarea></div>
+<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b1" rows="1" placeholder="What you did, in one or two lines." data-suggest="duty"></textarea></div>
+<div class="jb"><span>&bull;</span><textarea class="g-in g-ta" name="exp3_b2" rows="1" placeholder="Another responsibility or result." data-suggest="duty"></textarea></div>
 </div>
 <h3 class="mh">Education</h3>
 <div class="ed">
@@ -89,12 +89,12 @@
 <div class="ci"><b>Address</b><textarea class="g-in g-ta" name="address" rows="1" placeholder="Area, upazila, district" data-fill="address"></textarea></div>
 <div class="ci"><b>Website / Profile</b><input class="g-in" name="link" type="text" placeholder="www.example.com"></div>
 <h3 class="sh">Skills</h3>
-<div class="sk"><input class="g-in" name="skill1" type="text" placeholder="Skill"></div>
-<div class="sk"><input class="g-in" name="skill2" type="text" placeholder="Skill"></div>
-<div class="sk"><input class="g-in" name="skill3" type="text" placeholder="Skill"></div>
-<div class="sk"><input class="g-in" name="skill4" type="text" placeholder="Skill"></div>
-<div class="sk"><input class="g-in" name="skill5" type="text" placeholder="Skill"></div>
-<div class="sk"><input class="g-in" name="skill6" type="text" placeholder="Skill"></div>
+<div class="sk"><input class="g-in" name="skill1" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="sk"><input class="g-in" name="skill2" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="sk"><input class="g-in" name="skill3" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="sk"><input class="g-in" name="skill4" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="sk"><input class="g-in" name="skill5" type="text" placeholder="Skill" data-suggest="skills"></div>
+<div class="sk"><input class="g-in" name="skill6" type="text" placeholder="Skill" data-suggest="skills"></div>
 <h3 class="sh">Languages</h3>
 <div class="lg"><input class="g-in b" name="lang1_name" type="text" placeholder="Language"><input class="g-in" name="lang1_level" type="text" placeholder="Level"></div>
 <div class="lg"><input class="g-in b" name="lang2_name" type="text" placeholder="Language"><input class="g-in" name="lang2_level" type="text" placeholder="Level"></div>
@@ -124,6 +124,8 @@
 <script src="../../core/demo.js"></script>
 <script src="demo.js"></script>
 <script src="../../core/form.js"></script>
+<script src="../../core/suggest-data.js"></script>
+<script src="../../core/suggest.js"></script>
 <script src="form.js"></script>
 </body>
 </html>
