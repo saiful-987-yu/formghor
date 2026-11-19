@@ -356,7 +356,13 @@ heights[at] += pvHeight(pvMeta(items[i].slug), colW);
 return block;
 }
 function buildMoreRow() {
-var mid = el('div', 'g-grid-more');
+var mid = el('div', 'g-grid-more g-mid');
+var art = document.querySelector('.g-hero .g-sheets');
+if (art) {
+var copy = art.cloneNode(true);
+copy.classList.add('g-sheets--mid');
+mid.appendChild(copy);
+}
 var midLink = el('a', 'g-btn g-btn--ghost');
 midLink.href = 'forms/index.html';
 midLink.appendChild(el('span', '', G.t('forms.more')));

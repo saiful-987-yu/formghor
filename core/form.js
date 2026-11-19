@@ -50,6 +50,7 @@ var TOP_HTML =
 '<p class="g-lock-error" id="g-lock-error" role="alert" hidden data-i18n="lock.wrong">পাসওয়ার্ড মিলছে না।</p>' +
 '<div class="g-lock-ask" id="g-lock-ask" hidden><span class="g-lock-ask-text" data-i18n="lock.noPass">পাসওয়ার্ড নেই?</span><a class="g-lock-ask-link" id="g-lock-ask-link" target="_blank" rel="noopener" data-i18n="lock.ask">পাসওয়ার্ড সংগ্রহ করুন</a></div>' +
 '</form>' +
+'<section class="g-wrap g-form-about" id="g-form-about" hidden><h2 class="g-form-about-title" id="g-form-about-title"></h2><div class="g-form-about-body" id="g-form-about-body"></div></section>' +
 '</main>' +
 '<footer class="g-footer" id="g-footer" data-base="../../"></footer>' +
 '<div class="g-toast" id="g-toast" role="status" aria-live="polite"></div>';
@@ -88,6 +89,36 @@ unlocked = true;
 function isLocked() {
 return !!(META && META.access === 'locked' && !isUnlocked());
 }
+function renderAbout() {
+var box = document.getElementById('g-form-about');
+var body = document.getElementById('g-form-about-body');
+var head = document.getElementById('g-form-about-title');
+if (!box || !body || !head) {
+return;
+}
+body.textContent = '';
+var data = META && META.about && (META.about[G.getLang()] || META.about.bn);
+if (!data) {
+box.hidden = true;
+return;
+}
+head.textContent = G.t('about.title');
+var paperText = G.t('about.paperText').replace('{paper}', META.paper || 'A4');
+if (META.pages > 1) {
+paperText += ' ' + G.t('about.pagesNote').replace('{n}', String(META.pages));
+}
+var rows = [['about.what', data.what], ['about.who', data.who], ['about.how', data.how], ['about.paper', paperText]];
+for (var i = 0; i < rows.length; i++) {
+if (!rows[i][1]) {
+continue;
+}
+var item = el('div', 'g-form-about-item');
+item.appendChild(el('h3', 'g-form-about-h', G.t(rows[i][0])));
+item.appendChild(el('p', 'g-form-about-p', rows[i][1]));
+body.appendChild(item);
+}
+box.hidden = false;
+}
 function renderMeta() {
 var title = document.getElementById('g-form-title');
 var desc = document.getElementById('g-form-desc');
@@ -100,7 +131,8 @@ var crumb = document.getElementById('g-crumb-current');
 if (crumb) {
 crumb.textContent = pick(META && META.title);
 }
-desc.textContent = pick(META && (META.sub || META.desc));
+desc.textContent = pick(META && (META.desc || META.sub));
+renderAbout();
 chips.textContent = '';
 if (!META) {
 return;
@@ -961,6 +993,122 @@ var sep = el('span', 'g-pv-sep');
 sep.setAttribute('aria-hidden', 'true');
 return sep;
 }
+var PAPERS = [['A3', 297, 420], ['A4', 210, 297], ['A5', 148, 210], ['A6', 105, 148], ['Letter', 216, 279], ['Legal', 216, 356]];
+var PAPER_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg>';
+function paperByName(name) {
+for (var i = 0; i < PAPERS.length; i++) {
+if (PAPERS[i][0] === name) {
+return PAPERS[i];
+}
+}
+return null;
+}
+function defaultPaper() {
+return paperByName((META && META.paper) || 'A4') || paperByName('A4');
+}
+function paperFits(box) {
+var inners = box.querySelectorAll('.g-page-inner');
+for (var i = 0; i < inners.length; i++) {
+var ir = inners[i].getBoundingClientRect();
+var cards = inners[i].querySelectorAll('.card');
+for (var c = 0; c < cards.length; c++) {
+var r = cards[c].getBoundingClientRect();
+if (r.right > ir.right + 2 || r.bottom > ir.bottom + 2 || r.left < ir.left - 2 || r.top < ir.top - 2) {
+return false;
+}
+}
+}
+return true;
+}
+function paperUi(box) {
+var p = paperByName(box._paper) || defaultPaper();
+var name = box.querySelector('.g-pv-size-name');
+if (name) {
+name.textContent = p[0];
+}
+var opts = box.querySelectorAll('.g-pv-opt');
+for (var i = 0; i < opts.length; i++) {
+var on = opts[i].getAttribute('data-paper') === p[0];
+opts[i].setAttribute('aria-selected', on ? 'true' : 'false');
+opts[i].classList.toggle('g-pv-opt--on', on);
+opts[i].querySelector('small').textContent = opts[i].getAttribute('data-w') + ' × ' + opts[i].getAttribute('data-h') + ' ' + G.t('pv.mm');
+}
+var btn = box.querySelector('.g-pv-size');
+if (btn) {
+var label = G.t('pv.paper') + ': ' + p[0];
+btn.setAttribute('aria-label', label);
+btn.setAttribute('title', label);
+}
+}
+function setPreviewPaper(box, name) {
+var p = paperByName(name);
+if (!p) {
+return;
+}
+var def = defaultPaper();
+var pages = box.querySelector('.g-pages');
+var sheets = pages.querySelectorAll(':scope > .g-page');
+for (var i = 0; i < sheets.length; i++) {
+sheets[i].style.width = p === def ? '' : p[1] + 'mm';
+sheets[i].style.height = p === def ? '' : p[2] + 'mm';
+}
+pages.style.width = p === def ? '' : p[1] + 'mm';
+box._paper = p[0];
+paperUi(box);
+if (box.hasAttribute('data-multi') || box.hasAttribute('data-fill')) {
+applyPreviewFill(box);
+}
+previewFit();
+if (!paperFits(box)) {
+toast(G.t('pv.sizeTight'));
+} else {
+var note = document.getElementById('g-toast');
+if (note) {
+note.classList.remove('g-toast--show');
+}
+}
+}
+function buildPaperPicker(box) {
+var holder = el('div', 'g-pv-paper');
+var btn = el('button', 'g-btn g-btn--ghost g-pv-size');
+btn.type = 'button';
+btn.setAttribute('aria-haspopup', 'listbox');
+btn.setAttribute('aria-expanded', 'false');
+btn.innerHTML = PAPER_SVG + '<span class="g-pv-size-name"></span>';
+var menu = el('div', 'g-pv-papermenu');
+menu.setAttribute('role', 'listbox');
+menu.hidden = true;
+function toggle(open) {
+menu.hidden = !open;
+btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+for (var i = 0; i < PAPERS.length; i++) {
+var opt = el('button', 'g-pv-opt');
+opt.type = 'button';
+opt.setAttribute('role', 'option');
+opt.setAttribute('data-paper', PAPERS[i][0]);
+opt.setAttribute('data-w', String(PAPERS[i][1]));
+opt.setAttribute('data-h', String(PAPERS[i][2]));
+opt.innerHTML = '<b>' + PAPERS[i][0] + '</b><small></small>';
+opt.addEventListener('click', function () {
+toggle(false);
+setPreviewPaper(box, this.getAttribute('data-paper'));
+});
+menu.appendChild(opt);
+}
+btn.addEventListener('click', function () {
+toggle(menu.hidden);
+});
+box.addEventListener('click', function (e) {
+if (!holder.contains(e.target)) {
+toggle(false);
+}
+});
+holder.appendChild(btn);
+holder.appendChild(menu);
+box._paper = defaultPaper()[0];
+return holder;
+}
 function buildPreviewTools(box) {
 var tools = el('div', 'g-pv-tools');
 var modes = [['side', SIDE_SVG], ['stack', STACK_SVG]];
@@ -998,6 +1146,8 @@ return;
 setPreviewFill(box, !box.hasAttribute('data-fill'));
 });
 tools.appendChild(fill);
+tools.appendChild(previewSep());
+tools.appendChild(buildPaperPicker(box));
 setPreviewMode(box, 'side');
 return tools;
 }
@@ -1027,6 +1177,7 @@ return;
 previewBox.setAttribute('aria-label', G.t('pv.title'));
 previewBox.querySelector('.g-pv-back').textContent = G.t('pv.back');
 previewBox.querySelector('.g-pv-print').textContent = G.t('pv.print');
+paperUi(previewBox);
 var modes = previewBox.querySelectorAll('.g-pv-mode');
 for (var i = 0; i < modes.length; i++) {
 var key = modes[i].getAttribute('data-pos') ? 'pv.p' + modes[i].getAttribute('data-pos') : (modes[i].getAttribute('data-mode') ? (modes[i].getAttribute('data-mode') === 'stack' ? 'pv.stack' : 'pv.side') : 'pv.pd');
@@ -2334,6 +2485,9 @@ if (source) {
 source.parentNode.removeChild(source);
 }
 G.pageTitle = function () {
+if (META && META.title && META.title.en && G.getLang() === 'bn') {
+return pick(META.title) + ' - ' + META.title.en + ' | ' + G.t('site.name');
+}
 return (META ? pick(META.title) + ' - ' : '') + G.t('site.name');
 };
 G.shareTitle = function () {

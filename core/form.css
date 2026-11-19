@@ -57,7 +57,7 @@ height: 14px;
 }
 .g-form-title {
 margin: 0 0 6px;
-font-size: clamp(1.5rem, 4vw, 2.2rem);
+font-size: clamp(1.3rem, 3.4vw, 1.8rem);
 line-height: 1.35;
 }
 .g-form-desc {
@@ -1153,4 +1153,109 @@ page-break-after: auto;
 -webkit-print-color-adjust: exact;
 print-color-adjust: exact;
 }
+}
+
+.g-form-about {
+margin-top: 36px;
+margin-bottom: 48px;
+padding-top: 24px;
+border-top: 1px solid var(--g-line);
+}
+.g-form-about-title {
+margin: 0 0 16px;
+font-size: 1.2rem;
+line-height: 1.4;
+}
+.g-form-about-body {
+display: grid;
+gap: 16px;
+max-width: 46em;
+}
+.g-form-about-h {
+margin: 0 0 4px;
+font-size: 1rem;
+line-height: 1.5;
+}
+.g-form-about-p {
+margin: 0;
+color: var(--g-muted);
+line-height: 1.75;
+}
+
+.g-pv-paper {
+position: relative;
+flex: 1.7 1 0;
+min-width: 0;
+max-width: 150px;
+}
+.g-pv-tools .g-pv-size {
+width: 100%;
+min-width: 0;
+min-height: 44px;
+gap: 4px;
+padding: 0 6px;
+font-size: .78rem;
+line-height: 1.25;
+white-space: nowrap;
+}
+.g-pv-tools .g-pv-size svg {
+display: none;
+flex: none;
+width: 18px;
+height: 18px;
+fill: none;
+stroke: currentColor;
+stroke-width: 1.8;
+stroke-linejoin: round;
+}
+.g-pv-size-name {
+min-width: 0;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+@media (min-width: 860px) {
+.g-pv-tools .g-pv-size svg {
+display: block;
+}
+}
+.g-pv-papermenu {
+position: absolute;
+top: calc(100% + 6px);
+right: 0;
+z-index: 40;
+display: flex;
+flex-direction: column;
+min-width: 190px;
+padding: 6px;
+background: var(--g-surface);
+border: 1px solid var(--g-line);
+border-radius: 14px;
+box-shadow: 0 12px 30px rgba(0, 0, 0, .22);
+}
+.g-pv-opt {
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+gap: 14px;
+padding: 10px 12px;
+background: transparent;
+border: 0;
+border-radius: 10px;
+color: var(--g-text);
+font: inherit;
+text-align: left;
+cursor: pointer;
+}
+.g-pv-opt b {
+font-weight: 700;
+}
+.g-pv-opt small {
+color: var(--g-muted);
+font-size: .78rem;
+}
+.g-pv-opt:hover {
+background: color-mix(in srgb, var(--g-text) 7%, transparent);
+}
+.g-pv-opt--on {
+background: color-mix(in srgb, var(--g-text) 11%, transparent);
 }
