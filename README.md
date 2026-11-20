@@ -17,8 +17,11 @@ forms/<slug>/         প্রতিটা ফর্মের নিজস্�
 
 ## নতুন ফর্ম যোগ
 forms/school-apply/ ফোল্ডারটা নমুনা হিসেবে কপি করা যায়: index.html, form.css, form.js, assets/
-forms/<slug>/ ফোল্ডার বানিয়ে forms/registry.js-এ একটা এন্ট্রি (slug, id, access: free / freemium / locked, paper, pages, title, desc, sub, tags, keys) যোগ করলেই হোমে কার্ড আসবে
+forms/<slug>/ ফোল্ডার বানিয়ে forms/registry.js-এ একটা এন্ট্রি (slug, id, access: free / freemium / locked, paper, pages, title, desc, sub, about, tags, keys) যোগ করলেই হোমে কার্ড আসবে
 ফর্মের নিজের ফোল্ডারে demo.js ফাইল বানিয়ে (index.html-এ form.js-এর আগে যুক্ত করে) প্রতিটা ফর্মে তিনটা ডেমো ব্লক নিচে নিচে দিতে হবে: G.demo.set('<slug>', 1, function () { return { fields: { name: মান, ... }, photos: { photo: G.demo.photo } }; }), তারপর একইভাবে 2 ও 3 (ফর্মের প্রতিটা name-এর একটা করে মান); কোনো নম্বরের ব্লক না থাকলে সেই নম্বরের ডেমো বোতাম ধূসর থাকবে; নম্বর ছাড়া G.demo.set('<slug>', function () {...}) দিলে সেটা ডেমো ১ ধরা হয়
+ফর্ম পেজের টাইটেলের নিচের ছোট সারাংশ আসে registry-র desc থেকে (desc না থাকলে sub); sub এখন আর আলাদা করে দেখানো হয় না
+ফর্ম পেজের নিচে (বাটনের নিচে, ফুটারের আগে) 'ফর্মটি সম্পর্কে বিস্তারিত' দেখায় registry-র about থেকে: about: { bn: { what, who, how }, en: { what, who, how } } (ফর্মটি কী, কাদের কাজে লাগে, কীভাবে ব্যবহার করবেন); 'কাগজের মাপ ও প্রিন্ট' অংশ paper ও pages থেকে নিজে তৈরি হয়; লেখা রেন্ডার হয় core/form.js-এর renderAbout-এ, ভাষার বাটন চাপলে বদলায়
+নতুন ফর্ম যোগ করলে সার্চের জন্য আরও তিনটা কাজ: (১) ফর্মের index.html-এর head-এ title (বাংলা নাম - English name | ফর্মঘর), description, keywords ও canonical (https://saiful-987-yu.github.io/formghor/forms/<slug>/) বসানো, (২) sitemap.xml-এ ওই URL যোগ করা, (৩) assets/og/<slug>.png (১২০০×৬৩০) বানানো
 
 ## নামকরণ
 গ্লোবাল: class ও id শুরু হয় g- দিয়ে (g-btn, g-header), CSS ভ্যারিয়েবল --g-*, JS অবজেক্ট G, localStorage কী g.*
@@ -182,6 +185,23 @@ background-position: -87.6mm 0;
 - নতুন ফর্ম `forms/registry.js`-এ যোগ হলে `sw.js` নিজে সেটা চিনে নেয়। ফর্মের নিজের `assets/`-এর ফাইল থাকলে `sw.js`-এর `EXTRA` তালিকায় যোগ করলে অফলাইনেও পাওয়া যাবে, না করলে একবার অনলাইনে খুললে ক্যাশ হয়।
 - ইনস্টল করতে Android-এর Chrome-এ মেনু থেকে "Add to Home screen" বা "Install app" দিন।
 - প্রতিটা পেজের `<head>`-এ `manifest`, `apple-touch-icon` ও `theme-color` লাইন আছে। সার্ভিস ওয়ার্কার চালু করার কোড `core/global.js`-এর শেষে।
+
+## প্রিন্ট প্রিভিউয়ের পেপার সাইজ
+
+- প্রিন্ট প্রিভিউয়ের বাটন সারির শেষে ('পেপার ভরো'-র পর) পেপার সাইজের বাটন আছে। ক্লিক করলে নিচে A3, A4, A5, A6, Letter ও Legal-এর তালিকা (নাম ও মিমি মাপ) আসে। ডিফল্ট থাকে ফর্মের নিজের `paper` (কার্ডগুলোর A4)।
+- তালিকা `core/form.js`-এর `PAPERS` অ্যারেতে (নাম, চওড়া মিমি, উচ্চতা মিমি)। নতুন সাইজ দিতে এখানে একটা সারি যোগ করলেই হয়।
+- সাইজ বদলালে প্রিভিউর `.g-page`-এর মাপ বদলায়, 'পেপার ভরো' ও একাধিক ব্যক্তির মোডে কার্ড নতুন মাপ অনুযায়ী বসে, আর প্রিন্টের `@page size`-ও সেই মাপে সেট হয় (ব্রাউজার মানলে প্রিন্ট ডায়ালগে সাইজ নিজে থেকে বাছাই হয়, না মানলে ডায়ালগ থেকে বেছে নিতে হয়)। কার্ড না ধরলে ছোট বার্তা (`pv.sizeTight`) দেখায়।
+- বাটন শুধু প্রিভিউতে একাধিক কার্ড থাকা ফর্মে আসে। সিভি, আবেদন, দলিল ও সদস্য ফর্মের মাপ ফিক্স।
+
+## SEO ও সার্চ কনসোল
+
+- সাইটের ঠিকানা (GitHub Pages সাবফোল্ডার): `https://saiful-987-yu.github.io/formghor/`
+- প্রতিটা পেজের head-এ আলাদা `title`, `description`, `keywords` ও `canonical` আছে (canonical শেষে `/` সহ, `og:url`-এর সাথে এক)। ফর্ম পেজের টাইটেল 'বাংলা নাম - English name | ফর্মঘর'। `core/form.js`-এর `G.pageTitle` বাংলায় একই ফরম্যাট দেয় (ইংরেজি ভাষায় 'English name - FormGhor'), আর হোমের টাইটেল `core/i18n.js`-এর `site.title`-এর সাথে মেলানো, কারণ `core/global.js` পেজ লোড হলে টাইটেল JS দিয়ে বসায়। এগুলো আলাদা করে বদলালে গুগল পুরনো টাইটেল দেখবে।
+- `sitemap.xml`: হোম, `forms/` ও সব ফর্ম পেজ। নতুন ফর্মে হাতে যোগ করতে হয়।
+- `robots.txt`: সব অনুমোদিত এবং `sitemap.xml`-এর লিংক আছে। সাবফোল্ডার সাইটে ক্রলার `robots.txt` ডোমেইনের মূলে (`saiful-987-yu.github.io/robots.txt`) খোঁজে, তাই সাইটম্যাপ Search Console থেকে সাবমিট করতে হয়।
+- Search Console ভেরিফিকেশন: হোম `index.html`-এর head-এ `google-site-verification` মেটা ট্যাগ আছে, মুছবেন না।
+- `noindex, follow`: `profile/`, `saved/` ও `favorites/` পেজে (ব্যক্তিগত পেজ সার্চে আসবে না)।
+- `404.html`: GitHub Pages ভুল লিংকে এই পেজ দেখায়। সব লিংক পূর্ণ URL, তাই সাবফোল্ডারের যেকোনো গভীরতায় ঠিকমতো চলে। `noindex` দেওয়া।
 
 ## সাজেশন (ডেমো টেমপ্লেট)
 
