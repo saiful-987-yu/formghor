@@ -211,6 +211,20 @@ tags: { bn: ['ইউনিয়ন', 'আবেদনপত্র'], en: ['Unio
 keys: ['ইউনিয়ন', 'union', 'শ্রমিক', 'শ্রমিক ইউনিয়ন', 'labour union', 'labor union', 'trade union', 'worker', 'workers', 'সদস্য', 'সদস্যপদ', 'member', 'membership', 'আবেদন', 'আবেদনপত্র', 'abedon', 'application']
 },
 {
+slug: 'nurnabi-youth-member-apply',
+id: 'ID-1759',
+group: 'institutional',
+access: 'free',
+paper: 'A4',
+pages: 1,
+title: { bn: 'নূরনবী বাজার সমাজকল্যাণ যুব পরিষদ সদস্য ফরম', en: 'Nurnabi Bazar Social Welfare Youth Council member form' },
+desc: { bn: 'নূরনবী বাজার সমাজকল্যাণ যুব পরিষদের সদস্য পদের আবেদন ফরম।', en: 'Membership application form of Nurnabi Bazar Social Welfare Youth Council.' },
+sub: { bn: 'নূরনবী বাজার সমাজকল্যাণ যুব পরিষদের সদস্য ফরম হাতে লেখার ঝামেলা নেই। সদস্য কোড, তারিখ, নাম, মোবাইল, পেশা, পিতার নাম, সমাজ, ঠিকানা ও ছবি বসিয়ে পরিপাটি ফরম A4 কাগজে সরাসরি প্রিন্ট করুন।', en: 'No more writing the Nurnabi Bazar Social Welfare Youth Council member form by hand. Fill in the member code, date, name, mobile, profession, father\'s name, samaj, address and photo, then print a neat form straight onto A4 paper.' },
+about: { bn: { what: 'নূরনবী বাজার সমাজকল্যাণ যুব পরিষদের সদস্য পদের আবেদন ফরম। উপরে পরিষদের লোগো, নাম, ঠিকানা ও আবেদনকারীর ছবির ঘর থাকে। তারপর সদস্য কোড ও তারিখ, সংবিধান ও গঠনতন্ত্র মেনে চলার অঙ্গীকারের লেখা, এবং নাম, মোবাইল, পেশা, পিতার নাম, সমাজ ও ঠিকানার ঘর আছে।', who: 'যাঁরা নূরনবী বাজার সমাজকল্যাণ যুব পরিষদের সদস্য হতে চান এবং পরিষদের দায়িত্বশীলদের জন্য, যাঁরা সদস্য আবেদন নেন।', how: 'আবেদনকারীর ছবি দিন, তারপর নাম, মোবাইল, পেশা, পিতার নাম, সমাজ ও ঠিকানা লিখুন। তারিখের ঘরে সাজেশন চাপলে আজকের তারিখ বসে, সমাজের ঘরেও সাজেশন আছে। সদস্য কোডের ঘরগুলো পরিষদের অফিস পূরণ করবে। ঠিকানা দুই লাইনে ধরবে।' }, en: { what: 'The membership application form of Nurnabi Bazar Social Welfare Youth Council. The top holds the council logo, name, address and a box for the applicant\'s photo. Below are the member code and date, the pledge to follow the constitution, and boxes for name, mobile, profession, father\'s name, samaj and address.', who: 'People who want to become members of Nurnabi Bazar Social Welfare Youth Council, and the council\'s officials who take membership applications.', how: 'Add the applicant\'s photo, then write the name, mobile, profession, father\'s name, samaj and address. Press the suggestion button in the date box to insert today\'s date, and the samaj box has a suggestion too. The member code boxes are for the council office to fill. The address fits on two lines.' } },
+tags: { bn: ['যুব পরিষদ', 'সদস্য ফরম'], en: ['Youth council', 'Member form'] },
+keys: ['যুব পরিষদ', 'সমাজকল্যাণ যুব পরিষদ', 'নূরনবী বাজার', 'nurnabi bazar', 'nurnobi bazar', 'youth council', 'youth', 'যুবসমাজ', 'সদস্য ফরম', 'সদস্য আবেদন', 'member form', 'membership', 'সুবর্ণচর', 'subarnachar', 'নোয়াখালী', 'noakhali', 'সমাজকল্যাণ', 'social welfare', 'আবেদনপত্র', 'application']
+},
+{
 slug: 'oikkya-member-apply',
 id: 'ID-2502',
 group: 'institutional',

@@ -1,0 +1,205 @@
+.f-nurnabi-youth-member-apply .g-page {
+-webkit-print-color-adjust: exact;
+print-color-adjust: exact;
+}
+.f-nurnabi-youth-member-apply .g-page-inner {
+inset: 7mm;
+padding: 3mm 8mm;
+display: flex;
+flex-direction: column;
+font-size: 13pt;
+line-height: 1.7;
+}
+.f-nurnabi-youth-member-apply .g-page-inner::before,
+.f-nurnabi-youth-member-apply .g-page-inner::after {
+content: "";
+position: absolute;
+top: 0;
+bottom: 0;
+width: 2.4mm;
+border: .35mm solid #111111;
+background: repeating-linear-gradient(135deg, #111111 0 .45mm, transparent .45mm 1.3mm);
+}
+.f-nurnabi-youth-member-apply .g-page-inner::before {
+left: 0;
+}
+.f-nurnabi-youth-member-apply .g-page-inner::after {
+right: 0;
+}
+.f-nurnabi-youth-member-apply .stage {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 240mm;
+}
+.f-nurnabi-youth-member-apply .stage > * {
+flex: none;
+}
+.f-nurnabi-youth-member-apply .bold {
+font-weight: 700;
+}
+.f-nurnabi-youth-member-apply .hd {
+display: grid;
+grid-template-columns: 27mm 1fr 30mm;
+gap: 3mm;
+align-items: center;
+}
+.f-nurnabi-youth-member-apply .logo {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 27mm;
+height: 27mm;
+border-radius: 50%;
+overflow: hidden;
+}
+.f-nurnabi-youth-member-apply .logo img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 50%;
+}
+.f-nurnabi-youth-member-apply .logo.empty {
+border: .4mm dashed #8f8f98;
+}
+.f-nurnabi-youth-member-apply .logo.empty img {
+display: none;
+}
+.f-nurnabi-youth-member-apply .logo-hint {
+display: none;
+color: #8f8f98;
+font-size: 10pt;
+}
+.f-nurnabi-youth-member-apply .logo.empty .logo-hint {
+display: block;
+}
+.f-nurnabi-youth-member-apply .hm {
+min-width: 0;
+text-align: center;
+line-height: 1.45;
+}
+.f-nurnabi-youth-member-apply .bis {
+font-size: 11pt;
+}
+.f-nurnabi-youth-member-apply .org {
+font-size: 19pt;
+font-weight: 700;
+line-height: 1.35;
+white-space: nowrap;
+}
+.f-nurnabi-youth-member-apply .est {
+font-size: 11pt;
+}
+.f-nurnabi-youth-member-apply .adr {
+font-size: 12pt;
+}
+.f-nurnabi-youth-member-apply .g-photo {
+border: 1px solid #111111;
+border-radius: 0;
+background: #ffffff;
+}
+.f-nurnabi-youth-member-apply .ttl-row {
+display: flex;
+align-items: center;
+gap: 0;
+}
+.f-nurnabi-youth-member-apply .rule {
+flex: 1;
+height: 2.2mm;
+background: repeating-linear-gradient(90deg, #111111 0 .35mm, transparent .35mm 1.1mm);
+border-top: .3mm solid #111111;
+border-bottom: .3mm solid #111111;
+}
+.f-nurnabi-youth-member-apply .ttl {
+flex: none;
+padding: 1mm 9mm;
+border: .5mm solid #111111;
+background: #ffffff;
+font-size: 15pt;
+font-weight: 700;
+line-height: 1.5;
+}
+.f-nurnabi-youth-member-apply .meta {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.f-nurnabi-youth-member-apply .code {
+display: flex;
+align-items: center;
+gap: 2mm;
+font-weight: 700;
+}
+.f-nurnabi-youth-member-apply .code span {
+flex: none;
+margin-right: 1mm;
+}
+.f-nurnabi-youth-member-apply .g-in.cb {
+width: 9mm;
+height: 9mm;
+padding: 0;
+border: .4mm solid #111111;
+border-radius: .6mm;
+text-align: center;
+}
+.f-nurnabi-youth-member-apply .dt {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+width: 56mm;
+font-weight: 700;
+}
+.f-nurnabi-youth-member-apply .dt span {
+flex: none;
+}
+.f-nurnabi-youth-member-apply .dt .g-in {
+flex: 1;
+min-width: 0;
+font-weight: 400;
+}
+.f-nurnabi-youth-member-apply .app {
+margin: 0;
+font-size: 13.5pt;
+line-height: 1.95;
+text-align: justify;
+}
+.f-nurnabi-youth-member-apply .rows {
+display: flex;
+flex-direction: column;
+gap: 9mm;
+}
+.f-nurnabi-youth-member-apply .r3 {
+display: grid;
+grid-template-columns: 1.5fr 1.1fr 1fr;
+gap: 5mm;
+}
+.f-nurnabi-youth-member-apply .r2 {
+display: grid;
+grid-template-columns: 1.15fr 1fr;
+gap: 5mm;
+}
+.f-nurnabi-youth-member-apply .line {
+display: flex;
+align-items: baseline;
+gap: 2mm;
+font-weight: 700;
+}
+.f-nurnabi-youth-member-apply .line > span {
+flex: none;
+white-space: nowrap;
+}
+.f-nurnabi-youth-member-apply .line > .g-in {
+flex: 1;
+min-width: 0;
+font-weight: 400;
+}
+.f-nurnabi-youth-member-apply .line.addr {
+align-items: flex-start;
+}
+.f-nurnabi-youth-member-apply .line.addr .g-ta {
+height: 18mm;
+line-height: 9mm;
+border-bottom: 0;
+background: repeating-linear-gradient(90deg, #8f8f98 0 .35mm, transparent .35mm 1.1mm) 0 8.6mm / 100% .3mm no-repeat, repeating-linear-gradient(90deg, #8f8f98 0 .35mm, transparent .35mm 1.1mm) 0 17.6mm / 100% .3mm no-repeat;
+}

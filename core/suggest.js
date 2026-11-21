@@ -206,6 +206,16 @@ out.push(t);
 });
 return out;
 }
+function todayItems() {
+var d = new Date();
+var two = function (n) {
+return n < 10 ? '0' + n : String(n);
+};
+var text = two(d.getDate()) + '/' + two(d.getMonth() + 1) + '/' + d.getFullYear();
+return [text.replace(/[0-9]/g, function (c) {
+return '০১২৩৪৫৬৭৮৯'.charAt(Number(c));
+})];
+}
 function wordsItems(el) {
 var src = byName(el.getAttribute('data-words-from') || '');
 var w = src ? toWords(src.value) : '';
@@ -238,6 +248,10 @@ return D.designations;
 } },
 workplace: { key: 'sg.t.workplace', mode: 'chips', fixed: 'bn', items: function () {
 return D.workplaces;
+} },
+today: { key: 'sg.t.today', mode: 'chips', fixed: 'bn', items: todayItems },
+samaj: { key: 'sg.t.samaj', mode: 'chips', fixed: 'bn', items: function () {
+return D.samaj;
 } }
 };
 function fieldLang(el) {
