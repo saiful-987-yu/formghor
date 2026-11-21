@@ -4,7 +4,7 @@ print-color-adjust: exact;
 }
 .f-nurnabi-youth-member-apply .g-page-inner {
 inset: 7mm;
-padding: 3mm 8mm;
+padding: 6mm 8mm;
 display: flex;
 flex-direction: column;
 font-size: 13pt;
@@ -28,9 +28,10 @@ right: 0;
 }
 .f-nurnabi-youth-member-apply .stage {
 display: flex;
+flex: 1 1 auto;
 flex-direction: column;
 justify-content: space-between;
-height: 240mm;
+min-height: 0;
 }
 .f-nurnabi-youth-member-apply .stage > * {
 flex: none;
@@ -202,4 +203,60 @@ height: 18mm;
 line-height: 9mm;
 border-bottom: 0;
 background: repeating-linear-gradient(90deg, #8f8f98 0 .35mm, transparent .35mm 1.1mm) 0 8.6mm / 100% .3mm no-repeat, repeating-linear-gradient(90deg, #8f8f98 0 .35mm, transparent .35mm 1.1mm) 0 17.6mm / 100% .3mm no-repeat;
+}
+.f-nurnabi-youth-member-apply .fr {
+position: absolute;
+left: 2.4mm;
+right: 2.4mm;
+height: 2.4mm;
+border-top: .35mm solid #111111;
+border-bottom: .35mm solid #111111;
+background: repeating-linear-gradient(135deg, #111111 0 .45mm, transparent .45mm 1.3mm);
+}
+.f-nurnabi-youth-member-apply .fr-t {
+top: 0;
+}
+.f-nurnabi-youth-member-apply .fr-b {
+bottom: 0;
+}
+.f-nurnabi-youth-member-apply .rule-full {
+flex: none;
+}
+.f-nurnabi-youth-member-apply .rows .sigrow {
+margin-top: 2mm;
+}
+.f-nurnabi-youth-member-apply .sigrow {
+display: flex;
+padding-top: 7mm;
+}
+.f-nurnabi-youth-member-apply .sigrow-end {
+justify-content: flex-end;
+}
+.f-nurnabi-youth-member-apply .sigrow-two {
+justify-content: space-between;
+}
+.f-nurnabi-youth-member-apply .sig {
+width: 56mm;
+padding-top: 1mm;
+border-top: .4mm dotted #111111;
+text-align: center;
+font-weight: 700;
+}
+.f-nurnabi-youth-member-apply .cmt {
+display: flex;
+flex-direction: column;
+gap: 2mm;
+}
+.f-nurnabi-youth-member-apply .cmt .cm {
+font-size: 13pt;
+line-height: 1.85;
+}
+.f-nurnabi-youth-member-apply .g-pv .g-page .g-in {
+border-bottom-color: #8f8f98 !important;
+}
+.f-nurnabi-youth-member-apply .g-pv .g-page .g-in.cb {
+border-color: #111111 !important;
+}
+.f-nurnabi-youth-member-apply .g-pv .g-page .g-in.g-ta {
+border-bottom-color: transparent !important;
 }
