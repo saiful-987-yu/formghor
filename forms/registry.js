@@ -228,7 +228,7 @@ keys: ['যুব পরিষদ', 'সমাজকল্যাণ যুব �
 slug: 'oikkya-member-apply',
 id: 'ID-2502',
 group: 'institutional',
-access: 'free',
+access: 'locked',
 paper: 'Legal',
 pages: 1,
 title: { bn: 'ঐক্য বিজনেস গ্রুপ সদস্য আবেদন ফরম', en: 'Oikkya Business Group member application' },

@@ -227,3 +227,19 @@ color: #000000;
 font-size: 11pt;
 font-style: italic;
 }
+.f-oikkya-member-apply .mn {
+width: auto;
+min-width: 52mm;
+padding: 0 2px;
+border-bottom: 1px dotted #8f8f98;
+text-align: left;
+}
+.f-oikkya-member-apply .mn.an {
+min-width: 56mm;
+}
+.f-oikkya-member-apply .mn.has {
+min-width: 0;
+}
+.f-oikkya-member-apply .g-pv .g-page .mn {
+border-bottom-color: transparent;
+}

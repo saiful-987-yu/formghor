@@ -19,8 +19,6 @@ nominee_address: 'গ্রাম, ডাকঘর, উপজেলা, জে�
 nominee_nid: '0000000000',
 nominee_relation: 'সম্পর্ক',
 nominee_mobile: '01700-000000',
-pledge_name: 'সদস্যের নাম',
-approved_name: 'সদস্যের নাম',
 membership_id: 'OBG-000'
 },
 photos: {}
@@ -48,8 +46,6 @@ nominee_address: 'গ্রাম: চরক্লার্ক, ডাকঘর:
 nominee_nid: '9876543210',
 nominee_relation: 'মা',
 nominee_mobile: '01700-123456',
-pledge_name: 'সাইফুল ইসলাম',
-approved_name: 'সাইফুল ইসলাম',
 membership_id: 'OBG-001'
 },
 photos: {}
@@ -77,8 +73,6 @@ nominee_address: 'গ্রাম: দক্ষিণ পাড়া, ডাক
 nominee_nid: '8765432109',
 nominee_relation: 'মা',
 nominee_mobile: '01712-654321',
-pledge_name: 'নুসরাত জাহান',
-approved_name: 'নুসরাত জাহান',
 membership_id: 'OBG-002'
 },
 photos: {}

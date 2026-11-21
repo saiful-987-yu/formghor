@@ -1,5 +1,19 @@
 (function () {
 G.form.init();
+var nameSrc = document.querySelector('[name="member_name"]');
+var nameMirrors = document.querySelectorAll('[data-mirror="member_name"]');
+function syncName() {
+var v = nameSrc.value.trim();
+for (var m = 0; m < nameMirrors.length; m++) {
+nameMirrors[m].textContent = v || '\u200b';
+nameMirrors[m].classList.toggle('has', !!v);
+}
+}
+if (nameSrc) {
+nameSrc.addEventListener('input', syncName);
+nameSrc.addEventListener('g:filled', syncName);
+syncName();
+}
 var id = document.querySelector('[name="membership_id"]');
 id.addEventListener('input', function () {
 this.value = this.value.replace(/[^A-Za-z0-9-]/g, '').toUpperCase();
