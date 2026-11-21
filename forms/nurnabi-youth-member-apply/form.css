@@ -30,11 +30,21 @@ right: 0;
 display: flex;
 flex: 1 1 auto;
 flex-direction: column;
-justify-content: space-between;
 min-height: 0;
 }
-.f-nurnabi-youth-member-apply .stage > * {
+.f-nurnabi-youth-member-apply .top {
+display: flex;
 flex: none;
+flex-direction: column;
+justify-content: space-between;
+height: 165mm;
+}
+.f-nurnabi-youth-member-apply .bot {
+display: flex;
+flex: 1 1 auto;
+flex-direction: column;
+gap: 9mm;
+min-height: 0;
 }
 .f-nurnabi-youth-member-apply .bold {
 font-weight: 700;
@@ -162,13 +172,13 @@ font-weight: 400;
 .f-nurnabi-youth-member-apply .app {
 margin: 0;
 font-size: 13.5pt;
-line-height: 1.95;
+line-height: 1.8;
 text-align: justify;
 }
 .f-nurnabi-youth-member-apply .rows {
 display: flex;
 flex-direction: column;
-gap: 9mm;
+gap: 4mm;
 }
 .f-nurnabi-youth-member-apply .r3 {
 display: grid;
@@ -195,15 +205,6 @@ flex: 1;
 min-width: 0;
 font-weight: 400;
 }
-.f-nurnabi-youth-member-apply .line.addr {
-align-items: flex-start;
-}
-.f-nurnabi-youth-member-apply .line.addr .g-ta {
-height: 18mm;
-line-height: 9mm;
-border-bottom: 0;
-background: repeating-linear-gradient(90deg, #8f8f98 0 .35mm, transparent .35mm 1.1mm) 0 8.6mm / 100% .3mm no-repeat, repeating-linear-gradient(90deg, #8f8f98 0 .35mm, transparent .35mm 1.1mm) 0 17.6mm / 100% .3mm no-repeat;
-}
 .f-nurnabi-youth-member-apply .fr {
 position: absolute;
 left: 2.4mm;
@@ -219,44 +220,42 @@ top: 0;
 .f-nurnabi-youth-member-apply .fr-b {
 bottom: 0;
 }
-.f-nurnabi-youth-member-apply .rule-full {
-flex: none;
-}
-.f-nurnabi-youth-member-apply .rows .sigrow {
-margin-top: 2mm;
-}
-.f-nurnabi-youth-member-apply .sigrow {
-display: flex;
-padding-top: 7mm;
-}
-.f-nurnabi-youth-member-apply .sigrow-end {
-justify-content: flex-end;
-}
-.f-nurnabi-youth-member-apply .sigrow-two {
-justify-content: space-between;
-}
-.f-nurnabi-youth-member-apply .sig {
-width: 56mm;
-padding-top: 1mm;
-border-top: .4mm dotted #111111;
-text-align: center;
-font-weight: 700;
-}
-.f-nurnabi-youth-member-apply .cmt {
-display: flex;
-flex-direction: column;
-gap: 2mm;
-}
-.f-nurnabi-youth-member-apply .cmt .cm {
-font-size: 13pt;
-line-height: 1.85;
-}
 .f-nurnabi-youth-member-apply .g-pv .g-page .g-in {
 border-bottom-color: #8f8f98 !important;
 }
 .f-nurnabi-youth-member-apply .g-pv .g-page .g-in.cb {
 border-color: #111111 !important;
 }
-.f-nurnabi-youth-member-apply .g-pv .g-page .g-in.g-ta {
-border-bottom-color: transparent !important;
+.f-nurnabi-youth-member-apply .addr2 {
+display: grid;
+grid-template-columns: 1fr 36%;
+gap: 7mm;
+align-items: start;
+}
+.f-nurnabi-youth-member-apply .addr2 > .g-in {
+box-sizing: border-box;
+width: 100%;
+height: 10mm;
+}
+.f-nurnabi-youth-member-apply .sig {
+padding-top: 1mm;
+border-top: .4mm dotted #111111;
+text-align: center;
+font-weight: 700;
+}
+.f-nurnabi-youth-member-apply .addr2 .sig {
+margin-top: 10mm;
+}
+.f-nurnabi-youth-member-apply .bot .app {
+font-size: 13pt;
+line-height: 1.9;
+}
+.f-nurnabi-youth-member-apply .sigrow {
+display: flex;
+margin-top: auto;
+justify-content: space-between;
+padding-top: 20mm;
+}
+.f-nurnabi-youth-member-apply .sigrow .sig {
+width: 68mm;
 }
