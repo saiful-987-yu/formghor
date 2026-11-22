@@ -1259,3 +1259,6 @@ background: color-mix(in srgb, var(--g-text) 7%, transparent);
 .g-pv-opt--on {
 background: color-mix(in srgb, var(--g-text) 11%, transparent);
 }
+#g-pages.g-short > .g-page {
+height: var(--live-h);
+}

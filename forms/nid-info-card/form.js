@@ -73,7 +73,8 @@ var items = [];
 var byGroup = {};
 function resize(node) {
 node.style.height = 'auto';
-node.style.height = node.scrollHeight + 'px';
+var h = node.scrollHeight;
+node.style.height = h > 0 ? h + 'px' : '';
 }
 function lineCount(node) {
 if (node.value === '') {

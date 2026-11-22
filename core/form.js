@@ -197,6 +197,35 @@ for (var i = 0; i < nodes.length; i++) {
 nodes[i].setAttribute('placeholder', G.t(nodes[i].getAttribute('data-i18n-ph')));
 }
 }
+function shortenCards() {
+var pages = document.getElementById('g-pages');
+if (!pages) {
+return;
+}
+var page = pages.querySelector('.g-page');
+var cards = page ? page.querySelector('.cards') : null;
+if (!page || !cards || pages.children.length !== 1) {
+pages.classList.remove('g-short');
+pages.style.removeProperty('--live-h');
+return;
+}
+var top = 0;
+var node = cards;
+while (node && node !== page) {
+top += node.offsetTop;
+node = node.offsetParent;
+}
+var bottom = top + cards.offsetHeight;
+if (!(bottom > 0)) {
+return;
+}
+var inner = page.querySelector('.g-page-inner');
+var innerTop = inner ? inner.offsetTop : 0;
+var inset = inner ? page.offsetHeight - inner.offsetTop - inner.offsetHeight : 26;
+var gap = Math.max((top - innerTop) * 0.85, 11);
+pages.style.setProperty('--live-h', Math.round(bottom + gap + inset) + 'px');
+pages.classList.add('g-short');
+}
 function fit() {
 var stage = document.getElementById('g-stage');
 var wrap = document.getElementById('g-pages-wrap');
@@ -204,6 +233,7 @@ var pages = document.getElementById('g-pages');
 if (!stage || !wrap || !pages || stage.hidden) {
 return;
 }
+shortenCards();
 var cs = window.getComputedStyle(stage);
 var avail = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
 var w = pages.offsetWidth;
@@ -225,6 +255,10 @@ for (var i = 0; i < actions.length; i++) {
 actions[i].hidden = locked;
 }
 if (!locked) {
+var areas = document.querySelectorAll('.g-ta');
+for (var a = 0; a < areas.length; a++) {
+autosize(areas[a]);
+}
 fit();
 }
 refreshMulti();
@@ -356,7 +390,8 @@ updateAsk();
 }
 function autosize(ta) {
 ta.style.height = 'auto';
-ta.style.height = ta.scrollHeight + 'px';
+var h = ta.scrollHeight;
+ta.style.height = h > 0 ? h + 'px' : '';
 }
 function bindTextareas() {
 var list = document.querySelectorAll('.g-ta');
@@ -2527,6 +2562,20 @@ applyLockState();
 }
 });
 window.addEventListener('resize', fit);
+window.addEventListener('load', fit);
+var fitQueued = false;
+function queueFit() {
+if (fitQueued) {
+return;
+}
+fitQueued = true;
+window.requestAnimationFrame(function () {
+fitQueued = false;
+fit();
+});
+}
+document.addEventListener('input', queueFit, true);
+document.addEventListener('g:filled', queueFit, true);
 window.addEventListener('resize', previewFit);
 window.addEventListener('popstate', closePreview);
 window.addEventListener('load', fit);
