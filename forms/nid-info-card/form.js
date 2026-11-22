@@ -1,5 +1,70 @@
 (function () {
 G.form.init();
+var holdBox = document.querySelector('[data-hold]');
+if (holdBox) {
+var holdInput = holdBox.querySelector('input[type="file"]');
+var holdLayer = holdBox.querySelector('.ib-asset');
+var allowing = false;
+var downAt = 0;
+var downX = 0;
+var downY = 0;
+var moved = false;
+var readyTimer = 0;
+var probe = new Image();
+probe.onload = function () {
+holdLayer.style.backgroundImage = 'url("' + probe.src + '")';
+holdBox.classList.add('has-asset');
+};
+probe.src = 'assets/back-image.png';
+function cancelHold() {
+window.clearTimeout(readyTimer);
+holdBox.classList.remove('hold-ready');
+}
+holdBox.addEventListener('click', function (e) {
+if (allowing) {
+return;
+}
+e.preventDefault();
+e.stopPropagation();
+}, true);
+holdBox.addEventListener('contextmenu', function (e) {
+e.preventDefault();
+});
+holdBox.addEventListener('pointerdown', function (e) {
+downAt = Date.now();
+downX = e.clientX;
+downY = e.clientY;
+moved = false;
+window.clearTimeout(readyTimer);
+readyTimer = window.setTimeout(function () {
+holdBox.classList.add('hold-ready');
+}, 600);
+});
+holdBox.addEventListener('pointermove', function (e) {
+if (Math.abs(e.clientX - downX) > 12 || Math.abs(e.clientY - downY) > 12) {
+moved = true;
+cancelHold();
+}
+});
+holdBox.addEventListener('pointerup', function () {
+var long = downAt > 0 && Date.now() - downAt >= 600 && !moved;
+downAt = 0;
+cancelHold();
+if (long && holdInput) {
+allowing = true;
+holdInput.click();
+allowing = false;
+}
+});
+holdBox.addEventListener('pointercancel', function () {
+downAt = 0;
+cancelHold();
+});
+holdBox.addEventListener('pointerleave', function () {
+downAt = 0;
+cancelHold();
+});
+}
 var GROUPS = {};
 var LIMITS = [
 { name: 'address', max: 3 }

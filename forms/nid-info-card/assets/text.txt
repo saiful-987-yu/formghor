@@ -8,3 +8,7 @@ SAMPLE ² 🙂‍↔️
 
 logo.png = national-emblem-of-bangladesh-logo-organization-business.png
 logo-bg.png = national-emblem-of-bangladesh-flag-of-bangladesh-taiwan-card.png
+
+Profile pic = 1285x1450 px
+signature.png = 640×296
+signature-gov.png = 1226×388

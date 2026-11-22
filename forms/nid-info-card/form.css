@@ -396,3 +396,43 @@ font-weight: 600;
 .f-nid-info-card .g-pv--stack .cards {
 align-items: flex-start;
 }
+.f-nid-info-card .g-photo-hint b {
+display: block;
+font-size: .85em;
+font-weight: 700;
+white-space: nowrap;
+}
+.f-nid-info-card .ib .g-photo-hint {
+font-size: 1.8mm;
+line-height: 1.15;
+}
+.f-nid-info-card .ib-asset {
+display: none;
+position: absolute;
+inset: 0;
+background: center / contain no-repeat;
+pointer-events: none;
+}
+.f-nid-info-card .ib.has-asset .ib-asset {
+display: block;
+}
+.f-nid-info-card .ib.has-asset.g-photo--filled .ib-asset {
+display: none;
+}
+.f-nid-info-card .ib.has-asset {
+border: 0;
+}
+.f-nid-info-card .ib.has-asset .g-photo-hint {
+display: none;
+}
+.f-nid-info-card .ib-hold {
+touch-action: none;
+-webkit-user-select: none;
+user-select: none;
+-webkit-touch-callout: none;
+cursor: default;
+}
+.f-nid-info-card .ib-hold.hold-ready {
+outline: 2px solid #1e8449;
+outline-offset: 1px;
+}
