@@ -225,6 +225,20 @@ tags: { bn: ['বিজনেস কার্ড', 'দোকান'], en: ['Bus
 keys: ['বিজনেস কার্ড', 'business card', 'bijnes kard', 'ভিজিটিং কার্ড', 'visiting card', 'কার্ড', 'card', 'kard', 'বিজনেস', 'business', 'দোকান', 'dokan', 'shop', 'ব্র্যান্ড', 'brand', 'কাস্টমার', 'customer', 'গ্রাহক', 'কিউআর', 'কিউআর কোড', 'qr', 'qr code', 'সাকার মার্ট', 'sacar mart', 'sacarmart', 'সদস্য কার্ড', 'membership card']
 },
 {
+slug: 'resignation-letter',
+id: 'ID-2641',
+group: 'institutional',
+access: 'free',
+paper: 'A4',
+pages: 1,
+title: { bn: 'চাকুরী থেকে অব্যাহতির আবেদন (রিজাইন লেটার)', en: 'Resignation letter (job release application)' },
+desc: { bn: 'চাকুরী থেকে অব্যাহতি চেয়ে সিকিউরিটি কর্মীর আবেদনপত্র।', en: 'Job release application letter for a security guard.' },
+sub: { bn: 'রিজাইন লেটার হাতে লেখা বা টাইপ করানোর ঝামেলা নেই। তারিখ, নাম, আইডি নম্বর, যোগদানের তারিখ, অব্যাহতির তারিখ ও প্রজেক্টের নাম বসিয়ে পরিপাটি আবেদনপত্র A4 কাগজে সরাসরি প্রিন্ট করুন।', en: 'No need to write or type a resignation letter by hand. Fill in the date, name, ID number, joining date, release date and project name, then print a neat application straight onto A4 paper.' },
+about: { bn: { what: 'চাকুরী থেকে অব্যাহতির জন্য সিকিউরিটি কর্মীর আবেদনপত্র (রিজাইন লেটার)। উপরে তারিখ, বিভাগীয় প্রধানের ঠিকানা ও বিষয়, তারপর আবেদনের লেখা, আর নিচে নিবেদকের নাম, আইডি নম্বর ও প্রজেক্টের নাম আছে।', who: 'যে সিকিউরিটি কর্মী চাকুরী ছেড়ে অব্যাহতি চান এবং আবেদনপত্র নিজে লেখা বা প্রিন্ট করানোর ঝামেলা এড়াতে চান, তাঁর জন্য।', how: 'তারিখ লিখুন (সাজেশনে চাপলে আজকের তারিখ বসে), তারপর নাম, আইডি নম্বর, যোগদানের তারিখ ও অব্যাহতির তারিখ লিখুন। নিচের নাম ও আইডি নম্বর উপরের লেখা থেকে নিজে থেকে বসে যায়, শুধু প্রজেক্টের নাম লিখতে হবে। প্রিন্ট করে স্বাক্ষর দিয়ে জমা দিন। ফাঁকা প্রিন্ট করে হাতে লিখলেও চলবে।' }, en: { what: 'A resignation letter for a security guard asking to be released from the job. The top has the date, the department head\'s address and the subject, then the body of the application, and the name, ID number and project name of the applicant at the bottom.', who: 'Security guards who want to be released from their job and want to avoid writing or typing the letter by hand.', how: 'Write the date (press the suggestion to insert today\'s date), then the name, ID number, joining date and release date. The name and ID number at the bottom fill in from the text above, so only the project name needs to be written. Print it, sign it and submit it. You can also print it blank and write by hand.' } },
+tags: { bn: ['রিজাইন লেটার', 'আবেদনপত্র'], en: ['Resignation letter', 'Application'] },
+keys: ['রিজাইন লেটার', 'resignation letter', 'resign letter', 'চাকুরী থেকে অব্যাহতি', 'অব্যাহতির আবেদন', 'চাকরি ছাড়ার আবেদন', 'সিকিউরিটি গার্ড', 'security guard', 'হানসা ম্যানেজমেন্ট', 'hansa management', 'আবেদনপত্র', 'application letter', 'job release', 'চাকরি', 'job']
+},
+{
 slug: 'oikkya-member-apply',
 id: 'ID-2502',
 group: 'institutional',
