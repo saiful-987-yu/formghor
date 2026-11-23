@@ -35,15 +35,25 @@ text-align: justify;
 margin: 0;
 line-height: 2.1;
 }
+.f-resignation-letter .g-in,
+.f-resignation-letter .mn {
+font-size: 14.5pt;
+font-style: italic;
+line-height: 1.3;
+}
 .f-resignation-letter .g-in {
-border-bottom: .3mm solid #111111;
+padding-top: 0;
+padding-bottom: 0;
+border-bottom: .2mm solid #111111;
 }
 .f-resignation-letter .txt .g-in {
 display: inline-block;
 width: 40mm;
-padding: 0 1mm;
+max-width: 100%;
+padding: 0 3mm;
 vertical-align: baseline;
-text-align: left;
+text-align: center;
+box-sizing: border-box;
 }
 .f-resignation-letter .txt .g-in.w1 {
 width: 58mm;
@@ -70,7 +80,15 @@ margin-bottom: 1mm;
 display: flex;
 align-items: baseline;
 gap: 2mm;
-width: 100mm;
+width: max-content;
+min-width: 100mm;
+max-width: 100%;
+}
+.f-resignation-letter .line.ln1 {
+min-width: 80mm;
+}
+.f-resignation-letter .line.ln2 {
+min-width: 90mm;
 }
 .f-resignation-letter .line > span:first-child {
 flex: none;
@@ -84,7 +102,7 @@ min-width: 0;
 flex: 1;
 min-width: 0;
 padding: 0 1mm;
-border-bottom: .3mm solid #111111;
+border-bottom: .2mm solid #111111;
 }
 .f-resignation-letter .g-pv .g-page .g-in {
 border-bottom-color: #111111 !important;

@@ -388,6 +388,29 @@ input.select();
 updateEye();
 updateAsk();
 }
+var fitContext = document.createElement('canvas').getContext('2d');
+function autofitInput(node) {
+if (!node || !node.hasAttribute || !node.hasAttribute('data-autofit')) {
+return;
+}
+if (!node.value) {
+node.style.width = '';
+return;
+}
+var cs = window.getComputedStyle(node);
+if (!cs.fontSize) {
+return;
+}
+fitContext.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+var pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+node.style.width = Math.ceil(fitContext.measureText(node.value).width + pad + 3) + 'px';
+}
+function autofitAll() {
+var list = document.querySelectorAll('[data-autofit]');
+for (var i = 0; i < list.length; i++) {
+autofitInput(list[i]);
+}
+}
 function autosize(ta) {
 ta.style.height = 'auto';
 var h = ta.scrollHeight;
@@ -1250,8 +1273,22 @@ sanitizeKind(node, true);
 node.value = source[i].value;
 }
 node.dispatchEvent(new Event('g:filled'));
+autofitInput(node);
 if (node.classList.contains('g-ta')) {
 autosize(node);
+}
+}
+var holders = root.querySelectorAll('[data-mirror]');
+for (var h = 0; h < holders.length; h++) {
+var holder = holders[h];
+if (holder.tagName === 'INPUT' || holder.tagName === 'TEXTAREA') {
+continue;
+}
+var from = root.querySelector('[name="' + holder.getAttribute('data-mirror') + '"]');
+var text = from && typeof from.value === 'string' ? from.value.trim() : '';
+if (text) {
+holder.textContent = text;
+holder.classList.add('has');
 }
 }
 }
@@ -2576,6 +2613,16 @@ fit();
 }
 document.addEventListener('input', queueFit, true);
 document.addEventListener('g:filled', queueFit, true);
+document.addEventListener('input', function (e) {
+autofitInput(e.target);
+}, true);
+document.addEventListener('g:filled', function (e) {
+autofitInput(e.target);
+}, true);
+window.addEventListener('load', autofitAll);
+if (document.fonts && document.fonts.ready) {
+document.fonts.ready.then(autofitAll);
+}
 window.addEventListener('resize', previewFit);
 window.addEventListener('popstate', closePreview);
 window.addEventListener('load', fit);
