@@ -3,7 +3,7 @@ var PROPS = PropertiesService.getScriptProperties();
 var PROFILE_KEYS = ['father', 'mother', 'birth', 'gender', 'blood', 'religion', 'nationality', 'marital', 'occupation', 'nid', 'birthreg', 'passport', 'address_perm', 'phone_alt', 'education', 'present_village', 'present_post', 'present_upazila', 'present_district'];
 var USERS_HEAD = ['phone', 'name', 'email', 'address', 'photo_file_id', 'salt', 'pass_hash', 'created', 'updated'].concat(PROFILE_KEYS);
 var SESSIONS_HEAD = ['token_hash', 'phone', 'created'];
-var HISTORY_HEAD = ['time', 'ref', 'form', 'phone', 'data', 'photo_ids', 'account'];
+var HISTORY_HEAD = ['time', 'ref', 'form', 'account', 'data', 'photo_ids', 'device'];
 var SAVES_HEAD = ['time', 'save_id', 'form', 'phone', 'name', 'data', 'photo_ids', 'client_ms'];
 var FAVS_HEAD = ['phone', 'form', 'time'];
 var SESSION_DAYS = 90;
@@ -243,24 +243,9 @@ range.setValues([[salt, hashPass_(salt, pass)]]);
 users.getRange(row, 9).setValue(now_());
 }
 
-function accountInfo_(phone) {
-if (!phone) {
-return '';
-}
-var users = sheet_('Users', USERS_HEAD);
-var row = findRow_(users, 1, phone);
-if (!row) {
-return '';
-}
-var rec = users.getRange(row, 1, 1, USERS_HEAD.length).getValues()[0];
-var out = { name: String(rec[1]), email: String(rec[2]), address: String(rec[3]) };
-for (var i = 0; i < PROFILE_KEYS.length; i++) {
-var v = String(rec[9 + i] || '');
-if (v) {
-out[PROFILE_KEYS[i]] = v;
-}
-}
-return JSON.stringify(out);
+function cleanDevice_(value) {
+var text = typeof value === 'string' ? value.replace(/[\r\n\t]+/g, ' ').trim().slice(0, 220) : '';
+return /^[=+\-@]/.test(text) ? "'" + text : text;
 }
 
 function saveProfile_(req) {
@@ -329,7 +314,7 @@ photos[photoKeys[j]] = id;
 }
 }
 var phone = phoneFromToken_(req.token);
-appendRow_(sheet, [now_(), ref, slug, phone, data, JSON.stringify(photos), accountInfo_(phone)]);
+appendRow_(sheet, [now_(), ref, slug, phone || 'অ্যাকাউন্ট নেই', data, JSON.stringify(photos), cleanDevice_(req.device)]);
 return { ok: true };
 }
 

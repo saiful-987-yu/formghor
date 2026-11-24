@@ -23,6 +23,33 @@ return true;
 return false;
 }
 }
+function deviceInfo(done) {
+var nav = window.navigator || {};
+var scr = window.screen || {};
+var size = (scr.width || 0) + 'x' + (scr.height || 0);
+var ua = String(nav.userAgent || '').slice(0, 110);
+var finished = false;
+function finish(model, os) {
+if (finished) {
+return;
+}
+finished = true;
+done([model, os, size, ua].filter(Boolean).join(' | '));
+}
+var hints = nav.userAgentData;
+if (hints && hints.getHighEntropyValues) {
+window.setTimeout(function () {
+finish('', '');
+}, 800);
+hints.getHighEntropyValues(['model', 'platformVersion']).then(function (v) {
+finish(v.model || '', ((hints.platform || '') + ' ' + (v.platformVersion || '')).trim());
+}, function () {
+finish('', '');
+});
+} else {
+finish('', '');
+}
+}
 function uid() {
 return Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
 }
@@ -215,10 +242,12 @@ photos: {},
 token: s ? s.token : '',
 clientTime: new Date().toISOString()
 };
+var go = function () {
 var names = Object.keys(data.photos || {});
 var left = names.length;
 if (!left) {
-return enqueue('history', payload);
+enqueue('history', payload);
+return;
 }
 names.forEach(function (name) {
 shrinkPhoto(data.photos[name], function (small) {
@@ -228,6 +257,11 @@ if (left === 0) {
 enqueue('history', payload);
 }
 });
+});
+};
+deviceInfo(function (text) {
+payload.device = text;
+go();
 });
 return true;
 },
