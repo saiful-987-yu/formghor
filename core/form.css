@@ -1262,3 +1262,24 @@ background: color-mix(in srgb, var(--g-text) 11%, transparent);
 #g-pages.g-short > .g-page {
 height: var(--live-h);
 }
+.g-lnk-input {
+box-sizing: border-box;
+width: 100%;
+padding: 12px 14px;
+border: 1px solid var(--g-line);
+border-radius: 12px;
+background: transparent;
+color: inherit;
+font: inherit;
+}
+.g-lnk-row {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-top: 12px;
+}
+.g-lnk-err {
+margin: 8px 0 0;
+color: #c0392b;
+font-size: .9rem;
+}

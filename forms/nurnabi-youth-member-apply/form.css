@@ -36,14 +36,14 @@ min-height: 0;
 display: flex;
 flex: none;
 flex-direction: column;
-justify-content: space-between;
-height: 165mm;
+gap: 2.5mm;
+margin-bottom: 3mm;
 }
 .f-nurnabi-youth-member-apply .bot {
 display: flex;
 flex: 1 1 auto;
 flex-direction: column;
-gap: 9mm;
+gap: 2.5mm;
 min-height: 0;
 }
 .f-nurnabi-youth-member-apply .bold {
@@ -124,7 +124,7 @@ border-bottom: .3mm solid #111111;
 }
 .f-nurnabi-youth-member-apply .ttl {
 flex: none;
-padding: 1mm 9mm;
+padding: .5mm 9mm;
 border: .5mm solid #111111;
 background: #ffffff;
 font-size: 15pt;
@@ -171,19 +171,22 @@ font-weight: 400;
 }
 .f-nurnabi-youth-member-apply .app {
 margin: 0;
-font-size: 13.5pt;
-line-height: 1.8;
+font-size: 12.5pt;
+line-height: 1.6;
 text-align: justify;
 }
 .f-nurnabi-youth-member-apply .rows {
 display: flex;
 flex-direction: column;
-gap: 4mm;
+gap: 2.5mm;
 }
 .f-nurnabi-youth-member-apply .r3 {
 display: grid;
-grid-template-columns: 1.5fr 1.1fr 1fr;
+grid-template-columns: 1.5fr 1fr 1.1fr;
 gap: 5mm;
+}
+.f-nurnabi-youth-member-apply .r3b {
+grid-template-columns: .75fr 1fr 1.7fr;
 }
 .f-nurnabi-youth-member-apply .r2 {
 display: grid;
@@ -227,15 +230,12 @@ border-bottom-color: #8f8f98 !important;
 border-color: #111111 !important;
 }
 .f-nurnabi-youth-member-apply .addr2 {
-display: grid;
-grid-template-columns: 1fr 36%;
-gap: 7mm;
-align-items: start;
+display: block;
 }
 .f-nurnabi-youth-member-apply .addr2 > .g-in {
 box-sizing: border-box;
 width: 100%;
-height: 10mm;
+height: 9mm;
 }
 .f-nurnabi-youth-member-apply .sig {
 padding-top: 1mm;
@@ -243,19 +243,39 @@ border-top: .4mm dotted #111111;
 text-align: center;
 font-weight: 700;
 }
-.f-nurnabi-youth-member-apply .addr2 .sig {
-margin-top: 10mm;
+.f-nurnabi-youth-member-apply .tagl {
+font-size: 12.5pt;
+font-weight: 700;
+line-height: 1.5;
+text-align: center;
+}
+.f-nurnabi-youth-member-apply .idf {
+display: grid;
+grid-template-columns: 1fr auto;
+gap: 8mm;
+align-items: center;
+}
+.f-nurnabi-youth-member-apply .idf .code {
+font-size: 13pt;
+}
+.f-nurnabi-youth-member-apply .app.att {
+font-size: 12.5pt;
+line-height: 1.65;
 }
 .f-nurnabi-youth-member-apply .bot .app {
-font-size: 13pt;
-line-height: 1.9;
+font-size: 12.5pt;
+line-height: 1.7;
 }
 .f-nurnabi-youth-member-apply .sigrow {
 display: flex;
 margin-top: auto;
 justify-content: space-between;
-padding-top: 20mm;
+padding-top: 9mm;
 }
 .f-nurnabi-youth-member-apply .sigrow .sig {
 width: 68mm;
+}
+.f-nurnabi-youth-member-apply .sigrow.sig2 {
+margin-top: 0;
+padding-top: 10mm;
 }

@@ -6,6 +6,8 @@ var SESSIONS_HEAD = ['token_hash', 'phone', 'created'];
 var HISTORY_HEAD = ['time', 'ref', 'form', 'account', 'data', 'photo_ids', 'device'];
 var SAVES_HEAD = ['time', 'save_id', 'form', 'phone', 'name', 'data', 'photo_ids', 'client_ms'];
 var FAVS_HEAD = ['phone', 'form', 'time'];
+var SHARES_HEAD = ['code', 'save_id', 'form', 'phone', 'created', 'status'];
+var MAX_SHARES = 5;
 var SESSION_DAYS = 90;
 
 function setup() {
@@ -19,6 +21,7 @@ sheet_('Users', USERS_HEAD);
 sheet_('Sessions', SESSIONS_HEAD);
 sheet_('History', HISTORY_HEAD);
 sheet_('Saves', SAVES_HEAD);
+sheet_('Shares', SHARES_HEAD);
 sheet_('Favorites', FAVS_HEAD);
 return 'ok';
 }
@@ -81,6 +84,14 @@ case 'listAllSaves':
 return listAllSaves_(req);
 case 'deleteSave':
 return deleteSave_(req);
+case 'createShare':
+return createShare_(req);
+case 'revokeShare':
+return revokeShare_(req);
+case 'listShares':
+return listShares_(req);
+case 'getShare':
+return getShare_(req);
 case 'favorites':
 return favorites_(req);
 default:
@@ -616,7 +627,166 @@ trash_(String(ids[k]));
 }
 });
 sheet.deleteRow(row);
+revokeSharesOf_(id);
 return { ok: true };
+}
+
+function sharePassOk_(phone, pass) {
+var cache = CacheService.getScriptCache();
+var key = 'sp_' + phone;
+var fails = Number(cache.get(key) || 0);
+if (fails >= 5) {
+return 'too_many';
+}
+var real = String(PROPS.getProperty('SHARE_PASSWORD') || '');
+if (!real) {
+return 'not_configured';
+}
+if (String(pass || '') !== real) {
+cache.put(key, String(fails + 1), 600);
+return 'wrong_password';
+}
+cache.remove(key);
+return '';
+}
+
+function newShareCode_(sheet) {
+for (var n = 0; n < 8; n++) {
+var raw = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, Utilities.getUuid() + Date.now() + n);
+var code = Utilities.base64EncodeWebSafe(raw).replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
+if (code.length === 12 && !findRow_(sheet, 1, code)) {
+return code;
+}
+}
+return '';
+}
+
+function createShare_(req) {
+var phone = phoneFromToken_(req.token);
+if (!phone) {
+return { ok: false, error: 'unauthorized' };
+}
+var id = typeof req.id === 'string' ? req.id : '';
+if (!/^[a-z0-9]{6,40}$/.test(id)) {
+return { ok: false, error: 'bad_request' };
+}
+var saves = sheet_('Saves', SAVES_HEAD);
+var saveRow = findRow_(saves, 2, id);
+if (!saveRow) {
+return { ok: false, error: 'not_found' };
+}
+var rec = saves.getRange(saveRow, 1, 1, SAVES_HEAD.length).getValues()[0];
+if (String(rec[3]) !== phone) {
+return { ok: false, error: 'bad_request' };
+}
+var shares = sheet_('Shares', SHARES_HEAD);
+var last = shares.getLastRow();
+var vals = last < 2 ? [] : shares.getRange(2, 1, last - 1, SHARES_HEAD.length).getValues();
+var mine = 0;
+for (var i = 0; i < vals.length; i++) {
+if (String(vals[i][3]) === phone && String(vals[i][5]) === 'active') {
+if (String(vals[i][1]) === id) {
+return { ok: true, code: String(vals[i][0]), existing: true };
+}
+mine++;
+}
+}
+var bad = sharePassOk_(phone, req.password);
+if (bad) {
+return { ok: false, error: bad };
+}
+if (mine >= MAX_SHARES) {
+return { ok: false, error: 'limit' };
+}
+var code = newShareCode_(shares);
+if (!code) {
+return { ok: false, error: 'server' };
+}
+appendRow_(shares, [code, id, String(rec[2]), phone, now_(), 'active']);
+return { ok: true, code: code };
+}
+
+function revokeShare_(req) {
+var phone = phoneFromToken_(req.token);
+if (!phone) {
+return { ok: false, error: 'unauthorized' };
+}
+var code = typeof req.code === 'string' ? req.code : '';
+if (!/^[A-Za-z0-9]{10,20}$/.test(code)) {
+return { ok: false, error: 'bad_request' };
+}
+var sheet = sheet_('Shares', SHARES_HEAD);
+var row = findRow_(sheet, 1, code);
+if (!row) {
+return { ok: true };
+}
+var rec = sheet.getRange(row, 1, 1, SHARES_HEAD.length).getValues()[0];
+if (String(rec[3]) !== phone) {
+return { ok: false, error: 'bad_request' };
+}
+sheet.getRange(row, 6).setNumberFormat('@').setValue('revoked');
+return { ok: true };
+}
+
+function revokeSharesOf_(saveId) {
+var sheet = sheet_('Shares', SHARES_HEAD);
+var last = sheet.getLastRow();
+if (last < 2) {
+return;
+}
+var vals = sheet.getRange(2, 1, last - 1, SHARES_HEAD.length).getValues();
+for (var i = 0; i < vals.length; i++) {
+if (String(vals[i][1]) === saveId && String(vals[i][5]) === 'active') {
+sheet.getRange(i + 2, 6).setNumberFormat('@').setValue('revoked');
+}
+}
+}
+
+function listShares_(req) {
+var phone = phoneFromToken_(req.token);
+if (!phone) {
+return { ok: false, error: 'unauthorized' };
+}
+var sheet = sheet_('Shares', SHARES_HEAD);
+var last = sheet.getLastRow();
+var out = [];
+if (last >= 2) {
+var vals = sheet.getRange(2, 1, last - 1, SHARES_HEAD.length).getValues();
+for (var i = 0; i < vals.length; i++) {
+if (String(vals[i][3]) === phone && String(vals[i][5]) === 'active') {
+out.push({ code: String(vals[i][0]), id: String(vals[i][1]), slug: String(vals[i][2]) });
+}
+}
+}
+return { ok: true, shares: out };
+}
+
+function getShare_(req) {
+var code = typeof req.code === 'string' ? req.code : '';
+if (!/^[A-Za-z0-9]{10,20}$/.test(code)) {
+return { ok: false, error: 'not_found' };
+}
+var shares = sheet_('Shares', SHARES_HEAD);
+var row = findRow_(shares, 1, code);
+if (!row) {
+return { ok: false, error: 'not_found' };
+}
+var share = shares.getRange(row, 1, 1, SHARES_HEAD.length).getValues()[0];
+if (String(share[5]) !== 'active') {
+return { ok: false, error: 'not_found' };
+}
+var saves = sheet_('Saves', SAVES_HEAD);
+var saveRow = findRow_(saves, 2, String(share[1]));
+if (!saveRow) {
+return { ok: false, error: 'not_found' };
+}
+var rec = saves.getRange(saveRow, 1, 1, SAVES_HEAD.length).getValues()[0];
+var data = readSave_(rec);
+var out = { ok: true, slug: String(rec[2]), name: String(rec[4]), fields: data.fields, photos: data.photos };
+if (data.multi.length) {
+out.multi = data.multi;
+}
+return out;
 }
 
 function slugList_(src) {

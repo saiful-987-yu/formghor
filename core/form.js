@@ -8,6 +8,7 @@ var demoSig = '';
 var previewBox = null;
 var previewDemo = false;
 var X_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+var LINK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
 var LOCK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
 var RING_SVG = '<svg viewBox="0 0 36 36" aria-hidden="true"><circle class="g-ring-bg" cx="18" cy="18" r="15.5"/><circle class="g-ring-fg" cx="18" cy="18" r="15.5" pathLength="100" transform="rotate(-90 18 18)"/></svg>';
 var HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
@@ -1647,10 +1648,210 @@ openSaves();
 }, label + ' · ' + formatTime(item.t), openSaves);
 });
 row.appendChild(b);
+if (G.sync && G.sync.getSession && G.sync.getSession()) {
+var lnk = el('button', 'g-save-del g-save-share');
+lnk.type = 'button';
+lnk.setAttribute('aria-label', G.t('lnk.title'));
+lnk.setAttribute('title', G.t('lnk.title'));
+lnk.innerHTML = LINK_SVG;
+lnk.addEventListener('click', function () {
+close();
+openShare(item);
+});
+row.appendChild(lnk);
+}
 row.appendChild(del);
 body.appendChild(row);
 });
 }
+});
+}
+function shareUrl(code) {
+return window.location.origin + window.location.pathname + '?s=' + code;
+}
+function copyLink(text, done) {
+function legacy() {
+try {
+var area = document.createElement('textarea');
+area.value = text;
+area.setAttribute('readonly', '');
+area.style.position = 'fixed';
+area.style.top = '0';
+area.style.opacity = '0';
+document.body.appendChild(area);
+area.select();
+area.setSelectionRange(0, text.length);
+var ok = document.execCommand('copy');
+document.body.removeChild(area);
+return ok;
+} catch (e) {
+return false;
+}
+}
+if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+navigator.clipboard.writeText(text).then(function () {
+done(true);
+}, function () {
+done(legacy());
+});
+return;
+}
+done(legacy());
+}
+function shareError(code) {
+var map = {
+wrong_password: 'lnk.err.pass',
+too_many: 'lnk.err.many',
+limit: 'lnk.err.limit',
+not_configured: 'lnk.err.conf',
+not_found: 'lnk.err.unsynced',
+network: 'lnk.err.net'
+};
+return G.t(map[code] || 'lnk.err.net');
+}
+function openShare(item) {
+var session = G.sync && G.sync.getSession ? G.sync.getSession() : null;
+if (!session) {
+toast(G.t('lnk.needLogin'));
+return;
+}
+if (!item.sync) {
+toast(G.t('lnk.err.unsynced'));
+return;
+}
+G.modal.open({
+title: G.t('lnk.title'),
+note: G.t('lnk.note'),
+build: function (body, close) {
+function clear() {
+while (body.firstChild) {
+body.removeChild(body.firstChild);
+}
+}
+function showLink(code) {
+clear();
+var url = shareUrl(code);
+var field = el('input', 'g-lnk-input');
+field.type = 'text';
+field.readOnly = true;
+field.value = url;
+field.addEventListener('focus', function () {
+field.select();
+});
+body.appendChild(field);
+var row = el('div', 'g-lnk-row');
+var copy = el('button', 'g-btn', G.t('lnk.copy'));
+copy.type = 'button';
+copy.addEventListener('click', function () {
+copyLink(url, function (ok) {
+toast(G.t(ok ? 'lnk.copied' : 'lnk.err.copy'));
+});
+});
+row.appendChild(copy);
+if (navigator.share) {
+var send = el('button', 'g-btn g-btn--ghost', G.t('lnk.send'));
+send.type = 'button';
+send.addEventListener('click', function () {
+navigator.share({ title: document.title, url: url }).catch(function () {});
+});
+row.appendChild(send);
+}
+var stop = el('button', 'g-btn g-btn--ghost', G.t('lnk.revoke'));
+stop.type = 'button';
+stop.addEventListener('click', function () {
+stop.disabled = true;
+G.sync.post({ action: 'revokeShare', token: session.token, code: code }).then(function (res) {
+if (res && res.ok) {
+close();
+toast(G.t('lnk.revoked'));
+} else {
+stop.disabled = false;
+toast(shareError(res && res.error));
+}
+});
+});
+row.appendChild(stop);
+body.appendChild(row);
+}
+function showCreate() {
+clear();
+var pass = el('input', 'g-lnk-input');
+pass.type = 'password';
+pass.autocomplete = 'off';
+pass.placeholder = G.t('lnk.pass');
+body.appendChild(pass);
+var msg = el('p', 'g-lnk-err');
+body.appendChild(msg);
+var row = el('div', 'g-lnk-row');
+var make = el('button', 'g-btn', G.t('lnk.create'));
+make.type = 'button';
+make.addEventListener('click', function () {
+if (!pass.value.trim()) {
+msg.textContent = G.t('lnk.err.pass');
+return;
+}
+make.disabled = true;
+msg.textContent = '';
+G.sync.post({ action: 'createShare', token: session.token, id: item.id, password: pass.value.trim() }).then(function (res) {
+if (res && res.ok && res.code) {
+showLink(res.code);
+return;
+}
+make.disabled = false;
+msg.textContent = shareError(res && res.error);
+});
+});
+row.appendChild(make);
+body.appendChild(row);
+pass.focus();
+}
+var status = el('p', 'g-modal-text', G.t('lnk.loading'));
+body.appendChild(status);
+G.sync.post({ action: 'listShares', token: session.token }).then(function (res) {
+if (!res || !res.ok || !Array.isArray(res.shares)) {
+status.textContent = shareError(res && res.error);
+return;
+}
+var code = '';
+for (var i = 0; i < res.shares.length; i++) {
+if (res.shares[i].id === item.id) {
+code = res.shares[i].code;
+}
+}
+if (code) {
+showLink(code);
+} else {
+showCreate();
+}
+});
+}
+});
+}
+function applyLinkedShare() {
+var code = '';
+try {
+code = new URLSearchParams(window.location.search).get('s') || '';
+} catch (e) {}
+if (!/^[A-Za-z0-9]{10,20}$/.test(code)) {
+return;
+}
+try {
+window.history.replaceState(null, '', window.location.pathname + window.location.hash);
+} catch (e) {}
+if (!G.sync || !G.sync.enabled()) {
+toast(G.t('lnk.missing'));
+return;
+}
+toast(G.t('lnk.loading'));
+G.sync.post({ action: 'getShare', code: code }).then(function (res) {
+if (!res || !res.ok || res.slug !== SLUG) {
+toast(G.t(res && res.error === 'network' ? 'lnk.err.net' : 'lnk.missing'));
+return;
+}
+saveUnlocked();
+applyLockState();
+applyData({ fields: res.fields || {}, photos: res.photos || {}, multi: res.multi || [] }, 'save');
+toast(G.t('lnk.applied'));
 });
 }
 function applyLinkedSave() {
@@ -2581,6 +2782,7 @@ restoreDraft();
 bindDraft();
 applyLockState();
 applyLinkedSave();
+applyLinkedShare();
 refreshFill();
 document.addEventListener('g:langchange', function () {
 refreshFill();
