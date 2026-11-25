@@ -10,6 +10,39 @@ var previewBox = null;
 var previewDemo = false;
 var X_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 var LINK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
+var COPY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+var SEND_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>';
+var STOP_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>';
+function iconButton(svg, text, label, ghost) {
+var btn = el('button', ghost ? 'g-btn g-btn--ghost' : 'g-btn');
+btn.type = 'button';
+btn.setAttribute('aria-label', label);
+btn.setAttribute('title', label);
+btn.innerHTML = svg + '<span></span>';
+btn.lastChild.textContent = text;
+return btn;
+}
+function loadBar() {
+var bar = el('i', 'g-lnk-bar');
+bar.setAttribute('role', 'progressbar');
+bar.setAttribute('aria-busy', 'true');
+return bar;
+}
+var fetchBox = null;
+function showFetch(text) {
+hideFetch();
+fetchBox = el('div', 'g-fetch');
+fetchBox.setAttribute('role', 'status');
+fetchBox.appendChild(el('span', 'g-fetch-t', text));
+fetchBox.appendChild(el('i', 'g-fetch-bar'));
+document.body.appendChild(fetchBox);
+}
+function hideFetch() {
+if (fetchBox && fetchBox.parentNode) {
+fetchBox.parentNode.removeChild(fetchBox);
+}
+fetchBox = null;
+}
 var LOCK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
 var RING_SVG = '<svg viewBox="0 0 36 36" aria-hidden="true"><circle class="g-ring-bg" cx="18" cy="18" r="15.5"/><circle class="g-ring-fg" cx="18" cy="18" r="15.5" pathLength="100" transform="rotate(-90 18 18)"/></svg>';
 var HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
@@ -1742,8 +1775,7 @@ field.select();
 });
 body.appendChild(field);
 var row = el('div', 'g-lnk-row');
-var copy = el('button', 'g-btn', G.t('lnk.copy'));
-copy.type = 'button';
+var copy = iconButton(COPY_SVG, G.t('lnk.copyS'), G.t('lnk.copy'), false);
 copy.addEventListener('click', function () {
 copyLink(url, function (ok) {
 toast(G.t(ok ? 'lnk.copied' : 'lnk.err.copy'));
@@ -1751,25 +1783,39 @@ toast(G.t(ok ? 'lnk.copied' : 'lnk.err.copy'));
 });
 row.appendChild(copy);
 if (navigator.share) {
-var send = el('button', 'g-btn g-btn--ghost', G.t('lnk.send'));
-send.type = 'button';
+var send = iconButton(SEND_SVG, G.t('lnk.sendS'), G.t('lnk.send'), true);
 send.addEventListener('click', function () {
 navigator.share({ title: document.title, url: url }).catch(function () {});
 });
 row.appendChild(send);
 }
-var stop = el('button', 'g-btn g-btn--ghost', G.t('lnk.revoke'));
-stop.type = 'button';
+var stop = iconButton(STOP_SVG, G.t('lnk.revokeS'), G.t('lnk.revoke'), true);
+var busy = false;
 stop.addEventListener('click', function () {
-stop.disabled = true;
+if (busy) {
+return;
+}
+busy = true;
+var buttons = row.querySelectorAll('button');
+for (var k = 0; k < buttons.length; k++) {
+buttons[k].disabled = true;
+}
+var bar = loadBar();
+body.appendChild(bar);
 G.sync.post({ action: 'revokeShare', token: session.token, code: code }).then(function (res) {
 if (res && res.ok) {
 close();
 toast(G.t('lnk.revoked'));
-} else {
-stop.disabled = false;
-toast(shareError(res && res.error));
+return;
 }
+busy = false;
+for (var k2 = 0; k2 < buttons.length; k2++) {
+buttons[k2].disabled = false;
+}
+if (bar.parentNode) {
+bar.parentNode.removeChild(bar);
+}
+toast(shareError(res && res.error));
 });
 });
 row.appendChild(stop);
@@ -1784,24 +1830,50 @@ pass.placeholder = G.t('lnk.pass');
 body.appendChild(pass);
 var msg = el('p', 'g-lnk-err');
 body.appendChild(msg);
-var row = el('div', 'g-lnk-row');
+var row = el('div', 'g-lnk-row g-lnk-row--one');
 var make = el('button', 'g-btn', G.t('lnk.create'));
 make.type = 'button';
-make.addEventListener('click', function () {
+var busy = false;
+function setBusy(on) {
+busy = on;
+pass.disabled = on;
+make.disabled = on;
+var old = body.querySelector('.g-lnk-bar');
+if (old) {
+old.parentNode.removeChild(old);
+}
+if (on) {
+body.appendChild(loadBar());
+}
+}
+function submit() {
+if (busy) {
+return;
+}
 if (!pass.value.trim() || !(window.G.lock && G.lock.verify(SLUG, pass.value))) {
 msg.textContent = G.t('lnk.err.pass');
 return;
 }
-make.disabled = true;
-msg.textContent = '';
+msg.textContent = G.t('lnk.working');
+msg.className = 'g-lnk-err g-lnk-err--info';
+setBusy(true);
 G.sync.post({ action: 'createShare', token: session.token, id: item.id, password: pass.value.trim() }).then(function (res) {
 if (res && res.ok && res.code) {
 showLink(res.code);
 return;
 }
-make.disabled = false;
+setBusy(false);
+msg.className = 'g-lnk-err';
 msg.textContent = shareError(res && res.error);
+pass.focus();
 });
+}
+make.addEventListener('click', submit);
+pass.addEventListener('keydown', function (e) {
+if (e.key === 'Enter') {
+e.preventDefault();
+submit();
+}
 });
 row.appendChild(make);
 body.appendChild(row);
@@ -1809,9 +1881,14 @@ pass.focus();
 }
 var status = el('p', 'g-modal-text', G.t('lnk.loading'));
 body.appendChild(status);
+body.appendChild(loadBar());
 G.sync.post({ action: 'listShares', token: session.token }).then(function (res) {
 if (!res || !res.ok || !Array.isArray(res.shares)) {
 status.textContent = shareError(res && res.error);
+var spin = body.querySelector('.g-lnk-bar');
+if (spin) {
+spin.parentNode.removeChild(spin);
+}
 return;
 }
 var code = '';
@@ -1844,8 +1921,9 @@ if (!G.sync || !G.sync.enabled()) {
 toast(G.t('lnk.missing'));
 return;
 }
-toast(G.t('lnk.loading'));
+showFetch(G.t('lnk.fetching'));
 G.sync.post({ action: 'getShare', code: code }).then(function (res) {
+hideFetch();
 if (!res || !res.ok || res.slug !== SLUG) {
 toast(G.t(res && res.error === 'network' ? 'lnk.err.net' : 'lnk.missing'));
 return;
