@@ -1283,3 +1283,6 @@ margin: 8px 0 0;
 color: #c0392b;
 font-size: .9rem;
 }
+#g-form-pages {
+display: none;
+}

@@ -4,6 +4,7 @@ var SLUG = '';
 var META = null;
 var toastTimer = null;
 var unlocked = false;
+var pendingShare = null;
 var demoSig = '';
 var previewBox = null;
 var previewDemo = false;
@@ -261,6 +262,7 @@ for (var a = 0; a < areas.length; a++) {
 autosize(areas[a]);
 }
 fit();
+flushShare();
 }
 refreshMulti();
 }
@@ -1786,7 +1788,7 @@ var row = el('div', 'g-lnk-row');
 var make = el('button', 'g-btn', G.t('lnk.create'));
 make.type = 'button';
 make.addEventListener('click', function () {
-if (!pass.value.trim()) {
+if (!pass.value.trim() || !(window.G.lock && G.lock.verify(SLUG, pass.value))) {
 msg.textContent = G.t('lnk.err.pass');
 return;
 }
@@ -1848,11 +1850,22 @@ if (!res || !res.ok || res.slug !== SLUG) {
 toast(G.t(res && res.error === 'network' ? 'lnk.err.net' : 'lnk.missing'));
 return;
 }
-saveUnlocked();
-applyLockState();
+pendingShare = res;
+if (isLocked()) {
+toast(G.t('lnk.lockedHint'));
+} else {
+flushShare();
+}
+});
+}
+function flushShare() {
+if (!pendingShare || isLocked()) {
+return;
+}
+var res = pendingShare;
+pendingShare = null;
 applyData({ fields: res.fields || {}, photos: res.photos || {}, multi: res.multi || [] }, 'save');
 toast(G.t('lnk.applied'));
-});
 }
 function applyLinkedSave() {
 var id = '';

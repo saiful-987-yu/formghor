@@ -8,6 +8,8 @@ var SAVES_HEAD = ['time', 'save_id', 'form', 'phone', 'name', 'data', 'photo_ids
 var FAVS_HEAD = ['phone', 'form', 'time'];
 var SHARES_HEAD = ['code', 'save_id', 'form', 'phone', 'created', 'status'];
 var MAX_SHARES = 5;
+var SHARE_GLOBAL_KEY = 9876;
+var FORM_IDS = {'cv-sidebar': 1613, 'cv-green': 2994, 'teacher-id-card': 2883, 'office-id-maroon': 1994, 'personal-card': 2248, 'nid-info-card': 1740, 'cv-classic': 1238, 'cv-modern': 1359, 'resume': 3010, 'office-id-card': 1867, 'plot-sale-deed': 2375, 'school-id-card': 2121, 'school-apply': 1111, 'school-id-card-2': 2756, 'nurnabi-youth-member-apply': 1759, 'business-card': 3137, 'resignation-letter': 2641, 'oikkya-member-apply': 2502, 'oikkya-deposit-receipt': 2629, 'union-member-apply': 1486};
 var SESSION_DAYS = 90;
 
 function setup() {
@@ -631,18 +633,38 @@ revokeSharesOf_(id);
 return { ok: true };
 }
 
-function sharePassOk_(phone, pass) {
+function pad2_(n) {
+return n < 10 ? '0' + n : String(n);
+}
+
+function lockPins_(key) {
+var d = new Date(Date.now() + 6 * 3600000);
+var y = d.getUTCFullYear();
+var mo = d.getUTCMonth() + 1;
+var da = d.getUTCDate();
+var h = d.getUTCHours();
+var yy = y % 100;
+return [
+String(Number(String(y) + '00') + key),
+String(Number(String(y) + pad2_(mo)) + key),
+String(Number(String(y) + pad2_(mo) + pad2_(da)) + key),
+String(Number(pad2_(yy) + pad2_(mo) + pad2_(da) + pad2_(h)) + key)
+];
+}
+
+function sharePassOk_(phone, slug, pass) {
 var cache = CacheService.getScriptCache();
 var key = 'sp_' + phone;
 var fails = Number(cache.get(key) || 0);
 if (fails >= 5) {
 return 'too_many';
 }
-var real = String(PROPS.getProperty('SHARE_PASSWORD') || '');
-if (!real) {
-return 'not_configured';
+var code = String(pass || '').trim();
+var ok = !!code && lockPins_(SHARE_GLOBAL_KEY).indexOf(code) !== -1;
+if (!ok && code && FORM_IDS[slug]) {
+ok = lockPins_(FORM_IDS[slug]).indexOf(code) !== -1;
 }
-if (String(pass || '') !== real) {
+if (!ok) {
 cache.put(key, String(fails + 1), 600);
 return 'wrong_password';
 }
@@ -691,7 +713,7 @@ return { ok: true, code: String(vals[i][0]), existing: true };
 mine++;
 }
 }
-var bad = sharePassOk_(phone, req.password);
+var bad = sharePassOk_(phone, String(rec[2]), req.password);
 if (bad) {
 return { ok: false, error: bad };
 }
