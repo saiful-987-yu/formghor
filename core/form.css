@@ -1398,3 +1398,21 @@ font-size: .9rem;
 #g-form-pages {
 display: none;
 }
+.g-num {
+display: inline-block;
+margin-right: 6px;
+padding: 0 7px;
+border-radius: 999px;
+background: var(--g-line);
+color: var(--g-text);
+font-size: .78rem;
+font-weight: 700;
+line-height: 1.5;
+vertical-align: 1px;
+}
+.g-save-time {
+overflow: hidden;
+max-width: 100%;
+text-overflow: ellipsis;
+white-space: nowrap;
+}

@@ -99,8 +99,12 @@ tag.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" w
 tag.appendChild(el('span', '', G.t('saves.multiTag') + ' · ' + G.t('saves.people').replace('{n}', digits(String(G.saves.persons(item))))));
 card.appendChild(tag);
 }
-card.appendChild(el('span', 'g-sv-name', label));
-card.appendChild(el('span', 'g-sv-time', when));
+var hint = G.saves.hint(item, slug);
+var nameBox = el('span', 'g-sv-name');
+nameBox.appendChild(G.saves.badge(hint.num));
+nameBox.appendChild(document.createTextNode(label));
+card.appendChild(nameBox);
+card.appendChild(el('span', 'g-sv-time', when + (hint.extra ? ' · ' + hint.extra : '')));
 var del = el('button', 'g-sv-del');
 del.type = 'button';
 del.setAttribute('aria-label', G.t('saves.del'));
@@ -110,6 +114,17 @@ del.addEventListener('click', function () {
 removeSave(slug, item, label + ' · ' + when);
 });
 row.appendChild(card);
+if (G.sync && G.sync.getSession && G.sync.getSession() && G.saves.share) {
+var lnk = el('button', 'g-sv-del g-sv-share');
+lnk.type = 'button';
+lnk.setAttribute('aria-label', G.t('lnk.title'));
+lnk.setAttribute('title', G.t('lnk.title'));
+lnk.innerHTML = G.saves.share.linkSvg;
+lnk.addEventListener('click', function () {
+G.saves.share.open(item, slug);
+});
+row.appendChild(lnk);
+}
 row.appendChild(del);
 grid.appendChild(row);
 });

@@ -407,6 +407,280 @@ push();
 }
 push();
 }
+var LINK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
+var COPY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+var SEND_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>';
+var STOP_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>';
+var shareToastTimer = 0;
+function el(tag, className, text) {
+var node = document.createElement(tag);
+if (className) {
+node.className = className;
+}
+if (text) {
+node.textContent = text;
+}
+return node;
+}
+function toast(message) {
+var node = document.getElementById('g-toast');
+if (!node) {
+node = el('div', 'g-toast');
+node.id = 'g-toast';
+node.setAttribute('role', 'status');
+node.setAttribute('aria-live', 'polite');
+document.body.appendChild(node);
+}
+node.textContent = message;
+node.classList.add('g-toast--show');
+window.clearTimeout(shareToastTimer);
+shareToastTimer = window.setTimeout(function () {
+node.classList.remove('g-toast--show');
+}, 2800);
+}
+function bnDigits(text) {
+if (G.getLang() !== 'bn') {
+return text;
+}
+return text.replace(/\d/g, function (c) {
+return '০১২৩৪৫৬৭৮৯'.charAt(Number(c));
+});
+}
+function iconButton(svg, text, label, ghost) {
+var btn = el('button', ghost ? 'g-btn g-btn--ghost' : 'g-btn');
+btn.type = 'button';
+btn.setAttribute('aria-label', label);
+btn.setAttribute('title', label);
+btn.innerHTML = svg + '<span></span>';
+btn.lastChild.textContent = text;
+return btn;
+}
+function loadBar() {
+var bar = el('i', 'g-lnk-bar');
+bar.setAttribute('role', 'progressbar');
+bar.setAttribute('aria-busy', 'true');
+return bar;
+}
+function shareUrl(slug, code) {
+var root = window.location.pathname.replace(/(forms\/[^\/]+\/|saved\/|favorites\/|profile\/)?(index\.html)?$/, '');
+return window.location.origin + root + 'forms/' + slug + '/?s=' + code;
+}
+function copyLink(text, done) {
+function legacy() {
+try {
+var area = document.createElement('textarea');
+area.value = text;
+area.setAttribute('readonly', '');
+area.style.position = 'fixed';
+area.style.top = '0';
+area.style.opacity = '0';
+document.body.appendChild(area);
+area.select();
+area.setSelectionRange(0, text.length);
+var ok = document.execCommand('copy');
+document.body.removeChild(area);
+return ok;
+} catch (e) {
+return false;
+}
+}
+if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+navigator.clipboard.writeText(text).then(function () {
+done(true);
+}, function () {
+done(legacy());
+});
+return;
+}
+done(legacy());
+}
+function shareError(code) {
+var map = {
+wrong_password: 'lnk.err.pass',
+too_many: 'lnk.err.many',
+limit: 'lnk.err.limit',
+not_configured: 'lnk.err.conf',
+not_found: 'lnk.err.unsynced',
+network: 'lnk.err.net'
+};
+return G.t(map[code] || 'lnk.err.net');
+}
+function openShare(item, slug) {
+var session = G.sync && G.sync.getSession ? G.sync.getSession() : null;
+if (!session) {
+toast(G.t('lnk.needLogin'));
+return;
+}
+if (!item.sync) {
+toast(G.t('lnk.err.unsynced'));
+return;
+}
+G.modal.open({
+title: G.t('lnk.title'),
+note: G.t('lnk.note'),
+build: function (body, close) {
+function clear() {
+while (body.firstChild) {
+body.removeChild(body.firstChild);
+}
+}
+function showLink(code) {
+clear();
+var url = shareUrl(slug, code);
+var field = el('input', 'g-lnk-input');
+field.type = 'text';
+field.readOnly = true;
+field.value = url;
+field.addEventListener('focus', function () {
+field.select();
+});
+body.appendChild(field);
+var row = el('div', 'g-lnk-row');
+var copy = iconButton(COPY_SVG, G.t('lnk.copyS'), G.t('lnk.copy'), false);
+copy.addEventListener('click', function () {
+copyLink(url, function (ok) {
+toast(G.t(ok ? 'lnk.copied' : 'lnk.err.copy'));
+});
+});
+row.appendChild(copy);
+if (navigator.share) {
+var send = iconButton(SEND_SVG, G.t('lnk.sendS'), G.t('lnk.send'), true);
+send.addEventListener('click', function () {
+navigator.share({ title: document.title, url: url }).catch(function () {});
+});
+row.appendChild(send);
+}
+var stop = iconButton(STOP_SVG, G.t('lnk.revokeS'), G.t('lnk.revoke'), true);
+stop.addEventListener('click', function () {
+close();
+G.modal.confirm({
+title: G.t('lnk.cf.t'),
+text: G.t('lnk.cf.x'),
+onYes: function () {
+toast(G.t('lnk.revoking'));
+G.sync.post({ action: 'revokeShare', token: session.token, code: code }).then(function (res) {
+toast(res && res.ok ? G.t('lnk.revoked') : shareError(res && res.error));
+});
+},
+onCancel: function () {
+openShare(item, slug);
+}
+});
+});
+row.appendChild(stop);
+body.appendChild(row);
+}
+function showCreate() {
+clear();
+var pass = el('input', 'g-lnk-input');
+pass.type = 'password';
+pass.autocomplete = 'off';
+pass.placeholder = G.t('lnk.pass');
+body.appendChild(pass);
+var msg = el('p', 'g-lnk-err');
+body.appendChild(msg);
+var row = el('div', 'g-lnk-row g-lnk-row--one');
+var make = el('button', 'g-btn', G.t('lnk.create'));
+make.type = 'button';
+var busy = false;
+function setBusy(on) {
+busy = on;
+pass.disabled = on;
+make.disabled = on;
+var old = body.querySelector('.g-lnk-bar');
+if (old) {
+old.parentNode.removeChild(old);
+}
+if (on) {
+body.appendChild(loadBar());
+}
+}
+function submit() {
+if (busy) {
+return;
+}
+if (!pass.value.trim() || !(window.G.lock && G.lock.verify(slug, pass.value))) {
+msg.textContent = G.t('lnk.err.pass');
+return;
+}
+msg.textContent = G.t('lnk.working');
+msg.className = 'g-lnk-err g-lnk-err--info';
+setBusy(true);
+G.sync.post({ action: 'createShare', token: session.token, id: item.id, password: pass.value.trim() }).then(function (res) {
+if (res && res.ok && res.code) {
+showLink(res.code);
+return;
+}
+setBusy(false);
+msg.className = 'g-lnk-err';
+msg.textContent = shareError(res && res.error);
+pass.focus();
+});
+}
+make.addEventListener('click', submit);
+pass.addEventListener('keydown', function (e) {
+if (e.key === 'Enter') {
+e.preventDefault();
+submit();
+}
+});
+row.appendChild(make);
+body.appendChild(row);
+pass.focus();
+}
+var status = el('p', 'g-modal-text', G.t('lnk.loading'));
+body.appendChild(status);
+body.appendChild(loadBar());
+G.sync.post({ action: 'listShares', token: session.token }).then(function (res) {
+if (!res || !res.ok || !Array.isArray(res.shares)) {
+status.textContent = shareError(res && res.error);
+var spin = body.querySelector('.g-lnk-bar');
+if (spin) {
+spin.parentNode.removeChild(spin);
+}
+return;
+}
+var code = '';
+for (var i = 0; i < res.shares.length; i++) {
+if (res.shares[i].id === item.id) {
+code = res.shares[i].code;
+}
+}
+if (code) {
+showLink(code);
+} else {
+showCreate();
+}
+});
+}
+});
+}
+function hint(item, slug) {
+var all = read(slug).slice().sort(function (a, b) {
+return a.t - b.t;
+});
+var num = 1;
+for (var i = 0; i < all.length; i++) {
+if (all[i].id === item.id) {
+num = i + 1;
+}
+}
+var parts = [];
+var fields = item.fields || {};
+var keys = Object.keys(fields);
+var own = String(item.name || '').trim();
+for (var k = 0; k < keys.length && parts.length < 2; k++) {
+var v = String(fields[keys[k]] || '').trim();
+if (v && v !== own && v.length <= 20 && v.indexOf('\n') === -1) {
+parts.push(v);
+}
+}
+return { num: num, extra: parts.join(' · ') };
+}
+function badge(num) {
+return el('span', 'g-num', '#' + bnDigits(String(num)));
+}
+var shareApi = { open: openShare, linkSvg: LINK_SVG };
 G.saves = {
 slugs: knownSlugs,
 syncAll: syncAll,
@@ -487,7 +761,10 @@ return true;
 }
 return false;
 },
-sync: sync
+sync: sync,
+share: shareApi,
+hint: hint,
+badge: badge
 };
 window.addEventListener('online', function () {
 var slug = document.body && document.body.getAttribute('data-form');

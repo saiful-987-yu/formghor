@@ -9,25 +9,6 @@ var demoSig = '';
 var previewBox = null;
 var previewDemo = false;
 var X_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-var LINK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
-var COPY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
-var SEND_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>';
-var STOP_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>';
-function iconButton(svg, text, label, ghost) {
-var btn = el('button', ghost ? 'g-btn g-btn--ghost' : 'g-btn');
-btn.type = 'button';
-btn.setAttribute('aria-label', label);
-btn.setAttribute('title', label);
-btn.innerHTML = svg + '<span></span>';
-btn.lastChild.textContent = text;
-return btn;
-}
-function loadBar() {
-var bar = el('i', 'g-lnk-bar');
-bar.setAttribute('role', 'progressbar');
-bar.setAttribute('aria-busy', 'true');
-return bar;
-}
 var fetchBox = null;
 function showFetch(text) {
 hideFetch();
@@ -1656,8 +1637,12 @@ if (item.multi && item.multi.length) {
 b.className = 'g-save-item g-save-item--multi';
 b.appendChild(multiTag(item));
 }
-b.appendChild(el('span', 'g-save-name', label));
-b.appendChild(el('span', 'g-save-time', formatTime(item.t)));
+var hint = G.saves.hint(item, SLUG);
+var nameBox = el('span', 'g-save-name');
+nameBox.appendChild(G.saves.badge(hint.num));
+nameBox.appendChild(document.createTextNode(label));
+b.appendChild(nameBox);
+b.appendChild(el('span', 'g-save-time', formatTime(item.t) + (hint.extra ? ' · ' + hint.extra : '')));
 b.addEventListener('click', function () {
 close();
 ask(multiPeople() ? 'applyAll' : 'apply', function () {
@@ -1688,220 +1673,15 @@ var lnk = el('button', 'g-save-del g-save-share');
 lnk.type = 'button';
 lnk.setAttribute('aria-label', G.t('lnk.title'));
 lnk.setAttribute('title', G.t('lnk.title'));
-lnk.innerHTML = LINK_SVG;
+lnk.innerHTML = G.saves.share.linkSvg;
 lnk.addEventListener('click', function () {
 close();
-openShare(item);
+G.saves.share.open(item, SLUG);
 });
 row.appendChild(lnk);
 }
 row.appendChild(del);
 body.appendChild(row);
-});
-}
-});
-}
-function shareUrl(code) {
-return window.location.origin + window.location.pathname + '?s=' + code;
-}
-function copyLink(text, done) {
-function legacy() {
-try {
-var area = document.createElement('textarea');
-area.value = text;
-area.setAttribute('readonly', '');
-area.style.position = 'fixed';
-area.style.top = '0';
-area.style.opacity = '0';
-document.body.appendChild(area);
-area.select();
-area.setSelectionRange(0, text.length);
-var ok = document.execCommand('copy');
-document.body.removeChild(area);
-return ok;
-} catch (e) {
-return false;
-}
-}
-if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-navigator.clipboard.writeText(text).then(function () {
-done(true);
-}, function () {
-done(legacy());
-});
-return;
-}
-done(legacy());
-}
-function shareError(code) {
-var map = {
-wrong_password: 'lnk.err.pass',
-too_many: 'lnk.err.many',
-limit: 'lnk.err.limit',
-not_configured: 'lnk.err.conf',
-not_found: 'lnk.err.unsynced',
-network: 'lnk.err.net'
-};
-return G.t(map[code] || 'lnk.err.net');
-}
-function openShare(item) {
-var session = G.sync && G.sync.getSession ? G.sync.getSession() : null;
-if (!session) {
-toast(G.t('lnk.needLogin'));
-return;
-}
-if (!item.sync) {
-toast(G.t('lnk.err.unsynced'));
-return;
-}
-G.modal.open({
-title: G.t('lnk.title'),
-note: G.t('lnk.note'),
-build: function (body, close) {
-function clear() {
-while (body.firstChild) {
-body.removeChild(body.firstChild);
-}
-}
-function showLink(code) {
-clear();
-var url = shareUrl(code);
-var field = el('input', 'g-lnk-input');
-field.type = 'text';
-field.readOnly = true;
-field.value = url;
-field.addEventListener('focus', function () {
-field.select();
-});
-body.appendChild(field);
-var row = el('div', 'g-lnk-row');
-var copy = iconButton(COPY_SVG, G.t('lnk.copyS'), G.t('lnk.copy'), false);
-copy.addEventListener('click', function () {
-copyLink(url, function (ok) {
-toast(G.t(ok ? 'lnk.copied' : 'lnk.err.copy'));
-});
-});
-row.appendChild(copy);
-if (navigator.share) {
-var send = iconButton(SEND_SVG, G.t('lnk.sendS'), G.t('lnk.send'), true);
-send.addEventListener('click', function () {
-navigator.share({ title: document.title, url: url }).catch(function () {});
-});
-row.appendChild(send);
-}
-var stop = iconButton(STOP_SVG, G.t('lnk.revokeS'), G.t('lnk.revoke'), true);
-var busy = false;
-stop.addEventListener('click', function () {
-if (busy) {
-return;
-}
-busy = true;
-var buttons = row.querySelectorAll('button');
-for (var k = 0; k < buttons.length; k++) {
-buttons[k].disabled = true;
-}
-var bar = loadBar();
-body.appendChild(bar);
-G.sync.post({ action: 'revokeShare', token: session.token, code: code }).then(function (res) {
-if (res && res.ok) {
-close();
-toast(G.t('lnk.revoked'));
-return;
-}
-busy = false;
-for (var k2 = 0; k2 < buttons.length; k2++) {
-buttons[k2].disabled = false;
-}
-if (bar.parentNode) {
-bar.parentNode.removeChild(bar);
-}
-toast(shareError(res && res.error));
-});
-});
-row.appendChild(stop);
-body.appendChild(row);
-}
-function showCreate() {
-clear();
-var pass = el('input', 'g-lnk-input');
-pass.type = 'password';
-pass.autocomplete = 'off';
-pass.placeholder = G.t('lnk.pass');
-body.appendChild(pass);
-var msg = el('p', 'g-lnk-err');
-body.appendChild(msg);
-var row = el('div', 'g-lnk-row g-lnk-row--one');
-var make = el('button', 'g-btn', G.t('lnk.create'));
-make.type = 'button';
-var busy = false;
-function setBusy(on) {
-busy = on;
-pass.disabled = on;
-make.disabled = on;
-var old = body.querySelector('.g-lnk-bar');
-if (old) {
-old.parentNode.removeChild(old);
-}
-if (on) {
-body.appendChild(loadBar());
-}
-}
-function submit() {
-if (busy) {
-return;
-}
-if (!pass.value.trim() || !(window.G.lock && G.lock.verify(SLUG, pass.value))) {
-msg.textContent = G.t('lnk.err.pass');
-return;
-}
-msg.textContent = G.t('lnk.working');
-msg.className = 'g-lnk-err g-lnk-err--info';
-setBusy(true);
-G.sync.post({ action: 'createShare', token: session.token, id: item.id, password: pass.value.trim() }).then(function (res) {
-if (res && res.ok && res.code) {
-showLink(res.code);
-return;
-}
-setBusy(false);
-msg.className = 'g-lnk-err';
-msg.textContent = shareError(res && res.error);
-pass.focus();
-});
-}
-make.addEventListener('click', submit);
-pass.addEventListener('keydown', function (e) {
-if (e.key === 'Enter') {
-e.preventDefault();
-submit();
-}
-});
-row.appendChild(make);
-body.appendChild(row);
-pass.focus();
-}
-var status = el('p', 'g-modal-text', G.t('lnk.loading'));
-body.appendChild(status);
-body.appendChild(loadBar());
-G.sync.post({ action: 'listShares', token: session.token }).then(function (res) {
-if (!res || !res.ok || !Array.isArray(res.shares)) {
-status.textContent = shareError(res && res.error);
-var spin = body.querySelector('.g-lnk-bar');
-if (spin) {
-spin.parentNode.removeChild(spin);
-}
-return;
-}
-var code = '';
-for (var i = 0; i < res.shares.length; i++) {
-if (res.shares[i].id === item.id) {
-code = res.shares[i].code;
-}
-}
-if (code) {
-showLink(code);
-} else {
-showCreate();
-}
 });
 }
 });
