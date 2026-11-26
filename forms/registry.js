@@ -117,6 +117,7 @@ keys: ['সিভি', 'cv', 'curriculum vitae', 'বায়োডাটা', 
 },
 {
 slug: 'resume',
+home: 9,
 id: 'ID-3010',
 access: 'free',
 paper: 'A4',
@@ -171,6 +172,7 @@ keys: ['আইডি কার্ড', 'id card', 'আইডি', 'id', 'পর�
 },
 {
 slug: 'school-apply',
+home: 10,
 id: 'ID-1111',
 access: 'free',
 paper: 'A4',

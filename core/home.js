@@ -400,6 +400,9 @@ var lang = G.getLang();
 var list = window.G_FORMS || [];
 var base = grid.getAttribute('data-base') || '';
 var limit = parseInt(grid.getAttribute('data-limit'), 10) || 0;
+if (limit && pvColumns(grid.clientWidth) === 3) {
+limit += 2;
+}
 var favMode = grid.hasAttribute('data-favs');
 var want = document.getElementById('g-form-tabs') ? formTab : 'public';
 var searching = !favMode && !!document.getElementById('g-form-search-input') && query.replace(/\s+/g, '') !== '';
