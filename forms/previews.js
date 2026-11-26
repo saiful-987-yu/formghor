@@ -13,6 +13,7 @@ window.G_PREVIEWS = {
 "school-id-card": {"w":640,"h":475,"c":"#1356b8","m":"card"},
 "school-apply": {"w":560,"h":793,"c":"#6b7280","m":"doc"},
 "school-id-card-2": {"w":498,"h":640,"c":"#0b6b3f","m":"card"},
+"nurnabi-youth-member-apply": {"w":560,"h":792,"c":"#82a48f","m":"doc"},
 "business-card": {"w":552,"h":640,"c":"#0c2b1e","m":"card"},
 "resignation-letter": {"w":560,"h":792,"c":"#6b7280","m":"doc"},
 "oikkya-member-apply": {"w":560,"h":923,"c":"#0e162a","m":"doc"},
